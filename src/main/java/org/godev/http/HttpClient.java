@@ -23,7 +23,7 @@ import org.godev.collection.Maps;
 import org.godev.exception.HttpRequestException;
 import org.godev.string.StringUtils;
 import org.godev.utils.Assert;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 import org.godev.utils.Optional;
 import okhttp3.*;
 
@@ -365,7 +365,7 @@ public class HttpClient {
      * @return 一个新的 {@link StreamResponse} 实例。
      */
     public StreamResponse newStreamCall(StreamCallback callback) {
-        return new StreamResponse(Captor.call(() -> newCall0(callback)));
+        return new StreamResponse(ErrorCatcher.call(() -> newCall0(callback)));
     }
 
     /**

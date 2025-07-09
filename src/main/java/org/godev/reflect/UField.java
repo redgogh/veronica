@@ -22,7 +22,7 @@ package org.godev.reflect;
 
 import org.godev.string.StringUtils;
 import org.godev.utils.Assert;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 import org.godev.utils.Optional;
 
 import java.lang.annotation.Annotation;
@@ -157,13 +157,13 @@ public class UField {
          * 获取当前属性中的值
          */
         public Object read() {
-            return Captor.call(() -> field.get(instance));
+            return ErrorCatcher.call(() -> field.get(instance));
         }
         /**
          * 设置当前属性中的值
          */
         public void write(Object value) {
-            Captor.call(() -> field.set(instance, value));
+            ErrorCatcher.call(() -> field.set(instance, value));
         }
     }
 
@@ -262,7 +262,7 @@ public class UField {
      *        目标对象实例
      */
     public static void copyIgnoreError(Object src, Object dest, String name) {
-        Captor.icall(() -> copy(src, dest, name));
+        ErrorCatcher.icall(() -> copy(src, dest, name));
     }
 
     /**

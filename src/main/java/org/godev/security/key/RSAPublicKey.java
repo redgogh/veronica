@@ -25,7 +25,7 @@ package org.godev.security.key;
 
 /* Creates on 2025/2/20. */
 
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import java.security.Key;
 import java.security.KeyFactory;
@@ -48,7 +48,7 @@ public class RSAPublicKey extends AbstractKey {
     }
 
     public PublicKey toPublicKey() {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             X509EncodedKeySpec keySpec = new X509EncodedKeySpec(getEncoded());
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(keySpec);

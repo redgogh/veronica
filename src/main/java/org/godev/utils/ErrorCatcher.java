@@ -26,7 +26,7 @@ import org.godev.iface.Callable;
 /**
  * @author Red Gogh
  */
-public class Captor {
+public class ErrorCatcher {
 
     /**
      * 执行指定的无返回值函数，如果发生任何异常则忽略并不处理。

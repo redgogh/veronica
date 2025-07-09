@@ -10,6 +10,7 @@
 - 新增 `IOUtils#serialize` 序列化对象函数。
 - 新增 `IOUtils#deserialize` 反序列化对象函数。
 - 新增 `Chrono#toZoned` 函数用于转换时区。
+- 新增 `HttpClient#newCall` 函数 Lambda 回调方式。
 
 ## 👻 优化功能
 
@@ -26,6 +27,7 @@
 - 优化 `fromVarargs` 函数，改名为 `of`。
 - 优化 `firstElement/lastElement` 方法命名，改为 `first/last`。
 - 移除 `ByteBuffer` 类，使用原生 NIO `ByteBuffer` 代替
+- 优化 `Captor` 改为 `ErrorCatcher` 更直观的命名
 
 ## 🐞 BUG 修复
 

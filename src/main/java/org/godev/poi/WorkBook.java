@@ -32,7 +32,7 @@ import org.godev.reflect.UField;
 import org.godev.stream.Streams;
 import org.godev.string.StringUtils;
 import org.godev.time.DateFormatter;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 import org.godev.utils.Optional;
 import org.godev.utils.TypeCvt;
 
@@ -113,7 +113,7 @@ public class WorkBook implements Iterable<Row> {
      * @param file Excel 文件对象
      */
     private WorkBook(File file) {
-        this(Captor.call(() -> new XSSFWorkbook(file)));
+        this(ErrorCatcher.call(() -> new XSSFWorkbook(file)));
     }
 
     /**
@@ -126,7 +126,7 @@ public class WorkBook implements Iterable<Row> {
      * @param stream 输入流，需指向有效的 Excel 文件内容
      */
     private WorkBook(InputStream stream) {
-        this(Captor.call(() -> new XSSFWorkbook(stream)));
+        this(ErrorCatcher.call(() -> new XSSFWorkbook(stream)));
     }
 
     /**
@@ -410,7 +410,7 @@ public class WorkBook implements Iterable<Row> {
      *
      */
     public void write(OutputStream stream) {
-        Captor.call(() -> wb.write(stream));
+        ErrorCatcher.call(() -> wb.write(stream));
     }
 
     /**

@@ -5,7 +5,7 @@ import org.godev.exception.SystemRuntimeException;
 import org.godev.io.IOUtils;
 import org.godev.security.Codec;
 import org.godev.security.SHA256;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +24,7 @@ public class SHA256Codec implements SHA256 {
 
     @Override
     public String encode(File file) {
-        return Captor.icall(() -> {
+        return ErrorCatcher.icall(() -> {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             try(FileInputStream fileInputStream = new FileInputStream(file)) {
                 int len = 0;

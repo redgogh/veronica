@@ -12,7 +12,7 @@ import org.godev.collection.Maps;
 import org.godev.exception.SystemRuntimeException;
 import org.godev.security.Codec;
 import org.godev.utils.Assert;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 import org.godev.utils.Comparators;
 
 import java.security.PrivateKey;
@@ -102,7 +102,7 @@ public class JWTSigner {
      * @return 解析得到的 `JWTClaims` 对象，包含 JWT 的声明信息
      */
     public JWTClaims parseClaims(String token) {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             String[] payloadPart = token.split("\\.");
             JSONObject Result = (JSONObject) JSONObject.parse(Codec.BASE64.decode(payloadPart[1]));
             JWTClaims claims = new JWTClaims();
@@ -126,7 +126,7 @@ public class JWTSigner {
         if (!claims.containsKey("exp"))
             throw new IllegalArgumentException("Token 签发失败 Claims 必须包含过期时间");
 
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             JWSSigner signer = newSigner(encryptKey, algorithm);
 
             JWTClaimsSet.Builder builder = new JWTClaimsSet.Builder();

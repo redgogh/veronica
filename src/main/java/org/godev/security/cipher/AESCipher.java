@@ -2,7 +2,7 @@ package org.godev.security.cipher;
 
 import org.godev.security.AES;
 import org.godev.security.Codec;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -21,7 +21,7 @@ public class AESCipher implements AES {
 
     @Override
     public String encrypt(byte[] bytes, String secret) {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             Cipher cipher = Cipher.getInstance("AES");
             SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(), "AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
@@ -36,7 +36,7 @@ public class AESCipher implements AES {
 
     @Override
     public byte[] decrypt(byte[] bytes, String secret) {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             Cipher cipher = Cipher.getInstance("AES");
             SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(), "AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);

@@ -1,6 +1,6 @@
 package org.godev.security.codec;
 
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 import org.godev.string.StringUtils;
 import org.godev.security.URL;
 
@@ -45,7 +45,7 @@ public class URLCodec implements URL {
 
     @Override
     public String decode(String source, String enc) {
-        return Captor.call(() -> URLDecoder.decode(source, enc));
+        return ErrorCatcher.call(() -> URLDecoder.decode(source, enc));
     }
 
 }

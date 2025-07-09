@@ -30,7 +30,7 @@ import org.godev.security.RSA;
 import org.godev.security.key.RSAPrivateKey;
 import org.godev.security.key.RSAPublicKey;
 import org.godev.tuple.Pair;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import javax.crypto.Cipher;
 import java.security.KeyPair;
@@ -53,7 +53,7 @@ public class RSACipher implements RSA {
     @Override
     public Pair<RSAPublicKey, RSAPrivateKey> generateKeyPair(int size) {
         KeyPairGenerator keyPairGenerator =
-                Captor.icall(() -> KeyPairGenerator.getInstance("RSA"));
+                ErrorCatcher.icall(() -> KeyPairGenerator.getInstance("RSA"));
         keyPairGenerator.initialize(size);
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         return Pair.of(new RSAPublicKey(keyPair.getPublic()), new RSAPrivateKey(keyPair.getPrivate()));
@@ -61,7 +61,7 @@ public class RSACipher implements RSA {
 
     @Override
     public String encrypt(String message, RSAPublicKey publicKey) {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey.toPublicKey());
             byte[] b = cipher.doFinal(atob(message));
@@ -71,7 +71,7 @@ public class RSACipher implements RSA {
 
     @Override
     public String decrypt(String encryptedMessage, RSAPrivateKey privateKey) {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, privateKey.toPrivateKey());
             byte[] b = cipher.doFinal(Codec.BASE64.decodeBytes(encryptedMessage));

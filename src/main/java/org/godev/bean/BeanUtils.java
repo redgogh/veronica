@@ -22,7 +22,7 @@ package org.godev.bean;
 
 import org.godev.reflect.UField;
 import org.godev.reflect.UClass;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -98,7 +98,7 @@ public class BeanUtils {
             String name = field.getName();
             if (ignores.length > 0 && strcheckin(name, ignores))
                 continue;
-            Captor.icall(() -> copyValue(src, new UClass(src), dst, dstClass, field));
+            ErrorCatcher.icall(() -> copyValue(src, new UClass(src), dst, dstClass, field));
         }
     }
 
@@ -118,7 +118,7 @@ public class BeanUtils {
             String name = dstField.getName();
             if (ignores.length > 0 && strcheckin(name, ignores))
                 continue;
-            Captor.icall(() -> dstField.write(dst, srcClass.unveil(name, src)));
+            ErrorCatcher.icall(() -> dstField.write(dst, srcClass.unveil(name, src)));
         }
     }
 

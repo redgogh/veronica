@@ -54,7 +54,7 @@ public class Optional {
      * @return 如果 {@code value} 为 null，则返回 {@code orNull}，否则返回 {@code value}
      */
     public static <T> T ifNullable(T value, Callable<T> orNull) {
-        return Captor.call(() -> value == null ? orNull.call() : value);
+        return ErrorCatcher.call(() -> value == null ? orNull.call() : value);
     }
 
     /**

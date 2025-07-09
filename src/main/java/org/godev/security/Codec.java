@@ -32,7 +32,7 @@ import org.godev.security.codec.SHA256Codec;
 import org.godev.security.codec.URLCodec;
 import org.godev.string.StringInterface;
 import org.godev.string.StringUtils;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -142,7 +142,7 @@ public class Codec {
      * @return 生成的随机 AES 密钥的 Base64 编码字符串
      */
     public static String randomNextSecret() {
-        return Captor.call(() -> {
+        return ErrorCatcher.call(() -> {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(128);
             SecretKey secretKey = keyGen.generateKey();

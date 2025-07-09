@@ -25,7 +25,7 @@ import org.godev.exception.IOReadException;
 import org.godev.exception.IOWriteException;
 import org.godev.reflect.ObjectSerializer;
 import org.godev.utils.Assert;
-import org.godev.utils.Captor;
+import org.godev.utils.ErrorCatcher;
 
 import java.io.*;
 import java.nio.file.*;
@@ -74,7 +74,7 @@ public class IOUtils {
      */
     public static void closeQuietly(AutoCloseable closeable) {
         if (closeable != null)
-            Captor.call(closeable::close);
+            ErrorCatcher.call(closeable::close);
     }
 
     /**
@@ -90,7 +90,7 @@ public class IOUtils {
      */
     public static byte[] read(java.io.File file) {
         Assert.isTrue(file != null && file.isFile(), "文件不能为空且不能是目录！");
-        return Captor.call(() -> read(new FileInputStream(file)));
+        return ErrorCatcher.call(() -> read(new FileInputStream(file)));
     }
 
     /**
@@ -386,7 +386,7 @@ public class IOUtils {
      *
      */
     public static void write(OutputStream stream, byte[] b, int off, int len) {
-        Captor.call(() -> stream.write(b, off, len));
+        ErrorCatcher.call(() -> stream.write(b, off, len));
     }
 
     /**
@@ -438,12 +438,12 @@ public class IOUtils {
 
         // 如果是文件，直接复制
         if (src.isFile()) {
-            Captor.call(() -> Files.copy(srcPath, dstPath, StandardCopyOption.REPLACE_EXISTING));
+            ErrorCatcher.call(() -> Files.copy(srcPath, dstPath, StandardCopyOption.REPLACE_EXISTING));
             return;
         }
 
         // 如果是目录，递归复制文件树
-        Captor.call(() -> {
+        ErrorCatcher.call(() -> {
             Files.walkFileTree(srcPath, new SimpleFileVisitor<>() {
                 @NotNull
                 @Override
@@ -508,7 +508,7 @@ public class IOUtils {
     public static void move(File src, File dst) {
         if (src == null || dst == null)
             throw new IllegalArgumentException("源文件和目标文件不能为空");
-        Captor.call(() -> Files.move(src.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING));
+        ErrorCatcher.call(() -> Files.move(src.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING));
     }
 
     /**
