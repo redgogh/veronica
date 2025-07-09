@@ -131,4 +131,13 @@ public class HttpClientsTest {
                 });
     }
 
+    @Test
+    public void baiduRequestTest() {
+        HttpClient.open("GET", "https://www.baidu.com")
+                .newCall()
+                .callback((code, body) -> {
+                    System.out.println(body);
+                });
+    }
+
 }

@@ -89,6 +89,10 @@ public class Response extends JSONObject {
      */
     private final Headers headers;
 
+    public interface Callback {
+        void apply(int code, String body);
+    }
+
     /**
      * #brief: 使用状态码和 JSON 字符串初始化响应对象
      *
@@ -197,6 +201,10 @@ public class Response extends JSONObject {
 
     public String getMessage() {
         return message;
+    }
+
+    public void callback(Callback callback) {
+        callback.apply(code, message);
     }
 
 }

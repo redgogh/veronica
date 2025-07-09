@@ -20,6 +20,7 @@ package org.veronica.io;
 
 /* Creates on 2020/4/29. */
 
+import org.jetbrains.annotations.NotNull;
 import org.veronica.exception.IOReadException;
 import org.veronica.exception.IOWriteException;
 import org.veronica.reflect.ObjectSerializer;
@@ -444,16 +445,18 @@ public class IOUtils {
         // 如果是目录，递归复制文件树
         Captor.call(() -> {
             Files.walkFileTree(srcPath, new SimpleFileVisitor<>() {
+                @NotNull
                 @Override
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+                public FileVisitResult preVisitDirectory(@NotNull Path dir, @NotNull BasicFileAttributes attrs)
                         throws IOException {
                     Path target = dstPath.resolve(srcPath.relativize(dir));
                     Files.createDirectories(target);
                     return FileVisitResult.CONTINUE;
                 }
 
+                @NotNull
                 @Override
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs)
+                public FileVisitResult visitFile(@NotNull Path file, @NotNull BasicFileAttributes attrs)
                         throws IOException {
                     Path target = dstPath.resolve(srcPath.relativize(file));
                     Files.copy(file, target, StandardCopyOption.REPLACE_EXISTING);
