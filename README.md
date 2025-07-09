@@ -1,4 +1,4 @@
-# Veronica
+# Godev
 
 ![offical](Documents/svg/offical.svg)
 ![test](Documents/svg/test.svg)
@@ -42,11 +42,11 @@ mvn clean package -DskipTests
 ```xml
 <dependency>
   <groupId>io.github.redgogh</groupId>
-  <artifactId>veronica</artifactId>
+  <artifactId>godev</artifactId>
   <version>mark-3</version>
 </dependency>
 ```
 
 ## 许可证
 
-**Copyright © 2019 Veronica Contributors.**
+**Copyright © 2019 Godev Contributors.**
