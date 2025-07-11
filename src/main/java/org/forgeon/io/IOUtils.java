@@ -177,11 +177,7 @@ public class IOUtils {
      */
     public static int read(byte[] b, int off, int len,
                            InputStream stream) {
-        try {
-            return stream.read(b, off, len);
-        } catch (Throwable e) {
-            throw new IOReadException(e.getMessage());
-        }
+        return ErrorCatcher.call(() -> stream.read(b, off, len));
     }
 
     /**
