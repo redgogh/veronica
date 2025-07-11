@@ -1,4 +1,4 @@
-# Godev
+# Forgeon
 
 ![offical](Documents/svg/offical.svg)
 ![test](Documents/svg/test.svg)
@@ -42,11 +42,11 @@ mvn clean package -DskipTests
 ```xml
 <dependency>
   <groupId>io.github.redgogh</groupId>
-  <artifactId>godev</artifactId>
-  <version>mark-3</version>
+  <artifactId>forgeon</artifactId>
+  <version>3.0.3</version>
 </dependency>
 ```
 
 ## 许可证
 
-**Copyright © 2019 Godev Contributors.**
+**Copyright © 2019 Forgeon Contributors.**
