@@ -28,7 +28,7 @@ package org.forgeon.reflect;
 import org.forgeon.collection.Lists;
 import org.forgeon.exception.SystemRuntimeException;
 import org.forgeon.stream.Streams;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 import org.forgeon.utils.Comparators;
 
 import java.lang.annotation.Annotation;
@@ -127,7 +127,7 @@ public class UClass {
      * @return {@link UClass} 实例
      */
     public static UClass forName(String className) {
-        return new UClass(ErrorCatcher.call(() -> Class.forName(className)));
+        return new UClass(Rethrow.allow(() -> Class.forName(className)));
     }
 
     ////////////////////////////////////////////////////////////////////////////
@@ -460,7 +460,7 @@ public class UClass {
      * @return 方法调用的返回值。如果目标方法的返回类型是 `void`，则返回 `null`。
      */
     private Object invoke0(Object obj, String name, Object... args) {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             Method method = args == null ? descriptor.getDeclaredMethod(name) :
                     descriptor.getDeclaredMethod(name, toClassArray(args));
             method.setAccessible(true);

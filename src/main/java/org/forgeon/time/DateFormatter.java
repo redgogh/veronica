@@ -21,7 +21,7 @@ package org.forgeon.time;
 /* Creates on 2022/3/30. */
 
 import org.forgeon.exception.ValidationException;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -89,7 +89,7 @@ public class DateFormatter {
 
         @Override
         public Date parse(String text) {
-            return ErrorCatcher.call(() -> sdf.parse(text));
+            return Rethrow.allow(() -> sdf.parse(text));
         }
     }
 

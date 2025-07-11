@@ -22,7 +22,7 @@ package org.forgeon.bean;
 
 import org.forgeon.reflect.UField;
 import org.forgeon.reflect.UClass;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -98,7 +98,7 @@ public class BeanUtils {
             String name = field.getName();
             if (ignores.length > 0 && strcheckin(name, ignores))
                 continue;
-            ErrorCatcher.icall(() -> copyValue(src, new UClass(src), dst, dstClass, field));
+            Rethrow.swallow(() -> copyValue(src, new UClass(src), dst, dstClass, field));
         }
     }
 
@@ -118,7 +118,7 @@ public class BeanUtils {
             String name = dstField.getName();
             if (ignores.length > 0 && strcheckin(name, ignores))
                 continue;
-            ErrorCatcher.icall(() -> dstField.write(dst, srcClass.unveil(name, src)));
+            Rethrow.swallow(() -> dstField.write(dst, srcClass.unveil(name, src)));
         }
     }
 

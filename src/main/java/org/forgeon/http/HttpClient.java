@@ -23,7 +23,7 @@ import org.forgeon.collection.Maps;
 import org.forgeon.exception.HttpRequestException;
 import org.forgeon.string.StringUtils;
 import org.forgeon.utils.Assert;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 import org.forgeon.utils.Optional;
 import okhttp3.*;
 
@@ -365,7 +365,7 @@ public class HttpClient {
      * @return 一个新的 {@link StreamResponse} 实例。
      */
     public StreamResponse newStreamCall(StreamCallback callback) {
-        return new StreamResponse(ErrorCatcher.call(() -> newCall0(callback)));
+        return new StreamResponse(Rethrow.allow(() -> newCall0(callback)));
     }
 
     /**

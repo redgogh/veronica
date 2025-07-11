@@ -2,7 +2,7 @@ package org.forgeon.security.cipher;
 
 import org.forgeon.security.AES;
 import org.forgeon.security.Codec;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -21,7 +21,7 @@ public class AESCipher implements AES {
 
     @Override
     public String encrypt(byte[] bytes, String secret) {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             Cipher cipher = Cipher.getInstance("AES");
             SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(), "AES");
             cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
@@ -36,7 +36,7 @@ public class AESCipher implements AES {
 
     @Override
     public byte[] decrypt(byte[] bytes, String secret) {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             Cipher cipher = Cipher.getInstance("AES");
             SecretKeySpec secretKeySpec = new SecretKeySpec(secret.getBytes(), "AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);

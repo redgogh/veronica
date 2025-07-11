@@ -30,7 +30,7 @@ import org.forgeon.security.RSA;
 import org.forgeon.security.key.RSAPrivateKey;
 import org.forgeon.security.key.RSAPublicKey;
 import org.forgeon.tuple.Pair;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import javax.crypto.Cipher;
 import java.security.KeyPair;
@@ -53,7 +53,7 @@ public class RSACipher implements RSA {
     @Override
     public Pair<RSAPublicKey, RSAPrivateKey> generateKeyPair(int size) {
         KeyPairGenerator keyPairGenerator =
-                ErrorCatcher.icall(() -> KeyPairGenerator.getInstance("RSA"));
+                Rethrow.swallow(() -> KeyPairGenerator.getInstance("RSA"));
         keyPairGenerator.initialize(size);
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
         return Pair.of(new RSAPublicKey(keyPair.getPublic()), new RSAPrivateKey(keyPair.getPrivate()));
@@ -61,7 +61,7 @@ public class RSACipher implements RSA {
 
     @Override
     public String encrypt(String message, RSAPublicKey publicKey) {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.ENCRYPT_MODE, publicKey.toPublicKey());
             byte[] b = cipher.doFinal(atob(message));
@@ -71,7 +71,7 @@ public class RSACipher implements RSA {
 
     @Override
     public String decrypt(String encryptedMessage, RSAPrivateKey privateKey) {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             Cipher cipher = Cipher.getInstance("RSA");
             cipher.init(Cipher.DECRYPT_MODE, privateKey.toPrivateKey());
             byte[] b = cipher.doFinal(Codec.BASE64.decodeBytes(encryptedMessage));

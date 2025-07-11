@@ -25,7 +25,7 @@ import org.forgeon.exception.IOReadException;
 import org.forgeon.exception.IOWriteException;
 import org.forgeon.reflect.ObjectSerializer;
 import org.forgeon.utils.Assert;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import java.io.*;
 import java.nio.file.*;
@@ -74,7 +74,7 @@ public class IOUtils {
      */
     public static void closeQuietly(AutoCloseable closeable) {
         if (closeable != null)
-            ErrorCatcher.call(closeable::close);
+            Rethrow.allow(closeable::close);
     }
 
     /**
@@ -90,7 +90,7 @@ public class IOUtils {
      */
     public static byte[] read(java.io.File file) {
         Assert.isTrue(file != null && file.isFile(), "文件不能为空且不能是目录！");
-        return ErrorCatcher.call(() -> read(new FileInputStream(file)));
+        return Rethrow.allow(() -> read(new FileInputStream(file)));
     }
 
     /**
@@ -177,7 +177,7 @@ public class IOUtils {
      */
     public static int read(byte[] b, int off, int len,
                            InputStream stream) {
-        return ErrorCatcher.call(() -> stream.read(b, off, len));
+        return Rethrow.allow(() -> stream.read(b, off, len));
     }
 
     /**
@@ -382,7 +382,7 @@ public class IOUtils {
      *
      */
     public static void write(OutputStream stream, byte[] b, int off, int len) {
-        ErrorCatcher.call(() -> stream.write(b, off, len));
+        Rethrow.expect(IOWriteException.class).allow(() -> write(stream, b, off, len));
     }
 
     /**
@@ -434,12 +434,12 @@ public class IOUtils {
 
         // 如果是文件，直接复制
         if (src.isFile()) {
-            ErrorCatcher.call(() -> Files.copy(srcPath, dstPath, StandardCopyOption.REPLACE_EXISTING));
+            Rethrow.allow(() -> Files.copy(srcPath, dstPath, StandardCopyOption.REPLACE_EXISTING));
             return;
         }
 
         // 如果是目录，递归复制文件树
-        ErrorCatcher.call(() -> {
+        Rethrow.allow(() -> {
             Files.walkFileTree(srcPath, new SimpleFileVisitor<>() {
                 @NotNull
                 @Override
@@ -504,7 +504,7 @@ public class IOUtils {
     public static void move(File src, File dst) {
         if (src == null || dst == null)
             throw new IllegalArgumentException("源文件和目标文件不能为空");
-        ErrorCatcher.call(() -> Files.move(src.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING));
+        Rethrow.allow(() -> Files.move(src.toPath(), dst.toPath(), StandardCopyOption.REPLACE_EXISTING));
     }
 
     /**

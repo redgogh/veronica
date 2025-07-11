@@ -25,7 +25,7 @@ package org.forgeon.security.key;
 
 /* Creates on 2025/2/20. */
 
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import java.security.Key;
 import java.security.KeyFactory;
@@ -48,7 +48,7 @@ public class RSAPublicKey extends AbstractKey {
     }
 
     public PublicKey toPublicKey() {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             X509EncodedKeySpec keySpec = new X509EncodedKeySpec(getEncoded());
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             return keyFactory.generatePublic(keySpec);

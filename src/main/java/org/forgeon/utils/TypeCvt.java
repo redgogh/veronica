@@ -454,7 +454,7 @@ public class TypeCvt {
      */
     @SuppressWarnings("unchecked")
     public static <T> T toPrimitiveValue(Object obj, Class<T> aClass) {
-        return ErrorCatcher.icall(() -> (T) new UClass(aClass).staticInvoke("valueOf", obj));
+        return Rethrow.swallow(() -> (T) new UClass(aClass).staticInvoke("valueOf", obj));
     }
 
 }

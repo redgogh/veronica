@@ -32,7 +32,7 @@ import org.forgeon.security.codec.SHA256Codec;
 import org.forgeon.security.codec.URLCodec;
 import org.forgeon.string.StringInterface;
 import org.forgeon.string.StringUtils;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
@@ -142,7 +142,7 @@ public class Codec {
      * @return 生成的随机 AES 密钥的 Base64 编码字符串
      */
     public static String randomNextSecret() {
-        return ErrorCatcher.call(() -> {
+        return Rethrow.allow(() -> {
             KeyGenerator keyGen = KeyGenerator.getInstance("AES");
             keyGen.init(128);
             SecretKey secretKey = keyGen.generateKey();

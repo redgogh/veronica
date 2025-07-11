@@ -1,6 +1,6 @@
 package org.forgeon.security.codec;
 
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 import org.forgeon.string.StringUtils;
 import org.forgeon.security.URL;
 
@@ -45,7 +45,7 @@ public class URLCodec implements URL {
 
     @Override
     public String decode(String source, String enc) {
-        return ErrorCatcher.call(() -> URLDecoder.decode(source, enc));
+        return Rethrow.allow(() -> URLDecoder.decode(source, enc));
     }
 
 }

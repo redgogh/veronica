@@ -5,7 +5,7 @@ import org.forgeon.exception.SystemRuntimeException;
 import org.forgeon.io.IOUtils;
 import org.forgeon.security.Codec;
 import org.forgeon.security.SHA256;
-import org.forgeon.utils.ErrorCatcher;
+import org.forgeon.utils.Rethrow;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +24,7 @@ public class SHA256Codec implements SHA256 {
 
     @Override
     public String encode(File file) {
-        return ErrorCatcher.icall(() -> {
+        return Rethrow.swallow(() -> {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             try(FileInputStream fileInputStream = new FileInputStream(file)) {
                 int len = 0;
