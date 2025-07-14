@@ -28,6 +28,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import static org.redgogh.forge.string.StringInterface.*;
 import static org.redgogh.forge.string.StringUtils.strcut;
 import static org.redgogh.forge.utils.TypeCvt.atos;
 

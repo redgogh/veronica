@@ -1,4 +1,4 @@
-package org.forge.test;
+package org.redgogh.forge.collection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -18,27 +18,23 @@ package org.forge.test;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.junit.Test;
-import org.redgogh.forge.collection.ChunkList;
-import org.redgogh.forge.collection.Lists;
+/* Creates on 2025/7/11. */
 
+import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("ALL")
-public class ListsTest {
+/**
+ * @author Red Gogh
+ */
+public class ChunkList<E> extends ArrayList<List<E>> {
 
-    @Test
-    public void splitByChunkSizeTest() {
-        List<String> list = Lists.of("1", "2", "3", "4", "5");
-        ChunkList<String> lists = Lists.splitByChunkSize(list, 3);
-        System.out.println();
+    public ChunkList() {
+        /* do nothing... */
     }
 
-    @Test
-    public void splitIntoNChunkTest() {
-        List<String> list = Lists.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13");
-        ChunkList<String> lists = Lists.splitIntoNChunk(list, 3);
-        System.out.println();
+    public ChunkList(List<List<E>> chunks) {
+       if (chunks != null)
+           chunks.forEach(this::add);
     }
 
 }

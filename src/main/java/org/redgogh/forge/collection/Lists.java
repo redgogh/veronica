@@ -579,19 +579,24 @@ public class Lists {
      * @throws NullPointerException 如果 `collection` 为 null
      */
     @SuppressWarnings("unchecked")
-    public static <E> List<List<E>> splitIntoNChunk(Collection<E> collection, int chunkNum) {
-        List<List<E>> chunks = newArrayList();
+    public static <E> ChunkList<E> splitIntoNChunk(Collection<E> collection, int chunkNum) {
+        ChunkList<E> chunks = new ChunkList<>();
 
-        int avgSize = collection.size() / chunkNum;
-        int remainder = collection.size() % chunkNum;
+        int size = collection.size();
+        int avgSize = (int) Math.ceil((double) size / chunkNum);
 
         Object[] array = collection.toArray(new Object[0]);
 
-        for (int i = 0; i < chunkNum; i++)
-            chunks.add((List<E>) of(ArrayUtils.copyOf(array, i * avgSize, avgSize)));
+        for (int i = 0; i < chunkNum; i++) {
+            int off = i * avgSize;
 
-        if (remainder != 0)
-            chunks.get(chunks.size() - 1).addAll((List<E>) of(ArrayUtils.copyOf(array, chunkNum * avgSize, remainder)));
+            if (off >= size)
+                break;
+
+            int len = Math.min(avgSize, size - off);
+
+            chunks.add((List<E>) of(ArrayUtils.copyOf(array, off, len)));
+        }
 
         return chunks;
     }
@@ -609,15 +614,16 @@ public class Lists {
      * @throws IllegalArgumentException 如果 `bySize` 为 0 或负值
      */
     @SuppressWarnings("unchecked")
-    public static <E> List<List<E>> splitByChunkSize(Collection<E> collection, int chunkSize) {
-        List<List<E>> chunks = newArrayList();
+    public static <E> ChunkList<E> splitByChunkSize(Collection<E> collection, int chunkSize) {
 
         List<E> origin = newArrayList(collection);
 
         int size = origin.size();
 
         if (chunkSize >= size)
-            return of(origin);
+            return new ChunkList<>(of(origin));
+
+        ChunkList<E> chunks = new ChunkList<>();
 
         Object[] array = origin.toArray(new Object[0]);
 
