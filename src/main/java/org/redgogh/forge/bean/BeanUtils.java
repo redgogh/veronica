@@ -118,7 +118,7 @@ public class BeanUtils {
             String name = dstField.getName();
             if (ignores.length > 0 && strcheckin(name, ignores))
                 continue;
-            Rethrow.swallow(() -> dstField.write(dst, srcClass.unveil(name, src)));
+            Rethrow.swallow(() -> dstField.write(dst, srcClass.read(name, src)));
         }
     }
 

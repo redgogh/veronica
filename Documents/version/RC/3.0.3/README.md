@@ -30,6 +30,7 @@
 - 移除 `ByteBuffer` 类，使用原生 NIO `ByteBuffer` 代替
 - 优化 `Captor` 改为 `ErrorCatcher` 更直观的命名
 - 优化 `Lists#splitIntoNChunk` 分块逻辑，避免最后个分块占用过大。
+- 优化 `UClass#unveil` 命名，改为 `UClass#read` 清晰命名。
 
 ## 🐞 BUG 修复
 

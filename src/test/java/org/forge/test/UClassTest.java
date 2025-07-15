@@ -64,7 +64,7 @@ public class UClassTest {
     @Test
     public void readFieldValueTest() {
         User judy = new User("Judy");
-        System.out.println((String) new UClass(judy).unveil("name", judy, OnMissing.THROW_EXCEPTION));
+        System.out.println((String) new UClass(judy).read("name", judy, OnMissing.THROW_EXCEPTION));
     }
 
     @Test
