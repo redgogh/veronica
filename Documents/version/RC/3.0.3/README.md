@@ -12,6 +12,7 @@
 - 新增 `Chrono#toZoned` 函数用于转换时区。
 - 新增 `HttpClient#newCall` 函数 Lambda 回调方式。
 - 新增 `Rethrow#swallow` 以及 `Rethrow#allow` 方法。
+- 新增 `SystemUtils#getResource` 支持快捷获取用户目录下文件。
 
 ## 👻 优化功能
 
