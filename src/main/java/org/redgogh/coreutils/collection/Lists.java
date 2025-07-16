@@ -182,7 +182,10 @@ public class Lists {
      *
      * @see ArrayList#ArrayList(Collection)
      */
+    @SuppressWarnings("unchecked")
     public static <E> ArrayList<E> newArrayList(Collection<? extends E> collection) {
+        if (collection instanceof ArrayList<?> ret)
+            return (ArrayList<E>) ret;
         return new ArrayList<>(collection);
     }
 

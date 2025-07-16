@@ -34,6 +34,7 @@
 - 优化 `Lists#splitIntoNChunk` 分块逻辑，避免最后个分块占用过大。
 - 优化 `UClass#unveil` 命名，改为 `UClass#read` 清晰命名。
 - 优化 `WorkBook` 命名，改为 `SimpleWorkBook`。
+- 优化 `Lists#newArrayList` 函数，检查对象如果为集合直接返回，不做转换。
 
 ## 🐞 BUG 修复
 
