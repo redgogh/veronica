@@ -40,5 +40,6 @@
 ## 🐞 BUG 修复
 
 - 修复 `HttpClient#post(String, RequestConfigure)` 死循环递归调用问题。
+- 修复 `TypeCvt#atos` 函数未应用字符串扩展接口问题。
 
 ## 🔨 构建工具
