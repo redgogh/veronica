@@ -22,6 +22,7 @@ import org.redgogh.coreutils.reflect.OnMissing;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.reflect.UField;
 import org.junit.Test;
+import org.redgogh.coreutils.time.Chrono;
 
 import java.awt.*;
 import java.util.List;
@@ -37,8 +38,31 @@ public class UClassTest {
 
         List<UField> properties = uClass.getDeclaredFields();
         for (UField property : properties) {
-            System.out.printf("  - uField path: %s\n", property.getPath());
+            // System.out.printf("  - uField path: %s\n", property.getPath());
         }
+    }
+
+    @Test
+    public void performance_newUClassTest() {
+        for (int i = 0; i < 2; i++) {
+            Chrono start = Chrono.now();
+            newUClassTest();
+            Chrono end = Chrono.now();
+            System.out.println(end.getTime() -  start.getTime() + "ms");
+        }
+    }
+
+    public static class Node {
+        private Node next;
+    }
+
+    @Test
+    public void recursionOverflowTest() {
+        // 递归调用，构造 UClass(Node) -> UField(next).getType() -> new UClass(Node) ...
+        UClass uClass = new UClass(Node.class);
+
+        // 这里会不断递归调用 UField.getType()，导致栈溢出
+        uClass.getDeclaredField("next").getType();
     }
 
     static class User {

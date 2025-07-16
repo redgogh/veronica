@@ -35,9 +35,10 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static org.redgogh.coreutils.string.StringUtils.streq;
@@ -87,7 +88,37 @@ public class UClass {
      *
      * <p>存储类的属性，以属性名称作为键，属性对象 {@link UField} 作为值。
      */
-    private final Map<String, UField> fields = new LinkedHashMap<>();
+    private Map<String, UField> fields = null;
+
+    static class Cache {
+
+        private final Map<Class<?>, Map<String, UField>> cache = new ConcurrentHashMap<>();
+
+        public boolean contains(Class<?> inClass) {
+            return cache.containsKey(inClass);
+        }
+
+        public Map<String, UField> getOrInit(Class<?> inClass) {
+            return cache.computeIfAbsent(inClass, clazz -> {
+                List<UField> uFields = scanDescriptorDeclaredFields(clazz, Lists.newArrayList());
+                Map<String, UField> map = new ConcurrentHashMap<>();
+                uFields.forEach(f -> map.put(f.getName(), f));
+                return map;
+            });
+        }
+
+        public void put(Class<?> inClass, UField uField) {
+            cache.computeIfAbsent(inClass, k -> new ConcurrentHashMap<>())
+                    .put(uField.getName(), uField);
+        }
+
+        public Map<String, UField> get(Class<?> inClass) {
+            return cache.get(inClass);
+        }
+
+    }
+
+    private static final Cache _cache = new Cache();
 
     /**
      * #brief: 构造器，使用对象实例初始化
@@ -110,12 +141,7 @@ public class UClass {
     public UClass(Class<?> descriptor) {
         this.descriptor = descriptor;
         /* init */
-        List<UField> declaredFields = scanDescriptorDeclaredFields(descriptor, Lists.newArrayList());
-        for (UField field : declaredFields) {
-            String name = field.getName();
-            if (!fields.containsKey(name))
-                fields.put(field.getName(), field);
-        }
+        this.fields = _cache.getOrInit(descriptor);
     }
 
     /**
@@ -328,7 +354,7 @@ public class UClass {
      */
     static List<UField> scanDescriptorDeclaredFields(Class<?> descriptor, List<UField> declaredFields) {
         Field[] fields = descriptor.getDeclaredFields();
-        declaredFields.addAll(Lists.map(fields, UField::new));
+        declaredFields.addAll(Lists.map(fields, UField::get));
 
         Class<?> superclass = descriptor.getSuperclass();
         if (superclass != null && superclass != Object.class)

@@ -28,6 +28,9 @@ import org.redgogh.coreutils.Optional;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * `UField` 类封装了 Java 反射中的 `Field` 对象，提供对字段的访问和操作功能。
@@ -71,8 +74,28 @@ public class UField {
      */
     private final String name;
 
-    public UField(String name, Class<?> inDescriptor) {
-        this(findDescriptorField(name, inDescriptor));
+    static class Cache {
+        private final Map<Class<?>, Map<String, UField>> cache = new ConcurrentHashMap<>();
+
+        public boolean contains(Class<?> inClass, String name) {
+            return cache.containsKey(inClass) && cache.get(inClass).containsKey(name);
+        }
+
+        public UField put(Class<?> inClass, UField field) {
+            return cache.computeIfAbsent(inClass, k -> new ConcurrentHashMap<>())
+                    .put(field.getName(), field);
+        }
+
+        public UField get(Class<?> inClass, String name) {
+            return cache.get(inClass).get(name);
+        }
+
+    }
+
+    private static final Cache _cache = new Cache();
+
+    private UField(String name, Class<?> inClass) {
+        this(findDescriptorField(name, inClass));
     }
 
     /**
@@ -84,13 +107,23 @@ public class UField {
      * @param field
      *        属性
      */
-    public UField(Field field) {
+    private UField(Field field) {
         this.field = field;
         this.modifiers = field.getModifiers();
         this.inClass = field.getDeclaringClass();
         this.name = field.getName();
         this.path = StringUtils.strwfmt("%s#%s", inClass.getName(), name);
         this.originType = field.getType();
+    }
+
+    public static UField get(Field field) {
+        return get(field.getDeclaringClass(), field.getName());
+    }
+
+    public static UField get(Class<?> inClass, String name) {
+        if (!_cache.contains(inClass, name))
+            _cache.put(inClass, new UField(name, inClass));
+        return _cache.get(inClass, name);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -243,9 +276,9 @@ public class UField {
      */
     public static void copy(Object src, Object dest, String name) {
         /* read value of src. */
-        Object value = new UField(name, src.getClass()).read(src);
+        Object value = UField.get(src.getClass(), name).read(src);
         /* write to dest. */
-        UField destUField = new UField(name, dest.getClass());
+        UField destUField = UField.get(dest.getClass(), name);
         destUField.write(dest, value);
     }
 

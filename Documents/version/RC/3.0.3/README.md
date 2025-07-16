@@ -35,6 +35,7 @@
 - 优化 `UClass#unveil` 命名，改为 `UClass#read` 清晰命名。
 - 优化 `WorkBook` 命名，改为 `SimpleWorkBook`。
 - 优化 `Lists#newArrayList` 函数，检查对象如果为集合直接返回，不做转换。
+- 优化 `UClass` 以及 `UField` 方法，新增反射结果缓存，避免重复执行反射函数。
 
 ## 🐞 BUG 修复
 
