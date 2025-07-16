@@ -20,6 +20,7 @@ package org.redgogh.coreutils.system;
 
 import org.redgogh.coreutils.time.Chrono;
 
+import java.io.File;
 import java.util.Map;
 
 import static org.redgogh.coreutils.string.StringUtils.stricheckin;
@@ -207,6 +208,28 @@ public class SystemUtils {
      */
     public static int availableProcessors() {
         return Runtime.getRuntime().availableProcessors();
+    }
+
+    /**
+     * #brief: 获取指定路径对应的文件资源
+     *
+     * <p>该方法用于根据提供的路径字符串获取对应的文件资源。支持特殊路径格式：
+     * <ul>
+     *     <li>如果路径以"~/"开头，表示用户主目录路径，会自动转换为用户主目录下的实际路径</li>
+     *     <li>其他路径会直接作为文件路径处理</li>
+     * </ul>
+     *
+     * <p>该方法不会检查文件是否实际存在，仅进行路径转换和文件对象创建。
+     *
+     * @param path 文件路径字符串，可以是以"~/"开头的用户主目录相对路径或普通文件路径
+     * @return 对应路径的File对象，不会为null
+     *
+     * @see #getUserHome(String) 用于处理用户主目录路径转换的方法
+     */
+    public static File getResource(String path) {
+        if (path.startsWith("~/"))
+            path = getUserHome(path.substring(2));
+        return new File(path);
     }
 
 }
