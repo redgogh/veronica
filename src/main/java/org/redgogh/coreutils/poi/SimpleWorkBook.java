@@ -49,7 +49,7 @@ import java.util.Map;
 import static org.redgogh.coreutils.TypeCvt.atos;
 
 /**
- * 类 {@link WorkBook} 用于创建和操作 Excel 工作簿。
+ * 类 {@link SimpleWorkBook} 用于创建和操作 Excel 工作簿。
  *
  * <p>该类使用 Apache POI 库来实现工作簿的创建和行的添加。
  * 默认情况下，会创建一个名为 "Sheet1" 的工作表。
@@ -63,7 +63,7 @@ import static org.redgogh.coreutils.TypeCvt.atos;
  *
  * @author Red Gogh
  */
-public class WorkBook implements Iterable<Row> {
+public class SimpleWorkBook implements Iterable<Row> {
 
     /**
      * Apache POI 工作簿实例，用于创建和操作 Excel 文件。
@@ -86,7 +86,7 @@ public class WorkBook implements Iterable<Row> {
      * <p>使用默认的 XSSFWorkbook 创建一个新的 Workbook
      * 对象。
      */
-    private WorkBook() {
+    private SimpleWorkBook() {
         this(new XSSFWorkbook());
     }
 
@@ -99,7 +99,7 @@ public class WorkBook implements Iterable<Row> {
      *
      * @param path Excel 文件的路径
      */
-    private WorkBook(String path) {
+    private SimpleWorkBook(String path) {
         this(new File(path));
     }
 
@@ -112,7 +112,7 @@ public class WorkBook implements Iterable<Row> {
      *
      * @param file Excel 文件对象
      */
-    private WorkBook(File file) {
+    private SimpleWorkBook(File file) {
         this(Rethrow.allow(() -> new XSSFWorkbook(file)));
     }
 
@@ -125,7 +125,7 @@ public class WorkBook implements Iterable<Row> {
      *
      * @param stream 输入流，需指向有效的 Excel 文件内容
      */
-    private WorkBook(InputStream stream) {
+    private SimpleWorkBook(InputStream stream) {
         this(Rethrow.allow(() -> new XSSFWorkbook(stream)));
     }
 
@@ -137,7 +137,7 @@ public class WorkBook implements Iterable<Row> {
      *
      * @param workbook 已存在的 XSSFWorkbook 对象
      */
-    private WorkBook(XSSFWorkbook workbook) {
+    private SimpleWorkBook(XSSFWorkbook workbook) {
         this.wb = workbook;
         /* switch sheet. */
         if (wb.getNumberOfSheets() > 0)
@@ -152,7 +152,7 @@ public class WorkBook implements Iterable<Row> {
      *
      * @return 包含默认工作表的工作簿
      */
-    public static WorkBook create() {
+    public static SimpleWorkBook create() {
         return ofSheet("Sheet0", "Sheet1", "Sheet2");
     }
 
@@ -165,7 +165,7 @@ public class WorkBook implements Iterable<Row> {
      * @param sheetName 工作表名称
      * @return 包含指定工作表的工作簿
      */
-    public static WorkBook ofSheet(String sheetName) {
+    public static SimpleWorkBook ofSheet(String sheetName) {
         return ofSheet(new String[]{sheetName});
     }
 
@@ -178,8 +178,8 @@ public class WorkBook implements Iterable<Row> {
      * @param sheets 工作表名称数组
      * @return 包含多个工作表的工作簿
      */
-    public static WorkBook ofSheet(String ...sheets) {
-        WorkBook workbook = new WorkBook();
+    public static SimpleWorkBook ofSheet(String ...sheets) {
+        SimpleWorkBook workbook = new SimpleWorkBook();
         for (String sheet : sheets)
             workbook.createSheet(sheet);
         workbook.checkout(sheets[0]); /* 默认使用第一个 Sheet */
@@ -196,7 +196,7 @@ public class WorkBook implements Iterable<Row> {
      * @param pathname Excel 文件的路径
      * @return 加载的 Workbook 实例
      */
-    public static WorkBook load(String pathname) {
+    public static SimpleWorkBook load(String pathname) {
         return load(new File(pathname));
     }
 
@@ -210,8 +210,8 @@ public class WorkBook implements Iterable<Row> {
      * @param systemResource Excel 文件对象
      * @return 加载的 Workbook 实例
      */
-    public static WorkBook load(File systemResource) {
-        return new WorkBook(systemResource);
+    public static SimpleWorkBook load(File systemResource) {
+        return new SimpleWorkBook(systemResource);
     }
 
     /**
@@ -224,8 +224,8 @@ public class WorkBook implements Iterable<Row> {
      * @param stream 输入流，需指向有效的 Excel 文件内容
      * @return 加载的 Workbook 实例
      */
-    public static WorkBook load(InputStream stream) {
-        return new WorkBook(stream);
+    public static SimpleWorkBook load(InputStream stream) {
+        return new SimpleWorkBook(stream);
     }
 
     /**
@@ -432,9 +432,9 @@ public class WorkBook implements Iterable<Row> {
 
         private int index;
         private final int size;
-        private final WorkBook wb;
+        private final SimpleWorkBook wb;
 
-        WorkbookInterator(WorkBook wb) {
+        WorkbookInterator(SimpleWorkBook wb) {
             this.wb = wb;
             this.index = 0;
             this.size = wb.rowCount() + 1;
