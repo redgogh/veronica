@@ -660,4 +660,29 @@ public class Lists {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * #brief: 反转指定集合中的元素顺序
+     *
+     * <p>该方法用于反转集合中元素的排列顺序。它会创建一个新的ArrayList来保存原集合元素，
+     * 然后对该列表进行反转操作。原集合对象本身不会被修改。
+     *
+     * <p>注意：
+     * <ul>
+     *     <li>该方法会创建集合的副本进行操作，不影响原集合</li>
+     *     <li>对于不可变集合(如Collections.unmodifiableList创建的集合)，反转操作将无效</li>
+     *     <li>对于空集合或单元素集合，调用此方法不会有任何效果</li>
+     * </ul>
+     *
+     * @param <E> 集合元素的类型参数
+     * @param collection 需要反转的集合，不能为null
+     * @throws NullPointerException 如果传入的集合参数为null
+     *
+     * @see Collections#reverse(List) 实际执行反转操作的方法
+     * @see #newArrayList(Collection) 用于创建集合副本的方法
+     * @since 1.0
+     */
+    public static <E> void reverse(Collection<E> collection) {
+         Collections.reverse(newArrayList(collection));
+    }
+
 }
