@@ -362,7 +362,7 @@ public class TypeCvt {
      *          如果参数 {@code len} 超出整个子字符串的大小后会抛出数组越界异常。
      */
     public static String atos(String sub, int off, int len, StringInterface...iface) {
-        return atos(sub.toCharArray(), off, len);
+        return atos(sub.toCharArray(), off, len, iface);
     }
 
     /**
