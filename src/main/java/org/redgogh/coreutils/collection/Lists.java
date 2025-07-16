@@ -598,7 +598,7 @@ public class Lists {
 
             int len = Math.min(avgSize, size - off);
 
-            chunks.add((List<E>) of(ArrayUtils.copyOf(array, off, len)));
+            chunks.add((List<E>) of(ArrayUtils.slice(array, off, len)));
         }
 
         return chunks;
@@ -633,13 +633,13 @@ public class Lists {
         int count = size / chunkSize;
 
         for (int i = 0; i < count; i++) {
-            Object[] chunk = ArrayUtils.copyOf(array, i * chunkSize, chunkSize);
+            Object[] chunk = ArrayUtils.slice(array, i * chunkSize, chunkSize);
             chunks.add((List<E>) of(chunk));
         }
 
         int copyCount = count * chunkSize;
         if (size > copyCount) {
-            Object[] chunk = ArrayUtils.copyOf(array, copyCount, size - copyCount);
+            Object[] chunk = ArrayUtils.slice(array, copyCount, size - copyCount);
             chunks.add((List<E>) of(chunk));
         }
 

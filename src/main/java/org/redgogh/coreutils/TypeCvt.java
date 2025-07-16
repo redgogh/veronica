@@ -405,7 +405,7 @@ public class TypeCvt {
      * @see String#String(byte[], int, int)
      */
     public static String atos(byte[] b, int off, int len, StringInterface...iface) {
-        return StringInterface.pipelineExecutor(new String(ArrayUtils.copyOf(b, off, len)), iface);
+        return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(b, off, len)), iface);
     }
 
     /**
@@ -432,7 +432,7 @@ public class TypeCvt {
      * @see String#String(char[], int, int)
      */
     public static String atos(char[] a, int off, int len, StringInterface...iface) {
-        return StringInterface.pipelineExecutor(new String(ArrayUtils.copyOf(a, off, len)), iface);
+        return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(a, off, len)), iface);
     }
 
     /**

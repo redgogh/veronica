@@ -18,6 +18,8 @@ package org.redgogh.coreutils;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
+import java.util.Arrays;
+
 /**
  * #brief：提供数组操作的实用工具类。
  *
@@ -33,7 +35,7 @@ package org.redgogh.coreutils;
  * <p>示例用法：
  * <pre>
  *     byte[] original = {1, 2, 3, 4, 5};
- *     byte[] copy = ArrayUtils.copyOf(original, 0, 3);  // 拷贝前3个元素
+ *     byte[] copy = ArrayUtils.slice(original, 0, 3);  // 拷贝前3个元素
  *     ArrayUtils.checkIndexSize(0, 3, original.length);  // 检查索引是否有效
  * </pre>
  *
@@ -83,45 +85,103 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 检查数组是否为空或null
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>该方法用于安全地检查数组是否为空（无元素）或null。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param <E> 数组元素类型
+     * @param a 要检查的数组，可以为null
+     * @return 如果数组为null或长度为0返回true，否则返回false
      */
-    public static byte[] copyOf(byte[] original, int off, int len) {
-        len = sliceLength(original.length, off, len);
+    public static <E> boolean isEmpty(E[] a) {
+        return a == null || a.length == 0;
+    }
+
+    /**
+     * #brief: 检查数组是否非空
+     *
+     * <p>该方法用于安全地检查数组是否包含元素且不为null。
+     *
+     * @param <E> 数组元素类型
+     * @param a 要检查的数组，可以为null
+     * @return 如果数组不为null且长度大于0返回true，否则返回false
+     */
+    public static <E> boolean isNotEmpty(E[] a) {
+        return !isEmpty(a);
+    }
+
+    /**
+     * #brief: 获取数组长度
+     *
+     * <p>安全地获取数组长度，即使数组为null也不会抛出异常。
+     *
+     * @param <E> 数组元素类型
+     * @param a 要检查的数组，可以为null
+     * @return 数组长度，如果数组为null则返回0
+     */
+    public static <E> int length(E[] a) {
+        return a == null ? 0 : a.length;
+    }
+
+    /**
+     * #brief: 获取数组第一个元素
+     *
+     * <p>安全地获取数组的第一个元素，如果数组为空或null则返回null。
+     *
+     * @param <E> 数组元素类型
+     * @param a 要操作的数组，可以为null
+     * @return 数组的第一个元素，如果数组为null或空则返回null
+     * @throws ArrayIndexOutOfBoundsException 如果数组不为空但长度为0
+     */
+    public static <E> E getFirst(E[] a) {
+        return a != null ? a[0] : null;
+    }
+
+    /**
+     * #brief: 获取数组最后一个元素
+     *
+     * <p>安全地获取数组的最后一个元素，如果数组为空或null则返回null。
+     *
+     * @param <E> 数组元素类型
+     * @param a 要操作的数组，可以为null
+     * @return 数组的最后一个元素，如果数组为null或空则返回null
+     * @throws ArrayIndexOutOfBoundsException 如果数组不为空但长度为0
+     */
+    public static <E> E getLast(E[] a) {
+        return a != null ? a[a.length - 1] : null;
+    }
+
+    /**
+     * #brief: 截取字节数组的子数组
+     *
+     * <p>从原始字节数组中截取指定位置和长度的子数组。
+     *
+     * @param original 原始字节数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的字节数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off或len超出范围
+     */
+    public static byte[] slice(byte[] original, int off, int len) {
         byte[] ret = new byte[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取字符数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始字符数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始字符数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的字符数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static char[] copyOf(char[] original, int off, int len) {
+    public static char[] slice(char[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         char[] ret = new char[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -129,22 +189,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取短整型数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始短整型数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始短整型数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的短整型数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static short[] copyOf(short[] original, int off, int len) {
+    public static short[] slice(short[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         short[] ret = new short[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -152,22 +208,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取整型数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始整型数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始整型数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的整型数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static int[] copyOf(int[] original, int off, int len) {
+    public static int[] slice(int[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         int[] ret = new int[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -175,22 +227,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取长整型数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始长整型数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始长整型数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的长整型数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static long[] copyOf(long[] original, int off, int len) {
+    public static long[] slice(long[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         long[] ret = new long[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -198,22 +246,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取浮点数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始浮点数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始浮点数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的浮点数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static float[] copyOf(float[] original, int off, int len) {
+    public static float[] slice(float[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         float[] ret = new float[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -221,22 +265,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取双精度数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始双精度数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始双精度数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的双精度数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static double[] copyOf(double[] original, int off, int len) {
+    public static double[] slice(double[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         double[] ret = new double[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -244,22 +284,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取布尔数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始布尔数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始布尔数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的布尔数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static boolean[] copyOf(boolean[] original, int off, int len) {
+    public static boolean[] slice(boolean[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         boolean[] ret = new boolean[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -267,22 +303,18 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取字符串数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始字符串数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始字符串数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的字符串数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static String[] copyOf(String[] original, int off, int len) {
+    public static String[] slice(String[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         String[] ret = new String[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -290,27 +322,22 @@ public class ArrayUtils {
     }
 
     /**
-     * #brief：拷贝数组中的数据到另一个新实例化的数组中
+     * #brief: 截取对象数组的子数组
      *
-     * <p>将数组总的数据拷贝到一个新的数组中，数组的长度介于 {@code original.length} 到
-     * {@code -original.length} 之间。可以通过数组切片的形式拷贝数组。当 {@code len} 参
-     * 数为负数时，那么则表示 {@code len=original.length - len} 的新数组长度。也就是从数组
-     * 最后开始计算。如果 {@code len} 是 {@code 0} 则表示 从 original[off] - original[original.length]
-     * 之间的数据。
+     * <p>从原始对象数组中截取指定位置和长度的子数组，自动调整长度以避免越界。
      *
-     * <p>该函数有很多相似函数，支持泛型对象拷贝。
-     *
-     * @param original 原数组对象，将从这个数组对象中拷贝数据到新的数组对象中。
-     * @param off 偏移量，拷贝起始位置将从 {@code origin[off]} 开始算。
-     * @param len 拷贝长度
-     * @return 拷贝后的新数组对象。
+     * @param original 原始对象数组，不能为null
+     * @param off 起始位置（包含）
+     * @param len 要截取的长度
+     * @return 新的对象数组包含截取的元素
+     * @throws NullPointerException 如果original为null
+     * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
-    public static Object[] copyOf(Object[] original, int off, int len) {
+    public static Object[] slice(Object[] original, int off, int len) {
         len = sliceLength(original.length, off, len);
         Object[] ret = new Object[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
     }
-
 
 }
