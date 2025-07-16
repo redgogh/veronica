@@ -108,7 +108,7 @@ public class Lists {
     public static <E> E first(List<E> list) {
         if (list == null || list.isEmpty())
             return null;
-        return list.get(0);
+        return list.getFirst();
     }
 
     /**
@@ -118,7 +118,7 @@ public class Lists {
     public static <E> E last(List<E> list) {
         if (list == null || list.isEmpty())
             return null;
-        return list.get(list.size() - 1);
+        return list.getLast();
     }
 
     /**
@@ -209,7 +209,7 @@ public class Lists {
     }
 
     /**
-     * 返回一个静态化的空集合，该集合通常用于确保一个集合的实例对象不会为
+     * 返回一个静态化、不可变的空集合，该集合通常用于确保一个集合的实例对象不会为
      * 空对象。
      */
     public static <E> List<E> emptyList() {
