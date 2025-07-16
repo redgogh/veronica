@@ -335,7 +335,7 @@ public class TypeCvt {
      *          如果参数 {@code len} 超出整个子字符串的大小后会抛出数组越界异常。
      */
     public static String atos(Object obj, int off, int len, StringInterface...iface) {
-        return atos(atos(obj), off, len);
+        return atos(atos(obj), off, len, iface);
     }
 
     /**
@@ -378,7 +378,7 @@ public class TypeCvt {
      * @see String#String(byte[])
      */
     public static String atos(byte[] b, StringInterface...iface) {
-        return atos(b, 0, b.length);
+        return atos(b, 0, b.length, iface);
     }
 
     /**
