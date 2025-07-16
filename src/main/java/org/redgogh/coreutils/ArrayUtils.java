@@ -50,15 +50,17 @@ package org.redgogh.coreutils;
 public class ArrayUtils {
 
     /**
-     * 数据拷贝时对长度进行截断，使得数据可以像指针一样，在某个段落中前后操作
-     * 数据。
+     * 根据偏移和长度，计算可用的截取长度。
+     * 当 len <= 0 时，表示自动取 size - off - abs(len)，用于排除尾部。
      *
-     * @param size 数组大小
-     * @param off  偏移量
-     * @param len  长度
-     * @return 返回截断后的数据长度
+     * <p>适用于字符串、数组等截取场景，如 off=5, len=-1 表示从 5 开始到倒数第2位。
+     *
+     * @param size 总长度
+     * @param off  起始偏移
+     * @param len  截取长度，负数表示排除尾部
+     * @return 实际可用长度
      */
-    public static int truncate(int size, int off, int len) {
+    public static int sliceLength(int size, int off, int len) {
         return len <= 0 ? (size - off) - Math.abs(len) : len;
     }
 
@@ -97,7 +99,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static byte[] copyOf(byte[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         byte[] ret = new byte[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -120,7 +122,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static char[] copyOf(char[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         char[] ret = new char[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -143,7 +145,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static short[] copyOf(short[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         short[] ret = new short[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -166,7 +168,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static int[] copyOf(int[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         int[] ret = new int[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -189,7 +191,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static long[] copyOf(long[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         long[] ret = new long[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -212,7 +214,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static float[] copyOf(float[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         float[] ret = new float[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -235,7 +237,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static double[] copyOf(double[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         double[] ret = new double[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -258,7 +260,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static boolean[] copyOf(boolean[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         boolean[] ret = new boolean[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -281,7 +283,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static String[] copyOf(String[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         String[] ret = new String[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
@@ -304,7 +306,7 @@ public class ArrayUtils {
      * @return 拷贝后的新数组对象。
      */
     public static Object[] copyOf(Object[] original, int off, int len) {
-        len = truncate(original.length, off, len);
+        len = sliceLength(original.length, off, len);
         Object[] ret = new Object[len];
         System.arraycopy(original, off, ret, 0, len);
         return ret;
