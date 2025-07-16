@@ -126,18 +126,21 @@ public class BeanUtils {
     private static void copyValue(Object src, UClass srcClass, Object dst, UClass dstClass, UField dstField) {
         String setMethod = "set" + strcap(dstField.getName());
         String getMethod = "get" + strcap(dstField.getName());
-        if (dstClass.hasMethod(setMethod, dstField.getOriginType())) {
-            if (srcClass.hasMethod(getMethod)) {
-                Object param = srcClass.invoke(src, getMethod);
+
+        // 检查目标成员是否存在 set 方法
+        if (!dstClass.hasMethod(setMethod, dstField.getOriginType()))
+            return;
+
+        if (srcClass.hasMethod(getMethod)) {
+            Object param = srcClass.invoke(src, getMethod);
+            if (param != null)
+                dstClass.invoke(dst, setMethod, param);
+        } else {
+            UField srcField = srcClass.getDeclaredField(dstField.getName());
+            if (srcField != null) {
+                Object param = srcField.read(src);
                 if (param != null)
                     dstClass.invoke(dst, setMethod, param);
-            } else {
-                UField srcField = srcClass.getDeclaredField(dstField.getName());
-                if (srcField != null) {
-                    Object param = srcField.read(src);
-                    if (param != null)
-                        dstClass.invoke(dst, setMethod, param);
-                }
             }
         }
     }
