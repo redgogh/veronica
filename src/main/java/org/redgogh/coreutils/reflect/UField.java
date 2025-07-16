@@ -74,22 +74,95 @@ public class UField {
      */
     private final String name;
 
+    /**
+     * #brief: 线程安全的字段元数据缓存类
+     *
+     * <p>该类提供对类字段元数据(UField)的高效缓存和访问功能，采用双重映射结构存储：
+     * <ul>
+     *   <li>第一级映射：Class对象 → 字段映射表</li>
+     *   <li>第二级映射：字段名称 → UField对象</li>
+     * </ul>
+     *
+     * <p>特性：
+     * <ul>
+     *   <li>全线程安全：使用ConcurrentHashMap实现并发访问</li>
+     *   <li>惰性初始化：字段映射表在首次访问时创建</li>
+     *   <li>原子操作：computeIfAbsent保证初始化操作的原子性</li>
+     * </ul>
+     *
+     * <p>典型使用场景：
+     * <pre>
+     * // 获取字段元数据
+     * UField field = cache.get(User.class, "username");
+     *
+     * // 缓存新字段
+     * cache.put(Order.class, new UField(...));
+     * </pre>
+     */
     static class Cache {
+        /**
+         * 核心缓存存储结构
+         * Key: 目标类的Class对象
+         * Value: 字段名称到UField对象的并发映射
+         */
         private final Map<Class<?>, Map<String, UField>> cache = new ConcurrentHashMap<>();
 
+        /**
+         * #brief: 检查缓存中是否存在指定字段
+         *
+         * <p>该方法原子性地检查两个条件：
+         * <ol>
+         *   <li>类是否已注册到缓存</li>
+         *   <li>指定名称的字段是否存在</li>
+         * </ol>
+         *
+         * @param inClass 目标类的Class对象(非null)
+         * @param name 字段名称(非null)
+         * @return 当且仅当字段存在时返回true
+         * @throws NullPointerException 如果任一参数为null
+         */
         public boolean contains(Class<?> inClass, String name) {
             return cache.containsKey(inClass) && cache.get(inClass).containsKey(name);
         }
 
+        /**
+         * #brief: 添加或更新字段缓存
+         *
+         * <p>原子性操作流程：
+         * <ol>
+         *   <li>如果类未注册，创建新的字段映射表</li>
+         *   <li>将字段存入映射表</li>
+         *   <li>返回之前同名字段(如果存在)</li>
+         * </ol>
+         *
+         * @param inClass 目标类的Class对象(非null)
+         * @param field 要缓存的UField对象(非null)
+         * @return 被替换的旧字段对象，如无则返回null
+         * @throws NullPointerException 如果任一参数为null
+         */
         public UField put(Class<?> inClass, UField field) {
             return cache.computeIfAbsent(inClass, k -> new ConcurrentHashMap<>())
                     .put(field.getName(), field);
         }
 
+        /**
+         * #brief: 获取缓存的字段元数据
+         *
+         * <p>注意：
+         * <ul>
+         *   <li>不执行自动初始化，未缓存的类将返回null</li>
+         *   <li>对返回对象的修改会影响缓存内容</li>
+         * </ul>
+         *
+         * @param inClass 目标类的Class对象(非null)
+         * @param name 字段名称(非null)
+         * @return 对应的UField对象，未找到时返回null
+         * @throws NullPointerException 如果参数为null或类未缓存
+         * @throws NullPointerException 如果类已缓存但get(inClass)返回null
+         */
         public UField get(Class<?> inClass, String name) {
             return cache.get(inClass).get(name);
         }
-
     }
 
     private static final Cache _cache = new Cache();

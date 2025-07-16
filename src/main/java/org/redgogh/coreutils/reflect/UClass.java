@@ -90,14 +90,64 @@ public class UClass {
      */
     private Map<String, UField> fields = null;
 
+    /**
+     * #brief: 字段缓存类，用于缓存类的字段信息
+     *
+     * <p>该类是一个线程安全的缓存实现，用于存储和管理类的字段信息（UField对象）。
+     * 使用ConcurrentHashMap实现线程安全的缓存存储，支持并发访问。
+     *
+     * <p>主要功能包括：
+     * <ul>
+     *     <li>缓存类的字段信息映射</li>
+     *     <li>按需初始化字段缓存</li>
+     *     <li>提供线程安全的字段存取操作</li>
+     * </ul>
+     *
+     * <p>缓存结构为两级映射：
+     * <ol>
+     *     <li>第一级：Class对象到字段映射的映射</li>
+     *     <li>第二级：字段名称到UField对象的映射</li>
+     * </ol>
+     */
     static class Cache {
-
+        /**
+         * 缓存存储结构，使用ConcurrentHashMap保证线程安全
+         * Key: 目标类的Class对象
+         * Value: 字段名称到UField对象的映射
+         */
         private final Map<Class<?>, Map<String, UField>> cache = new ConcurrentHashMap<>();
 
+        /**
+         * #brief: 检查缓存中是否包含指定类的字段信息
+         *
+         * <p>该方法用于快速判断缓存中是否已经加载了指定类的字段信息。
+         *
+         * @param inClass 要检查的类的Class对象，不能为null
+         * @return 如果缓存中包含该类的字段信息返回true，否则返回false
+         * @throws NullPointerException 如果inClass参数为null
+         */
         public boolean contains(Class<?> inClass) {
             return cache.containsKey(inClass);
         }
 
+        /**
+         * #brief: 获取或初始化类的字段缓存
+         *
+         * <p>如果缓存中不存在指定类的字段信息，则会自动扫描类的字段并初始化缓存。
+         * 该方法保证线程安全，同一时间只有一个线程会执行初始化操作。
+         *
+         * <p>初始化过程包括：
+         * <ol>
+         *     <li>扫描类的声明字段</li>
+         *     <li>创建字段名称到UField对象的映射</li>
+         *     <li>将映射存入缓存</li>
+         * </ol>
+         *
+         * @param inClass 要获取字段信息的类的Class对象，不能为null
+         * @return 字段名称到UField对象的映射，不会返回null
+         * @throws NullPointerException 如果inClass参数为null
+         * @see #scanDescriptorDeclaredFields(Class, List) 用于扫描类字段的方法
+         */
         public Map<String, UField> getOrInit(Class<?> inClass) {
             return cache.computeIfAbsent(inClass, clazz -> {
                 List<UField> uFields = scanDescriptorDeclaredFields(clazz, Lists.newArrayList());
@@ -107,15 +157,34 @@ public class UClass {
             });
         }
 
+        /**
+         * #brief: 向缓存中添加单个字段信息
+         *
+         * <p>如果缓存中不存在指定类的字段映射，会自动创建新的映射表。
+         * 该方法保证线程安全，可以并发调用。
+         *
+         * @param inClass 目标类的Class对象，不能为null
+         * @param uField 要添加的UField对象，不能为null
+         * @throws NullPointerException 如果inClass或uField参数为null
+         */
         public void put(Class<?> inClass, UField uField) {
             cache.computeIfAbsent(inClass, k -> new ConcurrentHashMap<>())
                     .put(uField.getName(), uField);
         }
 
+        /**
+         * #brief: 获取类的字段缓存映射
+         *
+         * <p>直接返回缓存中存储的字段映射，如果不存在则返回null。
+         * 不会触发自动初始化。
+         *
+         * @param inClass 要获取字段信息的类的Class对象，不能为null
+         * @return 字段名称到UField对象的映射，如果不存在则返回null
+         * @throws NullPointerException 如果inClass参数为null
+         */
         public Map<String, UField> get(Class<?> inClass) {
             return cache.get(inClass);
         }
-
     }
 
     private static final Cache _cache = new Cache();
