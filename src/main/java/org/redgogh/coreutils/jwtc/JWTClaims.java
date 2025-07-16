@@ -153,7 +153,7 @@ public class JWTClaims extends HashMap<String, Object> {
      * @return 如果 JWT 已过期，返回 `true`；否则返回 `false`
      */
     public boolean isExpiration() {
-        return Chrono.from(getExpirationTime()).isBeforeNow();
+        return Chrono.of(getExpirationTime()).isBeforeNow();
     }
 
     /**

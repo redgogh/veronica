@@ -350,7 +350,7 @@ public final class Chrono extends Date
      * @param text 日期字符串
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(String text) {
+    public static Chrono of(String text) {
         return new Chrono(text);
     }
 
@@ -361,7 +361,7 @@ public final class Chrono extends Date
      * @param pattern 日期格式
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(String text, String pattern) {
+    public static Chrono of(String text, String pattern) {
         return new Chrono(text, pattern);
     }
 
@@ -539,7 +539,7 @@ public final class Chrono extends Date
      * @param localDate `localDate` 对象
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(LocalDate localDate) {
+    public static Chrono of(LocalDate localDate) {
         return new Chrono(localDate.getYear(), localDate.getMonthValue(), localDate.getDayOfMonth());
     }
 
@@ -549,7 +549,7 @@ public final class Chrono extends Date
      * @param localDateTime `LocalDateTime` 对象
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(LocalDateTime localDateTime) {
+    public static Chrono of(LocalDateTime localDateTime) {
         return new Chrono(localDateTime);
     }
 
@@ -559,7 +559,7 @@ public final class Chrono extends Date
      * @param timestamp 时间戳（毫秒）
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(long timestamp) {
+    public static Chrono of(long timestamp) {
         return new Chrono(timestamp);
     }
 
@@ -569,7 +569,7 @@ public final class Chrono extends Date
      * @param date `Date` 对象
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(Date date) {
+    public static Chrono of(Date date) {
         return date instanceof Chrono
                 ? (Chrono) date
                 : new Chrono(date);
@@ -582,7 +582,7 @@ public final class Chrono extends Date
      * @param zoneId 时区
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(LocalDateTime localDateTime, ZoneId zoneId) {
+    public static Chrono of(LocalDateTime localDateTime, ZoneId zoneId) {
         return new Chrono(localDateTime, zoneId);
     }
 
@@ -593,7 +593,7 @@ public final class Chrono extends Date
      * @param zoneId 时区
      * @return 相应的 `Chrono` 实例
      */
-    public static Chrono from(long timestamp, ZoneId zoneId) {
+    public static Chrono of(long timestamp, ZoneId zoneId) {
         return new Chrono(timestamp, zoneId);
     }
 
@@ -603,8 +603,8 @@ public final class Chrono extends Date
      * @param instant 要转换的 {@code Instant} 实例
      * @return 转换后的 {@code Chrono} 实例
      */
-    public static Chrono from(Instant instant) {
-        return from(Date.from(instant));
+    public static Chrono of(Instant instant) {
+        return of(Date.from(instant));
     }
 
     /**
@@ -701,17 +701,17 @@ public final class Chrono extends Date
 
     @Override
     public boolean isBetween(LocalDate start, LocalDate end) {
-        return isBetween(from(start), from(end));
+        return isBetween(of(start), of(end));
     }
 
     @Override
     public boolean isBetween(LocalDateTime start, LocalDateTime end) {
-        return isBetween(from(start), from(end));
+        return isBetween(of(start), of(end));
     }
 
     @Override
     public boolean isBetween(Date start, Date end) {
-        return isBetween(from(start), from(end));
+        return isBetween(of(start), of(end));
     }
 
     @Override
@@ -736,7 +736,7 @@ public final class Chrono extends Date
 
     @Override
     public Chrono toZoned(ZoneId zoneId) {
-        return Chrono.from(toZonedDateTime(zoneId).toInstant());
+        return Chrono.of(toZonedDateTime(zoneId).toInstant());
     }
 
     @Override
