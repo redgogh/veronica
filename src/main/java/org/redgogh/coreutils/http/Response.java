@@ -28,6 +28,7 @@ import java.util.Map;
 
 import static org.redgogh.coreutils.Comparators.anyeq;
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.streq;
 
 /**
  * `Response` 是一个继承自 `JSONObject` 的类，用于表示一个包含状态码和数据的响应对象。
@@ -137,7 +138,7 @@ public class Response extends JSONObject {
      * @return 如果响应的状态码等于指定的状态码，则返回 `true`；否则返回 `false`
      */
     public boolean codeEquals(int cmpCode) {
-        return StringUtils.streq(code, cmpCode);
+        return streq(code, cmpCode);
     }
 
     /**

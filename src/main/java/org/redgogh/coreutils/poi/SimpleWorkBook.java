@@ -47,6 +47,8 @@ import java.util.List;
 import java.util.Map;
 
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.strne;
+import static org.redgogh.coreutils.string.StringUtils.strnempty;
 
 /**
  * 类 {@link SimpleWorkBook} 用于创建和操作 Excel 工作簿。
@@ -333,7 +335,7 @@ public class SimpleWorkBook implements Iterable<Row> {
         for (int i = 0; i < lastCellNum; i++) {
             Cell cell = row.getCell(i);
             String value = cellFormatter.formatCellValue(cell);
-            retval.add(cell != null && StringUtils.strnempty(value) ? value : "NULL");
+            retval.add(cell != null && strnempty(value) ? value : "NULL");
         }
 
         return retval;
@@ -357,7 +359,7 @@ public class SimpleWorkBook implements Iterable<Row> {
         forEach(retval::add);
         return Streams.filter(retval, e -> {
             for (String cell : e) {
-                if (StringUtils.strne(cell, "NULL"))
+                if (strne(cell, "NULL"))
                     return true;
             }
             return false;
@@ -475,7 +477,7 @@ public class SimpleWorkBook implements Iterable<Row> {
         List<Row> rows = getRows();
         for (Row row : rows) {
             for (String cell : row) {
-                builder.append(StringUtils.strne(cell, "NULL") ? cell : "");
+                builder.append(strne(cell, "NULL") ? cell : "");
                 builder.append(",");
             }
             builder.deleteCharAt(builder.length() - 1);

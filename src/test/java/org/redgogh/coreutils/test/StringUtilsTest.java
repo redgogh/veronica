@@ -29,6 +29,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import static org.redgogh.coreutils.string.StringInterface.*;
+import static org.redgogh.coreutils.string.StringUtils.strant;
 import static org.redgogh.coreutils.string.StringUtils.strcut;
 import static org.redgogh.coreutils.TypeCvt.atos;
 
@@ -76,7 +77,7 @@ public class StringUtilsTest {
         System.out.println();
         paths.add("/api/dwada.xdwadpojawopdjf");
         paths.forEach(V -> {
-            if (StringUtils.strant(V, "/api/*.x*f"))
+            if (strant(V, "/api/*.x*f"))
                 System.out.println(V);
         });
     }

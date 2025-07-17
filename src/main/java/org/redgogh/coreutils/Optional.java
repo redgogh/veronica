@@ -24,6 +24,8 @@ import org.redgogh.coreutils.iface.Callable;
 import org.redgogh.coreutils.string.StringUtils;
 import org.redgogh.coreutils.iface.Action;
 
+import static org.redgogh.coreutils.string.StringUtils.strempty;
+
 /**
  * @author Red Gogh
  */
@@ -67,7 +69,7 @@ public class Optional {
      * @return 如果 {@code value} 为 null，则返回 {@code orBlank}，否则返回 {@code value}
      */
     public static String ifBlank(String value, String orBlank) {
-        return StringUtils.strempty(value) ? orBlank : value;
+        return strempty(value) ? orBlank : value;
     }
 
     /**

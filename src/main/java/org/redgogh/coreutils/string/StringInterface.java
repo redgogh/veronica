@@ -20,6 +20,7 @@ package org.redgogh.coreutils.string;
 
 
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.*;
 
 /**
  * 定义字符串操作类型的枚举类。
@@ -48,7 +49,7 @@ public enum StringInterface {
     STRING_IFACE_TRIM_EXT {
         @Override
         public String apply(String input) {
-            return StringUtils.strip(input);
+            return strip(input);
         }
     },
 
@@ -58,7 +59,7 @@ public enum StringInterface {
     STRING_IFACE_UPPER_CASE_EXT {
         @Override
         public String apply(String input) {
-            return StringUtils.uppercase(input);
+            return uppercase(input);
         }
     },
 
@@ -68,7 +69,7 @@ public enum StringInterface {
     STRING_IFACE_LOWER_CASE_EXT {
         @Override
         public String apply(String input) {
-            return StringUtils.lowercase(input);
+            return lowercase(input);
         }
     },
 
@@ -78,7 +79,7 @@ public enum StringInterface {
     STRING_IFACE_CAPITALIZE_EXT {
         @Override
         public String apply(String input) {
-            return StringUtils.strcut(input, 0, 1, STRING_IFACE_UPPER_CASE_EXT) + StringUtils.strcut(input,1, 0);
+            return strcut(input, 0, 1, STRING_IFACE_UPPER_CASE_EXT) + strcut(input,1, 0);
         }
     },
 
@@ -98,7 +99,7 @@ public enum StringInterface {
     STRING_IFACE_REMOVE_SPACES_EXT {
         @Override
         public String apply(String input) {
-            return StringUtils.strrexp(input, "\\s+", "");
+            return strrexp(input, "\\s+", "");
         }
     },
 
@@ -108,7 +109,7 @@ public enum StringInterface {
     STRING_IFACE_LINE_HMP_EXT {
         @Override
         public String apply(String input) {
-            return StringUtils.strlinehmp(input);
+            return strlinehmp(input);
         }
     }
     ;

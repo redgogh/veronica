@@ -34,6 +34,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.redgogh.coreutils.string.StringUtils.strcheckin;
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.uppercase;
 
 /**
  * `HttpClient` 是一个用于发送 HTTP 请求的客户端工具类。该类支持多种 HTTP 请求方法，
@@ -93,7 +94,7 @@ public class HttpClient {
      * @throws NullPointerException 如果请求方法不受支持
      */
     private HttpClient(String method, String url) {
-        String upperMethod = StringUtils.uppercase(method);
+        String upperMethod = uppercase(method);
         this.method = Optional.ifError(() -> HttpMethod.valueOf(upperMethod), null);
         Assert.notNull(this.method, "不支持的请求方式 - %s", this.method);
         this.url = url;

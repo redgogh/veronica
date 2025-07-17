@@ -20,6 +20,8 @@ package org.redgogh.coreutils.exception;
 
 import org.redgogh.coreutils.string.StringUtils;
 
+import static org.redgogh.coreutils.string.StringUtils.strwfmt;
+
 /**
  * `SystemRuntimeException` 是一个自定义的运行时异常类，用于在系统中抛出各种运行时异常。
  * 该类继承自 `RuntimeException`，提供了多种构造函数以便根据不同的异常情况创建实例。<p>
@@ -79,7 +81,7 @@ public class SystemRuntimeException extends RuntimeException {
      * @param args 格式化参数。
      */
     public SystemRuntimeException(String fmt, Object... args) {
-        super(StringUtils.strwfmt(fmt, args));
+        super(strwfmt(fmt, args));
     }
 
     /**
@@ -90,7 +92,7 @@ public class SystemRuntimeException extends RuntimeException {
      * @param args 格式化参数。
      */
     public SystemRuntimeException(String fmt, Throwable e, Object... args) {
-        super(StringUtils.strwfmt(fmt, args), e);
+        super(strwfmt(fmt, args), e);
     }
 
 }

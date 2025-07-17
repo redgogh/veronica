@@ -31,6 +31,7 @@ import org.redgogh.coreutils.security.Codec;
 import java.security.Key;
 
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.*;
 
 /**
  * @author Red Gogh
@@ -54,10 +55,10 @@ public abstract class AbstractKey {
     public abstract String toPEMFormat();
 
     public static byte[] decodePEMFormat(String pem) {
-        String[] lines = StringUtils.strtok(pem, "\n");
+        String[] lines = strtok(pem, "\n");
         StringBuilder remakeBuilder = new StringBuilder();
         for (int i = 1; i < (lines.length - 1); i++) {
-            remakeBuilder.append(StringUtils.strcut(lines[i], 0, 0));
+            remakeBuilder.append(strcut(lines[i], 0, 0));
         }
         return Codec.BASE64.decodeBytes(atos(remakeBuilder));
     }
@@ -66,7 +67,7 @@ public abstract class AbstractKey {
         StringBuilder secretBuilder = new StringBuilder();
 
         String base64Encode = Codec.BASE64.encode(encoded);
-        int encodeLength = StringUtils.strlen(base64Encode);
+        int encodeLength = strlen(base64Encode);
         int len = 64;
         int loopCount = encodeLength / len;
         int copyLength = 0;
@@ -75,13 +76,13 @@ public abstract class AbstractKey {
             int off = i * len;
             if (off + len > encodeLength)
                 len = Math.abs((off + len) - encodeLength);
-            secretBuilder.append(StringUtils.strcut(base64Encode, off, len)).append("\n");
+            secretBuilder.append(strcut(base64Encode, off, len)).append("\n");
             copyLength += len;
         }
 
         // 检查是否还有剩余内容
         if (copyLength < encodeLength)
-            secretBuilder.append(StringUtils.strcut(base64Encode, copyLength, 0)).append("\n");
+            secretBuilder.append(strcut(base64Encode, copyLength, 0)).append("\n");
 
         secretBuilder.delete(secretBuilder.length() - 1, secretBuilder.length());
         return "-----BEGIN " + keyType + "-----\n" + atos(secretBuilder) + "\n-----END " + keyType + "-----";

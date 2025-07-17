@@ -57,13 +57,13 @@ import static org.redgogh.coreutils.TypeCvt.atos;
  * <h2>使用示例</h2>
  * <pre>
  *     // 获取字符串长度
- *     int length = StringUtils.strlen("example");
+ *     int length = strlen("example");
  *
  *     // 字符串转换为小写
- *     String lower = StringUtils.lowercase("EXAMPLE");
+ *     String lower = lowercase("EXAMPLE");
  *
  *     // 字符串比较
- *     boolean isEqual = StringUtils.streq("test", "TEST");
+ *     boolean isEqual = streq("test", "TEST");
  * </pre>
  *
  * @author Red Gogh

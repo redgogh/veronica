@@ -24,6 +24,8 @@ import org.redgogh.coreutils.exception.IllegalArgumentException;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.string.StringUtils;
 
+import static org.redgogh.coreutils.string.StringUtils.strieq;
+
 /**
  * `Enumerates` 是一个工具类，提供了获取和查找枚举值的方法。主要包括获取指定枚举类的所有
  * 枚举值和根据名称查找枚举值的功能。这些方法使用了反射机制来操作枚举类，以提供灵活的
@@ -116,7 +118,7 @@ public class Enumerate {
     public static <E extends Enum<E>> E find(Class<? extends Enum<E>> enumClass, String name) {
         Enum<E>[] values = values(enumClass);
         for (Enum<E> value : values)
-            if (StringUtils.strieq(value.name(), name))
+            if (strieq(value.name(), name))
                 return (E) value;
         return null;
     }

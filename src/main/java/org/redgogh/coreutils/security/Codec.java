@@ -38,6 +38,7 @@ import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.strlen;
 
 /**
  * `Codec` 类用于数据的编码和解码操作。它提供了将数据从一种格式转换为另一种格式的功能，
@@ -126,7 +127,7 @@ public class Codec {
         StringBuilder builder = new StringBuilder();
         for (byte b : bytes) {
             String tmp = Integer.toHexString(b & 0xFF);
-            if (StringUtils.strlen(tmp) == 1)
+            if (strlen(tmp) == 1)
                 builder.append("0");
             builder.append(tmp);
         }

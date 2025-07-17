@@ -7,6 +7,9 @@ import org.redgogh.coreutils.string.StringUtils;
 import java.util.Random;
 import java.util.UUID;
 
+import static org.redgogh.coreutils.string.StringUtils.strcut;
+import static org.redgogh.coreutils.string.StringUtils.uppercase;
+
 /**
  * `Generator` 是一个用于生成随机数的工具类，提供了多种生成随机整数、浮点数和双精度数的方法。
  *
@@ -58,7 +61,7 @@ public class Generator {
      * @return 生成不带符号的UUID
      */
     public static String uuid(StringInterface... iface) {
-        return StringUtils.uppercase(UUID.randomUUID(), iface)
+        return uppercase(UUID.randomUUID(), iface)
                 .replace("-", "");
     }
 
@@ -71,7 +74,7 @@ public class Generator {
      * @return 返回没有任何符号的 UUID
      */
     public static String uuid(int n, StringInterface... iface) {
-        return StringUtils.strcut(uuid(iface), 0, n);
+        return strcut(uuid(iface), 0, n);
     }
 
     /**

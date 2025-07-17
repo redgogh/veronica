@@ -7,6 +7,8 @@ import org.redgogh.coreutils.exception.SystemRuntimeException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import static org.redgogh.coreutils.string.StringUtils.strcut;
+
 /**
  * @author Red Gogh
  */
@@ -76,7 +78,7 @@ public class MD5Codec implements MD5 {
             }
             /* 判断是获取 16 位的 md5 字符串还是 16 位的 */
             int flag = n > 16 ? 0 : 8;
-            return StringUtils.strcut(chars, flag, (n + flag));
+            return strcut(chars, flag, (n + flag));
         } catch (NoSuchAlgorithmException e) {
             throw new SystemRuntimeException(e);
         }
