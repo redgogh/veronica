@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.test;
+package org.redgogh.coreutils.test.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -18,27 +18,29 @@ package org.redgogh.coreutils.test;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
+import org.redgogh.coreutils.security.Codec;
+import org.redgogh.coreutils.security.Crypt;
 import org.junit.Test;
-import org.redgogh.coreutils.collection.ChunkList;
-import org.redgogh.coreutils.collection.Lists;
-
-import java.util.List;
 
 @SuppressWarnings("ALL")
-public class ListsTest {
+public class CryptTest {
 
+    /**
+     * AES 编码、解码测试
+     */
     @Test
-    public void splitByChunkSizeTest() {
-        List<String> list = Lists.of("1", "2", "3", "4", "5");
-        ChunkList<String> lists = Lists.splitByChunkSize(list, 3);
-        System.out.println();
-    }
+    public void aesTest() {
+        String text = "牛子一掰，全场笑歪！";
+        String secret = Codec.randomNextSecret();
+        System.out.println("AES secret key: " + secret);
 
-    @Test
-    public void splitIntoNChunkTest() {
-        List<String> list = Lists.of("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13");
-        ChunkList<String> lists = Lists.splitIntoNChunk(list, 3);
-        System.out.println();
+        // Encoder
+        String key = Crypt.AES.encrypt(text, secret);;
+        System.out.println("AES text encrypt: " + key);
+
+        // Decoder
+        System.out.println("AES text decrypt: " + Crypt.AES.decrypt(key, secret));
+
     }
 
 }

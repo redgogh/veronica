@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.test;
+package org.redgogh.coreutils.test.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|

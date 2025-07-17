@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.test;
+package org.redgogh.coreutils.test.reflect;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -18,21 +18,36 @@ package org.redgogh.coreutils.test;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import com.alibaba.fastjson.JSON;
-import org.redgogh.coreutils.student.HighStudent;
-import org.redgogh.coreutils.student.PrimaryStudent;
-import org.redgogh.coreutils.bean.BeanUtils;
+import org.redgogh.coreutils.reflect.ObjectSerializer;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.Serializable;
+
 @SuppressWarnings("ALL")
-public class BeanUtilsTest {
+public class ObjectSerializerTest {
+
+    static class User implements Serializable {
+        /* test field */
+        private String name = "Crazy";
+
+        public User(String name) {
+            this.name = name;
+        }
+
+    }
 
     @Test
-    public void copyPropertiesTest() {
-        PrimaryStudent judy = new PrimaryStudent();
-        judy.setAge(18);
-
-        System.out.println(JSON.toJSONString(BeanUtils.copyProperties(judy, HighStudent.class)));
+    public void serializeTest() {
+        ObjectSerializer.serialize(new User("Judy"), new File("Desktop://judy.ser"));
     }
+
+    @Test
+    public void deserializeTest() {
+        File systemResource = new File("Desktop://judy.ser");
+        User user = (User) ObjectSerializer.deserialize(systemResource);
+        System.out.println(user);
+    }
+
 
 }

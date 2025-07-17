@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.system;
+package org.redgogh.coreutils.test.generator;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -18,23 +18,52 @@ package org.redgogh.coreutils.system;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
+import org.redgogh.coreutils.generator.Generator;
 import org.junit.Test;
-import org.redgogh.coreutils.Assert;
-import org.redgogh.coreutils.Optional;
-import org.redgogh.coreutils.exception.AssertException;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @SuppressWarnings("ALL")
-public class SystemUtilsTest {
+public class GeneratorTest {
 
     @Test
-    public void getResourceTest() {
-        File file = SystemUtils.getResource("~/");
-        Arrays.stream(file.listFiles()).forEach(System.out::println);
+    public void nextCodeTest() {
+        for (int i = 0; i < 165; i++) {
+            System.out.println(Generator.randomCode(8) + "75b0-11ef-a8c9-005056935d62");
+        }
+    }
+
+    @Test
+    public void nextLetterTest() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Generator.randomLetterCode(8));
+        }
+    }
+
+    @Test
+    public void nextNumberTest() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Generator.randomNumberCode(6));
+        }
+    }
+
+    @Test
+    public void nextCodeRangeTest() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Generator.randomCode(0, 8));
+        }
+    }
+
+    @Test
+    public void nextLetterRangeTest() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Generator.randomLetterCode(0, 6));
+        }
+    }
+
+    @Test
+    public void nextNumberRangeTest() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(Generator.randomNumberCode(0, 6));
+        }
     }
 
 }

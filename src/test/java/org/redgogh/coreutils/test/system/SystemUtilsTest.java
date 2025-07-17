@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.test;
+package org.redgogh.coreutils.test.system;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -18,36 +18,24 @@ package org.redgogh.coreutils.test;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.redgogh.coreutils.reflect.ObjectSerializer;
 import org.junit.Test;
+import org.redgogh.coreutils.Assert;
+import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.exception.AssertException;
+import org.redgogh.coreutils.system.SystemUtils;
 
 import java.io.File;
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @SuppressWarnings("ALL")
-public class ObjectSerializerTest {
-
-    static class User implements Serializable {
-        /* test field */
-        private String name = "Crazy";
-
-        public User(String name) {
-            this.name = name;
-        }
-
-    }
+public class SystemUtilsTest {
 
     @Test
-    public void serializeTest() {
-        ObjectSerializer.serialize(new User("Judy"), new File("Desktop://judy.ser"));
+    public void getResourceTest() {
+        File file = SystemUtils.getResource("~/");
+        Arrays.stream(file.listFiles()).forEach(System.out::println);
     }
-
-    @Test
-    public void deserializeTest() {
-        File systemResource = new File("Desktop://judy.ser");
-        User user = (User) ObjectSerializer.deserialize(systemResource);
-        System.out.println(user);
-    }
-
 
 }

@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.test;
+package org.redgogh.coreutils.test.string;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -19,7 +19,6 @@ package org.redgogh.coreutils.test;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.redgogh.coreutils.string.StringUtils;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.generator.Generator;
 

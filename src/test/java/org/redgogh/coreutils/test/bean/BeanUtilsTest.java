@@ -1,4 +1,4 @@
-package org.redgogh.coreutils.experiment;
+package org.redgogh.coreutils.test.bean;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -18,35 +18,21 @@ package org.redgogh.coreutils.experiment;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.redgogh.coreutils.generator.Generator;
+import com.alibaba.fastjson.JSON;
+import org.redgogh.coreutils.student.HighStudent;
+import org.redgogh.coreutils.student.PrimaryStudent;
+import org.redgogh.coreutils.bean.BeanUtils;
 import org.junit.Test;
 
-import java.util.Random;
-
 @SuppressWarnings("ALL")
-public class FastRandomValueTest {
-
-    public static int seed = 0;
-    public static final long T = System.nanoTime() % 1000000;
-    public static final long A = 1103515245;
-    public static final long C = System.nanoTime() % 100000;
-    public static final long M = (long) Math.pow(2, 32);
+public class BeanUtilsTest {
 
     @Test
-    public void fastRandomGenerateTest() {
-        Random random = new Random();
-        for (int i = 0; i < Integer.MAX_VALUE; i++) {
-            /* 5 sec 541 ms */
-            fastNextRandom();
+    public void copyPropertiesTest() {
+        PrimaryStudent judy = new PrimaryStudent();
+        judy.setAge(18);
 
-            /* 7 sec 118 ms */
-            Generator.randomInt(1000, 9999);
-        }
-    }
-
-    public static int fastNextRandom() {
-        seed = (int) ((A * seed + C) % M);
-        return seed;
+        System.out.println(JSON.toJSONString(BeanUtils.copyProperties(judy, HighStudent.class)));
     }
 
 }
