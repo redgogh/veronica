@@ -329,7 +329,7 @@ public final class Chrono extends Date
 
         // 初始化属性
         this.zoneId = zoneId;
-        this.timestamp = _core_local_time.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        this.timestamp = Instant.ofEpochMilli(timestamp).toEpochMilli();
         this.date = new Date(timestamp);
         this.localDate = _core_local_time.toLocalDate();
         this.weekFields = WeekFields.of(Locale.getDefault());
