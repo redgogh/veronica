@@ -65,6 +65,18 @@ public class ArrayUtils {
     }
 
     /**
+     * 根据偏移和长度，计算可用的截取长度。
+     * 当 off <= 0 时，表示自动取 size - abs(off)，用于排除尾部。
+     *
+     * @param size 总长度
+     * @param off  起始偏移
+     * @return 实际可用长度
+     */
+    public static int sliceOffset(int size, int off) {
+        return off < 0 ? (size - Math.abs(off)) : off;
+    }
+
+    /**
      * #brief：检查数组偏移量和长度是否在数组大小范围内。
      *
      * <p>该方法用于检查偏移量 {@code off} 和长度 {@code len} 的和是否超出数组的大小 {@code size}。
@@ -180,6 +192,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static char[] slice(char[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         char[] ret = new char[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -199,6 +212,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static short[] slice(short[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         short[] ret = new short[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -218,6 +232,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static int[] slice(int[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         int[] ret = new int[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -237,6 +252,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static long[] slice(long[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         long[] ret = new long[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -256,6 +272,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static float[] slice(float[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         float[] ret = new float[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -275,6 +292,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static double[] slice(double[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         double[] ret = new double[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -294,6 +312,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static boolean[] slice(boolean[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         boolean[] ret = new boolean[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -313,6 +332,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static String[] slice(String[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         String[] ret = new String[len];
         System.arraycopy(original, off, ret, 0, len);
@@ -332,6 +352,7 @@ public class ArrayUtils {
      * @throws ArrayIndexOutOfBoundsException 如果off超出范围
      */
     public static Object[] slice(Object[] original, int off, int len) {
+        off = sliceOffset(original.length, off);
         len = sliceLength(original.length, off, len);
         Object[] ret = new Object[len];
         System.arraycopy(original, off, ret, 0, len);
