@@ -62,7 +62,7 @@ public class Assert {
      *                         格式化异常信息。
      */
     public static void isTrue(boolean expr, String fmt, Object... args) {
-        if (!expr)
+        if (expr)
             throw new AssertException(fmt, args);
     }
 
@@ -91,7 +91,7 @@ public class Assert {
      *                         格式化异常信息。
      */
     public static void isFalse(boolean expr, String fmt, Object... args) {
-        if (expr)
+        if (!expr)
             throw new AssertException(fmt, args);
     }
 
