@@ -51,6 +51,7 @@
         <junit.version>4.13.2</junit.version>
         <poi.version>5.4.0</poi.version>
         <nimbus-jose-jwt.version>10.0.2</nimbus-jose-jwt.version>
+        <json.version>20171018</json.version>
         <!-- compile -->
         <java.compiler.version>21</java.compiler.version>
         <maven.compiler.source>${java.compiler.version}</maven.compiler.source>
@@ -84,6 +85,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>${json.version}</version>
         </dependency>
     </dependencies>
 

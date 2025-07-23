@@ -18,8 +18,9 @@ package org.redgogh.coreutils;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.redgogh.coreutils.iface.TypeMapper;
+import org.json.XML;
 import org.redgogh.coreutils.exception.UnsupportedOperationException;
+import org.redgogh.coreutils.iface.TypeMapper;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.string.StringInterface;
 import org.redgogh.coreutils.string.StringUtils;
@@ -435,6 +436,44 @@ public class TypeCvt {
      */
     public static String atos(char[] a, int off, int len, StringInterface...iface) {
         return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(a, off, len)), iface);
+    }
+
+    /**
+     * #brief: 将XML字符串转换为JSON字符串
+     *
+     * <p>该方法提供从XML格式到JSON格式的简单转换功能，使用{@link XML}工具类实现核心转换逻辑。
+     * 转换过程会保留XML文档的结构信息，包括：
+     * <ul>
+     *   <li>元素节点转换为JSON对象</li>
+     *   <li>属性转换为JSON字段</li>
+     *   <li>文本内容存入特殊字段</li>
+     * </ul>
+     *
+     * <p>典型使用场景：
+     * <pre>
+     * String xml = "&lt;note&gt;&lt;to&gt;Alice&lt;/to&gt;&lt;from&gt;Bob&lt;/from&gt;&lt;/note&gt;";
+     * String json = xtos(xml);
+     * // 结果: {"note":{"to":"Alice","from":"Bob"}}
+     * </pre>
+     *
+     * @param xmlText 要转换的XML格式字符串，应符合基本XML语法要求：
+     *               <ul>
+     *                 <li>必须有单个根元素</li>
+     *                 <li>标签必须正确闭合</li>
+     *                 <li>特殊字符需转义</li>
+     *               </ul>
+     * @return 转换后的JSON格式字符串，使用UTF-8编码
+     * @throws org.json.JSONException 当出现以下情况时：
+     *                      <ul>
+     *                        <li>XML格式不规范</li>
+     *                        <li>存在不支持的XML特性(如DTD)</li>
+     *                        <li>转换过程中发生错误</li>
+     *                      </ul>
+     * @see XML#toJSONObject(String) 实际执行转换的方法
+     * @since 1.2
+     */
+    public static String xtos(String xmlText) {
+        return XML.toJSONObject(xmlText).toString();
     }
 
     /**

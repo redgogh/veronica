@@ -14,6 +14,7 @@
 - 新增 `Rethrow#swallow` 以及 `Rethrow#allow` 方法。
 - 新增 `SystemUtils#getResource` 支持快捷获取用户目录下文件。
 - 新增 `Lists#reverse` 倒序排序函数。
+- 新增 `xtos` 函数用于将 `xml` 转为 `json` 字符串操作。
 
 ## 👻 优化功能
 
