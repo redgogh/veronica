@@ -70,7 +70,7 @@ public class StreamResponse implements Closeable {
     public File transferTo(File file) {
         ResponseBody body = response.body();
         Assert.notNull(body, "没有数据响应。");
-        IOUtils.write(body.byteStream(), file);
+        IOUtils.write(file, body.byteStream());
         close();
         return file;
     }

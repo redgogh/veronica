@@ -232,13 +232,14 @@ public class IOUtils {
      *
      * 这个函数会自动关闭 {@code input} 输入流，无需调用者手动关闭输入流。
      *
+     * @param file
+     *        {@link File} 文件对象实例（如果文件不存在，则会创建）
+     *
      * @param input
      *        输入流
      *
-     * @param file
-     *        {@link File} 文件对象实例（如果文件不存在，则会创建）
      */
-    public static void write(InputStream input, File file) {
+    public static void write(File file, InputStream input) {
         FileOutputStream writer = null;
         try {
             writer = new FileOutputStream(file);
