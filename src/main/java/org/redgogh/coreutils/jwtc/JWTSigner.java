@@ -167,7 +167,7 @@ public class JWTSigner {
      * @param token JWT 字符串，包含头部、声明部分和签名
      * @return 解析得到的 `JWTClaims` 对象，包含 JWT 的声明信息
      */
-    public JWTClaims parseClaims(String token) {
+    public static JWTClaims parseClaims(String token) {
         return Rethrow.allow(() -> {
             String[] payloadPart = token.split("\\.");
             JSONObject Result = (JSONObject) JSONObject.parse(Codec.BASE64.decode(payloadPart[1]));
