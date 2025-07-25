@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import static org.redgogh.coreutils.TypeCvt.atol;
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.strlen;
 
 /**
  * `JWTClaims` 是一个扩展自 {@link HashMap} 的类，表示 JWT 中的声明部分。
@@ -153,7 +154,11 @@ public class JWTClaims extends HashMap<String, Object> {
      * @return 如果 JWT 已过期，返回 `true`；否则返回 `false`
      */
     public boolean isExpiration() {
-        return Chrono.of(getExpirationTime()).isBeforeNow();
+        long expirationTime = getExpirationTime();
+        // 如果是秒级时间戳则转为毫秒级别的时间戳
+        if (expirationTime >= 0 && expirationTime <= 9999999999L)
+            expirationTime *= 1000L;
+        return Chrono.of(expirationTime).isBeforeNow();
     }
 
     /**
