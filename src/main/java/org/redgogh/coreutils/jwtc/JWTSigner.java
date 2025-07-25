@@ -93,25 +93,6 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 解析 JWT 字符串中的声明部分并返回 JWTClaims 对象
-     *
-     * <p>该方法从 JWT 字符串中提取声明部分（即 `payload`），并将其解析为一个 `JWTClaims` 对象。
-     * 该过程包括对 base64 编码的声明部分进行解码，并将解码结果转化为 JSON 对象，最终封装成 `JWTClaims`。
-     *
-     * @param token JWT 字符串，包含头部、声明部分和签名
-     * @return 解析得到的 `JWTClaims` 对象，包含 JWT 的声明信息
-     */
-    public JWTClaims parseClaims(String token) {
-        return Rethrow.allow(() -> {
-            String[] payloadPart = token.split("\\.");
-            JSONObject Result = (JSONObject) JSONObject.parse(Codec.BASE64.decode(payloadPart[1]));
-            JWTClaims claims = new JWTClaims();
-            claims.putAll(Result);
-            return claims;
-        });
-    }
-
-    /**
      * #brief: 使用指定的加密算法和有效期生成签名的 JWT 字符串
      *
      * <p>该方法使用指定的加密算法和有效期生成签名的 JWT 字符串。可以通过传入时间单位来调整有效期单位。
@@ -175,6 +156,25 @@ public class JWTSigner {
         } catch (Exception e) {
             throw new SystemRuntimeException(e);
         }
+    }
+
+    /**
+     * #brief: 解析 JWT 字符串中的声明部分并返回 JWTClaims 对象
+     *
+     * <p>该方法从 JWT 字符串中提取声明部分（即 `payload`），并将其解析为一个 `JWTClaims` 对象。
+     * 该过程包括对 base64 编码的声明部分进行解码，并将解码结果转化为 JSON 对象，最终封装成 `JWTClaims`。
+     *
+     * @param token JWT 字符串，包含头部、声明部分和签名
+     * @return 解析得到的 `JWTClaims` 对象，包含 JWT 的声明信息
+     */
+    public JWTClaims parseClaims(String token) {
+        return Rethrow.allow(() -> {
+            String[] payloadPart = token.split("\\.");
+            JSONObject Result = (JSONObject) JSONObject.parse(Codec.BASE64.decode(payloadPart[1]));
+            JWTClaims claims = new JWTClaims();
+            claims.putAll(Result);
+            return claims;
+        });
     }
 
     /**
