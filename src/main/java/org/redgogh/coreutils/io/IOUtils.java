@@ -28,6 +28,7 @@ import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.Rethrow;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
@@ -58,7 +59,7 @@ public class IOUtils {
     /**
      * 推荐缓冲区默认大小
      */
-    public static final int DEFAULT_BYTE_BUFFER_SIZE = KB;
+    public static final int DEFAULT_BYTE_BUFFER_SIZE = 64 * KB;
     /**
      * 标准输出缓冲区
      */
@@ -88,7 +89,7 @@ public class IOUtils {
      *
      * @return 返回所有文件中的字节数据
      */
-    public static byte[] read(java.io.File file) {
+    public static byte[] read(File file) {
         Assert.isTrue(file != null && file.isFile(), "文件不能为空且不能是目录！");
         return Rethrow.allow(() -> read(new FileInputStream(file)));
     }
@@ -240,14 +241,10 @@ public class IOUtils {
      *
      */
     public static void write(File file, InputStream input) {
-        FileOutputStream writer = null;
-        try {
-            writer = new FileOutputStream(file);
+        try (FileOutputStream writer = new FileOutputStream(file)) {
             write(writer, input);
         } catch (Exception e) {
             throw new IOWriteException(e);
-        } finally {
-            closeQuietly(writer);
         }
     }
 
@@ -283,14 +280,13 @@ public class IOUtils {
      *
      */
     public static void write(File file, byte[] b) {
-        FileOutputStream writer = null;
         try {
-            writer = new FileOutputStream(file);
-            write(writer, b);
-        } catch (Throwable e) {
+            Files.write(file.toPath(), b,
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.TRUNCATE_EXISTING,
+                    StandardOpenOption.WRITE);
+        } catch (IOException e) {
             throw new IOWriteException(e);
-        } finally {
-            closeQuietly(writer);
         }
     }
 
@@ -339,7 +335,7 @@ public class IOUtils {
      *
      */
     public static void write(OutputStream stream, String input) {
-        byte[] bytes = input.getBytes();
+        byte[] bytes = input.getBytes(StandardCharsets.UTF_8);
         write(stream, bytes, 0, bytes.length);
     }
 
