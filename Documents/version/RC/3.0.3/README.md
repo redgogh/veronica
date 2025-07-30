@@ -43,5 +43,6 @@
 - 修复 `HttpClient#post(String, RequestConfigure)` 死循环递归调用问题。
 - 修复 `TypeCvt#atos` 函数未应用字符串扩展接口问题。
 - 修复 `JWTSigner#verify` 修复 verify 函数不支持秒级时间戳校验问题。
+- 修复 `IOUtils#write` 修复 write 函数递归调用问题。
 
 ## 🔨 构建工具
