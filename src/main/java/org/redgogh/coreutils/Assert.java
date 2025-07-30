@@ -21,7 +21,6 @@ package org.redgogh.coreutils;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.collection.Maps;
 import org.redgogh.coreutils.exception.AssertException;
-import org.redgogh.coreutils.string.StringUtils;
 
 import java.util.Collection;
 import java.util.Map;
@@ -45,8 +44,8 @@ public class Assert {
      * @param expr 要检查的条件
      * @throws AssertException 如果条件为 true
      */
-    public static void ensure(boolean expr) {
-        ensure(expr, "assert expr == true");
+    public static void checkTrue(boolean expr) {
+        checkTrue(expr, "assert expr == true");
     }
 
     /**
@@ -61,7 +60,7 @@ public class Assert {
      * @throws AssertException 如果 {@code expr} 为 true，将抛出异常，并使用 {@code fmt} 和 {@code args}
      *                         格式化异常信息。
      */
-    public static void ensure(boolean expr, String fmt, Object... args) {
+    public static void checkTrue(boolean expr, String fmt, Object... args) {
         if (!expr)
             throw new AssertException(fmt, args);
     }

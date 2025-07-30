@@ -529,7 +529,7 @@ public class HttpClient {
         /* response */
         Response retval = new Response(okResponse.code(), okResponse.headers(), okResponse.body());
 
-        Assert.ensure(okResponse.isSuccessful(), "HTTP请求出错（%s）\n    - URL：%s \n    - Request Body：%s \n    - Message: %s",
+        Assert.checkTrue(okResponse.isSuccessful(), "HTTP请求出错（%s）\n    - URL：%s \n    - Request Body：%s \n    - Message: %s",
                 okResponse.code(), url, JSON.toJSONString(object), retval);
 
         return retval;
