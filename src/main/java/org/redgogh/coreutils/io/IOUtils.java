@@ -383,7 +383,7 @@ public class IOUtils {
      *
      */
     public static void write(OutputStream stream, byte[] b, int off, int len) {
-        Rethrow.expect(IOWriteException.class).allow(() -> write(stream, b, off, len));
+        Rethrow.allow(() -> stream.write(b, off, len));
     }
 
     /**
