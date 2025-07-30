@@ -45,8 +45,8 @@ public class Assert {
      * @param expr 要检查的条件
      * @throws AssertException 如果条件为 true
      */
-    public static void isTrue(boolean expr) {
-        isTrue(expr, "assert expr == true");
+    public static void ensure(boolean expr) {
+        ensure(expr, "assert expr == true");
     }
 
     /**
@@ -61,36 +61,7 @@ public class Assert {
      * @throws AssertException 如果 {@code expr} 为 true，将抛出异常，并使用 {@code fmt} 和 {@code args}
      *                         格式化异常信息。
      */
-    public static void isTrue(boolean expr, String fmt, Object... args) {
-        if (expr)
-            throw new AssertException(fmt, args);
-    }
-
-    /**
-     * 如果条件为 false，则抛出断言异常。
-     *
-     * <p>此方法用于验证某个条件是否为 false，如果条件为 false，将抛出 {@link AssertException}。
-     *
-     * @param expr 要检查的条件
-     * @throws AssertException 如果条件为 false
-     */
-    public static void isFalse(boolean expr) {
-        isFalse(expr, "assert expr == false");
-    }
-
-    /**
-     * 当条件为 false 时，抛出自定义的 {@link AssertException}。
-     *
-     * <p>此方法用于在条件不满足时触发异常，便于进行断言检查，确保程序的状态符合预期。
-     *
-     * @param expr 需要检查的条件
-     * @param fmt 自定义异常信息的格式化字符串
-     * @param args 格式化字符串的参数
-     *
-     * @throws AssertException 如果 {@code expr} 为 false，将抛出异常，并使用 {@code fmt} 和 {@code args}
-     *                         格式化异常信息。
-     */
-    public static void isFalse(boolean expr, String fmt, Object... args) {
+    public static void ensure(boolean expr, String fmt, Object... args) {
         if (!expr)
             throw new AssertException(fmt, args);
     }

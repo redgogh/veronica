@@ -5,7 +5,7 @@
 ## ⭐ 新增新能
 
 - 新增`Capturer#icall`函数用于忽略异常调用。
-- 新增`Assert#isTrue`函数用于校验为`true`的值。
+- 新增`Assert#ensure`函数用于校验为`true`的值。
 - 提供`Assert#notEquals`检测两个对象是否不相等。
 - 重写`Row#toString`用于快速测试时直接打印每行的数据内容。
 - 重写`Workbook#toString`用于快速测试时直接打印工作簿数据内容。
