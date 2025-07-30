@@ -263,7 +263,7 @@ public class IOUtils {
      *
      */
     public static void write(File file, String input) {
-        write(file, input.getBytes());
+        write(file, input.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
