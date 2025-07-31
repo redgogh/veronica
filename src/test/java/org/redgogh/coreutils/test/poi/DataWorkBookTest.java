@@ -20,7 +20,7 @@ package org.redgogh.coreutils.test.poi;
 
 import com.alibaba.fastjson.JSON;
 import org.redgogh.coreutils.annotations.RowColumn;
-import org.redgogh.coreutils.poi.SimpleWorkBook;
+import org.redgogh.coreutils.poi.DataWorkBook;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -28,7 +28,7 @@ import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("ALL")
-public class SimpleWorkBookTest {
+public class DataWorkBookTest {
 
     public static class User0 {
         @RowColumn(name = "姓名")
@@ -88,7 +88,7 @@ public class SimpleWorkBookTest {
 
     @Test
     public void generateWorkbookTest() {
-            SimpleWorkBook wb = SimpleWorkBook.ofSheet("一班学生", "六班学生", "七班学生");
+            DataWorkBook wb = DataWorkBook.ofSheet("一班学生", "六班学生", "七班学生");
 
             wb.checkout("一班学生");
             wb.addRow("序号", "姓名", "年龄", "性别", "班级", "学号", "身份证号码", "联系方式");
@@ -112,14 +112,14 @@ public class SimpleWorkBookTest {
 
     @Test
     public void loadWorkbookTest() {
-        SimpleWorkBook wb = SimpleWorkBook.load("Desktop://test.xlsx");
+        DataWorkBook wb = DataWorkBook.load("Desktop://test.xlsx");
         for (int i = 0; i < wb.rowCount(); i++)
             System.out.println(wb.getRow(i));
     }
 
     @Test
     public void workbookIteratorTest() {
-        SimpleWorkBook wb = SimpleWorkBook.load("Desktop://test.xlsx");
+        DataWorkBook wb = DataWorkBook.load("Desktop://test.xlsx");
         // for (Row row : wb) {
         //     System.out.println(row);
         // }
@@ -128,27 +128,27 @@ public class SimpleWorkBookTest {
 
     @Test
     public void workbookCSVTest() {
-        SimpleWorkBook wb = SimpleWorkBook.load("Desktop://test.xlsx");
+        DataWorkBook wb = DataWorkBook.load("Desktop://test.xlsx");
         String csvText = wb.toCSVText();
         System.out.println(csvText);
     }
 
     @Test
     public void workbookJavaObjectTest() {
-        SimpleWorkBook wb = SimpleWorkBook.load("Desktop://users.xlsx");
+        DataWorkBook wb = DataWorkBook.load("Desktop://users.xlsx");
         List<User> list = wb.toJavaObject(User.class);
         System.out.println(JSON.toJSONString(list));
     }
 
     @Test
     public void workbookPrintTest() {
-        SimpleWorkBook wb = SimpleWorkBook.load("Desktop://b.xlsx");
+        DataWorkBook wb = DataWorkBook.load("Desktop://b.xlsx");
         System.out.println(wb);
     }
 
     @Test
     public void dataFormatTest() {
-        System.out.println(SimpleWorkBook.load("Desktop://b.xlsx"));
+        System.out.println(DataWorkBook.load("Desktop://b.xlsx"));
     }
 
 }

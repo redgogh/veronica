@@ -30,7 +30,6 @@ import org.redgogh.coreutils.io.IOUtils;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.reflect.UField;
 import org.redgogh.coreutils.stream.Streams;
-import org.redgogh.coreutils.string.StringUtils;
 import org.redgogh.coreutils.time.DateFormatter;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.Optional;
@@ -51,7 +50,7 @@ import static org.redgogh.coreutils.string.StringUtils.strne;
 import static org.redgogh.coreutils.string.StringUtils.strnempty;
 
 /**
- * 类 {@link SimpleWorkBook} 用于创建和操作 Excel 工作簿。
+ * 类 {@link DataWorkBook} 用于创建和操作 Excel 工作簿。
  *
  * <p>该类使用 Apache POI 库来实现工作簿的创建和行的添加。
  * 默认情况下，会创建一个名为 "Sheet1" 的工作表。
@@ -65,7 +64,7 @@ import static org.redgogh.coreutils.string.StringUtils.strnempty;
  *
  * @author Red Gogh
  */
-public class SimpleWorkBook implements Iterable<Row> {
+public class DataWorkBook implements Iterable<Row> {
 
     /**
      * Apache POI 工作簿实例，用于创建和操作 Excel 文件。
@@ -88,7 +87,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      * <p>使用默认的 XSSFWorkbook 创建一个新的 Workbook
      * 对象。
      */
-    private SimpleWorkBook() {
+    private DataWorkBook() {
         this(new XSSFWorkbook());
     }
 
@@ -101,7 +100,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      *
      * @param path Excel 文件的路径
      */
-    private SimpleWorkBook(String path) {
+    private DataWorkBook(String path) {
         this(new File(path));
     }
 
@@ -114,7 +113,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      *
      * @param file Excel 文件对象
      */
-    private SimpleWorkBook(File file) {
+    private DataWorkBook(File file) {
         this(Rethrow.allow(() -> new XSSFWorkbook(file)));
     }
 
@@ -127,7 +126,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      *
      * @param stream 输入流，需指向有效的 Excel 文件内容
      */
-    private SimpleWorkBook(InputStream stream) {
+    private DataWorkBook(InputStream stream) {
         this(Rethrow.allow(() -> new XSSFWorkbook(stream)));
     }
 
@@ -139,7 +138,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      *
      * @param workbook 已存在的 XSSFWorkbook 对象
      */
-    private SimpleWorkBook(XSSFWorkbook workbook) {
+    private DataWorkBook(XSSFWorkbook workbook) {
         this.wb = workbook;
         /* switch sheet. */
         if (wb.getNumberOfSheets() > 0)
@@ -154,7 +153,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      *
      * @return 包含默认工作表的工作簿
      */
-    public static SimpleWorkBook create() {
+    public static DataWorkBook create() {
         return ofSheet("Sheet0", "Sheet1", "Sheet2");
     }
 
@@ -167,7 +166,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      * @param sheetName 工作表名称
      * @return 包含指定工作表的工作簿
      */
-    public static SimpleWorkBook ofSheet(String sheetName) {
+    public static DataWorkBook ofSheet(String sheetName) {
         return ofSheet(new String[]{sheetName});
     }
 
@@ -180,8 +179,8 @@ public class SimpleWorkBook implements Iterable<Row> {
      * @param sheets 工作表名称数组
      * @return 包含多个工作表的工作簿
      */
-    public static SimpleWorkBook ofSheet(String ...sheets) {
-        SimpleWorkBook workbook = new SimpleWorkBook();
+    public static DataWorkBook ofSheet(String ...sheets) {
+        DataWorkBook workbook = new DataWorkBook();
         for (String sheet : sheets)
             workbook.createSheet(sheet);
         workbook.checkout(sheets[0]); /* 默认使用第一个 Sheet */
@@ -198,7 +197,7 @@ public class SimpleWorkBook implements Iterable<Row> {
      * @param pathname Excel 文件的路径
      * @return 加载的 Workbook 实例
      */
-    public static SimpleWorkBook load(String pathname) {
+    public static DataWorkBook load(String pathname) {
         return load(new File(pathname));
     }
 
@@ -212,8 +211,8 @@ public class SimpleWorkBook implements Iterable<Row> {
      * @param systemResource Excel 文件对象
      * @return 加载的 Workbook 实例
      */
-    public static SimpleWorkBook load(File systemResource) {
-        return new SimpleWorkBook(systemResource);
+    public static DataWorkBook load(File systemResource) {
+        return new DataWorkBook(systemResource);
     }
 
     /**
@@ -226,8 +225,8 @@ public class SimpleWorkBook implements Iterable<Row> {
      * @param stream 输入流，需指向有效的 Excel 文件内容
      * @return 加载的 Workbook 实例
      */
-    public static SimpleWorkBook load(InputStream stream) {
-        return new SimpleWorkBook(stream);
+    public static DataWorkBook load(InputStream stream) {
+        return new DataWorkBook(stream);
     }
 
     /**
@@ -434,9 +433,9 @@ public class SimpleWorkBook implements Iterable<Row> {
 
         private int index;
         private final int size;
-        private final SimpleWorkBook wb;
+        private final DataWorkBook wb;
 
-        WorkbookInterator(SimpleWorkBook wb) {
+        WorkbookInterator(DataWorkBook wb) {
             this.wb = wb;
             this.index = 0;
             this.size = wb.rowCount() + 1;
