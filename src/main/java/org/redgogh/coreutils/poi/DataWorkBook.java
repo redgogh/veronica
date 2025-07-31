@@ -30,6 +30,7 @@ import org.redgogh.coreutils.annotations.RowColumn;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.collection.Maps;
 import org.redgogh.coreutils.io.IOUtils;
+import org.redgogh.coreutils.io.Paths;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.reflect.UField;
 import org.redgogh.coreutils.stream.Streams;
@@ -199,7 +200,7 @@ public class DataWorkBook implements Iterable<Row> {
      * @return 加载的 Workbook 实例
      */
     public static DataWorkBook load(String pathname) {
-        return load(new File(SystemUtils.resolvePath(pathname)));
+        return load(new File(Paths.resolve(pathname)));
     }
 
     /**
