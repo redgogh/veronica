@@ -236,15 +236,42 @@ public class IOUtils {
      * @param file
      *        {@link File} 文件对象实例（如果文件不存在，则会创建）
      *
-     * @param input
+     * @param stream
      *        输入流
      *
      */
-    public static void write(File file, InputStream input) {
-        try (FileOutputStream writer = new FileOutputStream(file)) {
-            write(writer, input);
+    public static void write(File file, InputStream stream) {
+        write(file, stream, "w");
+    }
+
+    /**
+     * 读取整个 {@code input} 输入流的数据，然后写入到指定的文件对象输出流中。
+     * 如果文件不存在，则会创建。并且每次写入完成后都会关闭输出流。同时这个函数也
+     * 支持大于2GB的数据拷贝，可用于两个数据量较大的对象相互拷贝使用。<p>
+     *
+     * 如果需要频繁写入不同的数据，建议在外部维护 {@code file} 的输出流
+     * 对象。<p>
+     *
+     * 当正在执行对象拷贝的时候，一次性最大会读取 16kb 的数据到 JVM 内存
+     * 缓冲区中。<p>
+     *
+     * 这个函数会自动关闭 {@code input} 输入流，无需调用者手动关闭输入流。
+     *
+     * @param file
+     *        {@link File} 文件对象实例（如果文件不存在，则会创建）
+     *
+     * @param stream
+     *        输入流
+     *
+     * @param mode
+     *        打开模式
+     *
+     */
+    public static void write(File file, InputStream stream, String mode) {
+        try (OutputStream outputStream = Files.newOutputStream(file.toPath(), openMode(mode));) {
+            write(outputStream, stream);
         } catch (Exception e) {
-            throw new IOWriteException(e);
+            throw new IOWriteException(e.getMessage());
         }
     }
 
@@ -263,7 +290,28 @@ public class IOUtils {
      *
      */
     public static void write(File file, String input) {
-        write(file, input.getBytes(StandardCharsets.UTF_8));
+        write(file, input, "w");
+    }
+
+    /**
+     * 写入字符串 {@code input} 到指定的文件输出流中，字符串以字节流的形式写入。
+     * 如果比较关注字符串编码建议使用 {@link #write(OutputStream, byte[])}
+     * 函数来代替当前函数做写入操作。<p>
+     *
+     * 数据写入完成后会自动关闭文件的输出流。
+     *
+     * @param file
+     *        {@link File} 文件对象实例（如果文件不存在，则会创建）
+     *
+     * @param input
+     *        字符串
+     *
+     * @param mode
+     *        打开模式
+     *
+     */
+    public static void write(File file, String input, String mode) {
+        write(file, input.getBytes(StandardCharsets.UTF_8), mode);
     }
 
     /**
@@ -280,14 +328,81 @@ public class IOUtils {
      *
      */
     public static void write(File file, byte[] b) {
+        write(file, b, "w+");
+    }
+
+    /**
+     * 将整个 {@code b} 字节数组缓冲区的内容写入到指定的文件输出流 {@code file}。
+     * 这个函数不需要捕获任何异常，它能 “安静” 的写入数据。<p>
+     *
+     * 数据写入完成后会自动关闭文件的输出流。
+     *
+     * @param file
+     *        指定输出流
+     *
+     * @param b
+     *        字节数组缓冲区
+     *
+     * @param mode
+     *        读写模式
+     *
+     */
+    public static void write(File file, byte[] b, String mode) {
         try {
-            Files.write(file.toPath(), b,
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.TRUNCATE_EXISTING,
-                    StandardOpenOption.WRITE);
+            Files.write(file.toPath(), b, openMode(mode));
         } catch (IOException e) {
             throw new IOWriteException(e);
         }
+    }
+
+    static StandardOpenOption[] openMode(String mode) {
+        return switch (mode) {
+            // 基础模式
+            case "r" -> new StandardOpenOption[]{StandardOpenOption.READ};
+            case "w" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.TRUNCATE_EXISTING,
+                    StandardOpenOption.WRITE
+            };
+            case "rw" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.READ,
+                    StandardOpenOption.WRITE
+            };
+            case "w+" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.READ,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.TRUNCATE_EXISTING
+            };
+            case "a+" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.READ,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.APPEND
+            };
+            // 进阶模式（可选）
+            case "a" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.APPEND
+            };
+            case "d" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.DELETE_ON_CLOSE
+            };
+            case "s" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE,
+                    StandardOpenOption.WRITE,
+                    StandardOpenOption.SYNC
+            };
+            case "x" -> new StandardOpenOption[]{
+                    StandardOpenOption.CREATE_NEW,
+                    StandardOpenOption.WRITE
+            };
+            default -> throw new IllegalArgumentException("支持的模式: r/w/rw/w+/a+/a/d/s/x，当前模式: " + mode);
+        };
     }
 
     /**
