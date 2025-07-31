@@ -408,7 +408,8 @@ public class TypeCvt {
      * @see String#String(byte[], int, int)
      */
     public static String atos(byte[] b, int off, int len, StringInterface...iface) {
-        return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(b, off, len)), iface);
+        return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(b, off, len),
+                StandardCharsets.UTF_8), iface);
     }
 
     /**
