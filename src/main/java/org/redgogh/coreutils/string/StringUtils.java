@@ -430,31 +430,19 @@ public class StringUtils {
     }
 
     /**
-     * 检查字符串是否与正则表达式匹配。
+     * 根据正则表达式检查字符串匹配情况。
      *
-     * <p>此方法用于确定输入字符串是否符合指定的正则表达式规则。
-     * 常用于格式验证。
-     *
-     * @param obj 要检查的字符串对象
-     * @param regexp 用于匹配的正则表达式
-     * @return 如果字符串匹配则返回 true；否则返回 false
-     */
-    public static boolean strmatch(Object obj, String regexp) {
-        return strxmatch(obj, regexp, false);
-    }
-
-    /**
-     * 检查字符串是否与正则表达式匹配（支持缓存）。
-     *
-     * <p>此方法用于判断输入字符串是否符合指定的正则表达式规则，并支持
-     * 缓存已编译的正则表达式以提高性能。
+     * <p>此方法内部实现用于确定输入字符串是否符合指定的正则表达式规则。
+     * 可以选择是否使用缓存的正则表达式。
      *
      * @param obj 要检查的字符串对象
      * @param regexp 用于匹配的正则表达式
      * @return 如果字符串匹配则返回 true；否则返回 false
      */
-    public static boolean strxmatch(Object obj, String regexp) {
-        return strxmatch(obj, regexp, true);
+    private static boolean strmatch(Object obj, String regexp) {
+        Pattern pattern = _patternCacheComputeIfAbsent(regexp);
+        assert pattern != null;
+        return pattern.matcher(atos(obj)).find();
     }
 
     /**
@@ -469,7 +457,8 @@ public class StringUtils {
      */
     public static String[] strfind(Object obj, String regexp) {
         List<String> matches = Lists.newArrayList();
-        Pattern pattern = _patternCacheComputeIfAbsent(regexp);;
+        Pattern pattern = _patternCacheComputeIfAbsent(regexp);
+        assert pattern != null;
         Matcher matcher = pattern.matcher(atos(obj));
         while (matcher.find()) {
             matches.add(matcher.group());
@@ -488,23 +477,6 @@ public class StringUtils {
      */
     private static Pattern _patternCacheComputeIfAbsent(String regexp) {
         return compiled.computeIfAbsent(regexp, k -> Pattern.compile(regexp));
-    }
-
-    /**
-     * 根据正则表达式检查字符串匹配情况。
-     *
-     * <p>此方法内部实现用于确定输入字符串是否符合指定的正则表达式规则。
-     * 可以选择是否使用缓存的正则表达式。
-     *
-     * @param obj 要检查的字符串对象
-     * @param regexp 用于匹配的正则表达式
-     * @param enablePatternCache 是否启用正则表达式缓存
-     * @return 如果字符串匹配则返回 true；否则返回 false
-     */
-    private static boolean strxmatch(Object obj, String regexp, boolean enablePatternCache) {
-        Pattern pattern = enablePatternCache ? _patternCacheComputeIfAbsent(regexp) : Pattern.compile(regexp);
-        assert pattern != null;
-        return pattern.matcher(atos(obj)).find();
     }
 
     /**
