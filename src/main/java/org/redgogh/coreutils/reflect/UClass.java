@@ -25,11 +25,12 @@ package org.redgogh.coreutils.reflect;
 
 /* Creates on 2019/5/16. */
 
+import org.redgogh.coreutils.Comparators;
+import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.exception.SystemRuntimeException;
 import org.redgogh.coreutils.stream.Streams;
-import org.redgogh.coreutils.Rethrow;
-import org.redgogh.coreutils.Comparators;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -38,7 +39,6 @@ import java.lang.reflect.Method;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static org.redgogh.coreutils.string.StringUtils.streq;
@@ -223,6 +223,10 @@ public class UClass {
      */
     public static UClass forName(String className) {
         return new UClass(Rethrow.allow(() -> Class.forName(className)));
+    }
+
+    public static boolean hasClass(String className) {
+        return Optional.ifError(() -> Class.forName(className), true, false);
     }
 
     ////////////////////////////////////////////////////////////////////////////
