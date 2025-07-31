@@ -22,6 +22,8 @@ import org.junit.Test;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.exception.IOWriteException;
 
+import java.util.List;
+
 /**
  * @author Red Gogh
  */
@@ -33,6 +35,12 @@ public class RethrowTest {
         Rethrow.expect(IOWriteException.class).allow(() -> {
             throw new RuntimeException("Rethrow to IOWriteException test");
         });
+    }
+
+    @Test
+    public void swallowTest() {
+        List<Object> o = null;
+        Rethrow.swallow(() -> o.size());
     }
 
 }
