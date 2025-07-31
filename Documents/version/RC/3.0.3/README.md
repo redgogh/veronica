@@ -36,7 +36,7 @@
 - 优化 `Captor` 改为 `ErrorCatcher` 更直观的命名
 - 优化 `Lists#splitIntoNChunk` 分块逻辑，避免最后个分块占用过大。
 - 优化 `UClass#unveil` 命名，改为 `UClass#read` 清晰命名。
-- 优化 `WorkBook` 命名，改为 `SimpleWorkBook`。
+- 优化 `WorkBook` 命名，改为 `DataWorkBook`。
 - 优化 `Lists#newArrayList` 函数，检查对象如果为集合直接返回，不做转换。
 - 优化 `UClass` 以及 `UField` 方法，新增反射结果缓存，避免重复执行反射函数。
 - 优化 `StringUtils#strmatch` 缓存策略，使用更简单高效的 `LRU` 淘汰策略。
