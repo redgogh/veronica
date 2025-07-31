@@ -439,7 +439,7 @@ public class StringUtils {
      * @param regexp 用于匹配的正则表达式
      * @return 如果字符串匹配则返回 true；否则返回 false
      */
-    private static boolean strmatch(Object obj, String regexp) {
+    public static boolean strmatch(Object obj, String regexp) {
         Pattern pattern = _patternCacheComputeIfAbsent(regexp);
         assert pattern != null;
         return pattern.matcher(atos(obj)).find();

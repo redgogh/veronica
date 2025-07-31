@@ -33,9 +33,10 @@ import java.util.List;
 public class SystemUtilsTest {
 
     @Test
-    public void getResourceTest() {
-        File file = new File(SystemUtils.resolvePath("~/"));
-        Arrays.stream(file.listFiles()).forEach(System.out::println);
+    public void resolvePathTest() {
+        System.out.println(SystemUtils.resolvePath("~/"));
+        System.out.println(SystemUtils.resolvePath("$JAVA_HOME/bin"));
+        System.out.println(SystemUtils.resolvePath("$MAVEN_HOME/bin"));
     }
 
 }

@@ -22,9 +22,9 @@ import org.redgogh.coreutils.time.Chrono;
 
 import java.io.File;
 import java.util.Map;
+import java.util.regex.Pattern;
 
-import static org.redgogh.coreutils.string.StringUtils.stricheckin;
-import static org.redgogh.coreutils.string.StringUtils.strrexp;
+import static org.redgogh.coreutils.string.StringUtils.*;
 
 /**
  * `SystemUtils` 是一个类，用于管理和操作操作系统环境变量。
@@ -227,8 +227,17 @@ public class SystemUtils {
      * @see #getUserHome(String) 用于处理用户主目录路径转换的方法
      */
     public static String resolvePath(String path) {
+        // 解析路径开头是否为用户目录
         if (path.startsWith("~/"))
             path = getUserHome(path.substring(2));
+
+        // 解析环境变量
+        String[] environments = strfind(path, "\\$[A-Za-z_][A-Za-z0-9_]*");
+        for (String environment : environments) {
+            String envName = strcut(environment, 1, 0);
+            path = strrexp(path, Pattern.quote(environment), getenv(envName));
+        }
+
         return path;
     }
 
