@@ -225,6 +225,13 @@ public class UClass {
         return new UClass(Rethrow.allow(() -> Class.forName(className)));
     }
 
+    /**
+     * #brief: 校验一个类是否存在
+     *
+     * @param className 类的全路径名称
+     * @return {@code true} 表示当前类加载器已加载 {@param className} 类，
+     *         {@code false} 反之类不存在。
+     */
     public static boolean hasClass(String className) {
         return Optional.ifError(() -> Class.forName(className), true, false);
     }
