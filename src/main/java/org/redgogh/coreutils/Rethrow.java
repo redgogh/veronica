@@ -54,7 +54,7 @@ public class Rethrow {
             try {
                 function.call();
             } catch (Throwable e) {
-                if (e.getClass() == expected)
+                if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
             }
@@ -74,7 +74,7 @@ public class Rethrow {
             try {
                 function.call();
             } catch (Throwable e) {
-                if (e.getClass() == expected)
+                if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, fmt, args);
             }
@@ -94,7 +94,7 @@ public class Rethrow {
             try {
                 return function.call();
             } catch (Throwable e) {
-                if (e.getClass() == expected)
+                if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
             }
@@ -116,7 +116,7 @@ public class Rethrow {
             try {
                 return function.call();
             } catch (Throwable e) {
-                if (e.getClass() == expected)
+                if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, fmt, args);
             }
