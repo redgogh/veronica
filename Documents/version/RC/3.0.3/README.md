@@ -39,6 +39,7 @@
 - 优化 `WorkBook` 命名，改为 `SimpleWorkBook`。
 - 优化 `Lists#newArrayList` 函数，检查对象如果为集合直接返回，不做转换。
 - 优化 `UClass` 以及 `UField` 方法，新增反射结果缓存，避免重复执行反射函数。
+- 优化 `StringUtils#strmatch` 缓存策略，使用更简单高效的 `LRU` 淘汰策略。
 
 ## 🐞 BUG 修复
 
