@@ -27,10 +27,7 @@ import java.lang.ref.SoftReference;
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -77,8 +74,17 @@ import static org.redgogh.coreutils.TypeCvt.atos;
  */
 public class StringUtils {
 
-    private static final Map<String, SoftReference<Pattern>> patternCache = new WeakHashMap<>();
-    private static final ReferenceQueue<Pattern> referenceQueue = new ReferenceQueue<>();
+    private static final int CACHE_SIZE = 1024;
+    private static final Map<String, Pattern> patternCache =
+            new LinkedHashMap<>(CACHE_SIZE, 0.75f, true) {
+                protected boolean removeEldestEntry(Map.Entry<String, Pattern> eldest) {
+                    return size() > CACHE_SIZE;
+                }
+            };
+
+    private static synchronized Pattern getPattern(String regexp) {
+        return patternCache.computeIfAbsent(regexp, Pattern::compile);
+    }
 
     /**
      * 获取字符串的长度。
@@ -464,37 +470,6 @@ public class StringUtils {
             matches.add(matcher.group());
         }
         return matches.toArray(new String[0]);
-    }
-
-    /**
-     * 缓存和编译正则表达式。
-     *
-     * <p>此方法用于检查并缓存正则表达式，如果未缓存，则进行编译并保存。
-     * 用于提高正则表达式的重用性能。
-     *
-     * @param regexp 要编译的正则表达式
-     * @return 编译后的 Pattern 对象
-     */
-    private static Pattern getPattern(String regexp) {
-        // 先清理无效弱引用数据
-        var lambdaContext = new Object() {
-            Reference<? extends Pattern> tmpref;
-        };
-
-        while ((lambdaContext.tmpref = referenceQueue.poll()) != null) {
-            patternCache.values().removeIf(v -> v == lambdaContext.tmpref);
-        }
-
-        // 建立弱引用
-        SoftReference<Pattern> ref = patternCache.get(regexp);
-        Pattern pattern = (ref != null) ? ref.get() : null;
-
-        if (pattern == null) {
-            pattern = Pattern.compile(regexp);
-            patternCache.put(regexp, new SoftReference<>(pattern, referenceQueue));
-        }
-
-        return pattern;
     }
 
     /**
