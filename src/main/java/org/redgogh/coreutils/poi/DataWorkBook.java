@@ -23,6 +23,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jetbrains.annotations.NotNull;
+import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.Rethrow;
+import org.redgogh.coreutils.TypeCvt;
 import org.redgogh.coreutils.annotations.RowColumn;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.collection.Maps;
@@ -30,10 +33,8 @@ import org.redgogh.coreutils.io.IOUtils;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.reflect.UField;
 import org.redgogh.coreutils.stream.Streams;
+import org.redgogh.coreutils.system.SystemUtils;
 import org.redgogh.coreutils.time.DateFormatter;
-import org.redgogh.coreutils.Rethrow;
-import org.redgogh.coreutils.Optional;
-import org.redgogh.coreutils.TypeCvt;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -198,7 +199,7 @@ public class DataWorkBook implements Iterable<Row> {
      * @return 加载的 Workbook 实例
      */
     public static DataWorkBook load(String pathname) {
-        return load(new File(pathname));
+        return load(new File(SystemUtils.resolvePath(pathname)));
     }
 
     /**
