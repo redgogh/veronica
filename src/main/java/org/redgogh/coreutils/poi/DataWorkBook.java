@@ -208,11 +208,11 @@ public class DataWorkBook implements Iterable<Row> {
      * Workbook 实例。如果文件不存在或格式不正确，可能
      * 会抛出异常。
      *
-     * @param systemResource Excel 文件对象
+     * @param file Excel 文件对象
      * @return 加载的 Workbook 实例
      */
-    public static DataWorkBook load(File systemResource) {
-        return new DataWorkBook(systemResource);
+    public static DataWorkBook load(File file) {
+        return new DataWorkBook(file);
     }
 
     /**
