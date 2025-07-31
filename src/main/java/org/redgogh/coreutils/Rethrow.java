@@ -23,6 +23,7 @@ import org.redgogh.coreutils.exception.AssertException;
 import org.redgogh.coreutils.exception.SystemRuntimeException;
 import org.redgogh.coreutils.iface.Action;
 import org.redgogh.coreutils.iface.Callable;
+import org.redgogh.coreutils.reflect.UClass;
 
 /**
  * @author Red Gogh
@@ -30,6 +31,25 @@ import org.redgogh.coreutils.iface.Callable;
 public class Rethrow {
 
     private static final Object[] EMPTY_ARGS = new Object[0];
+
+    private static Object objLogger = null;
+    private static UClass loggerClass = null;
+
+    static {
+        String loggerFactoryClassName = "org.slf4j.LoggerFactory";
+        if (UClass.hasClass(loggerFactoryClassName)) {
+            UClass uClass = UClass.forName(loggerFactoryClassName);
+            objLogger = uClass.staticInvoke("getLogger", Rethrow.class);
+            loggerClass = UClass.forName("org.slf4j.Logger");;
+        }
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static void logWarn(String message, Object... args) {
+        if (objLogger != null) {
+            loggerClass.invoke(objLogger, "warn", message, args);
+        }
+    }
 
     /**
      * 异常包装类
@@ -147,7 +167,7 @@ public class Rethrow {
         try {
             function.call();
         } catch (Throwable e) {
-            /* do nothing... */
+            logWarn("Rethrow#swallow: {}", e.getMessage());
         }
     }
 
@@ -167,6 +187,7 @@ public class Rethrow {
         try {
             return function.call();
         } catch (Throwable e) {
+            logWarn("Rethrow#swallow: {}", e.getMessage());
             return null;
         }
     }
