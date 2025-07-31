@@ -19,13 +19,16 @@ package org.redgogh.coreutils.string;
 \* -------------------------------------------------------------------------------- */
 
 import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.collection.Lists;
 
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.redgogh.coreutils.Comparators.anyeq;
@@ -452,6 +455,26 @@ public class StringUtils {
      */
     public static boolean strxmatch(Object obj, String regexp) {
         return strxmatch(obj, regexp, true);
+    }
+
+    /**
+     * 通过正则匹配查找字符串列表（支持缓存）。
+     *
+     * <p>此方法用于根据输入字符串以及正则表达式规则，查找匹配的字符串列表
+     * 数据。
+     *
+     * @param obj 要查找的原字符串对象
+     * @param regexp 用于匹配的正则表达式
+     * @return 匹配的字符串列表
+     */
+    public static String[] strfind(Object obj, String regexp) {
+        List<String> matches = Lists.newArrayList();
+        Pattern pattern = _patternCacheComputeIfAbsent(regexp);;
+        Matcher matcher = pattern.matcher(atos(obj));
+        while (matcher.find()) {
+            matches.add(matcher.group());
+        }
+        return matches.toArray(new String[0]);
     }
 
     /**

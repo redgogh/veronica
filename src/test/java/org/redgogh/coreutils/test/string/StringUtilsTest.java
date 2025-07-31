@@ -28,9 +28,8 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import static org.redgogh.coreutils.string.StringInterface.*;
-import static org.redgogh.coreutils.string.StringUtils.strant;
-import static org.redgogh.coreutils.string.StringUtils.strcut;
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.*;
 
 @SuppressWarnings("ALL")
 public class StringUtilsTest {
@@ -79,6 +78,14 @@ public class StringUtilsTest {
             if (strant(V, "/api/*.x*f"))
                 System.out.println(V);
         });
+    }
+
+    @Test
+    public void matchTest() {
+        String[] strfind = strfind("$JAVA_HOME/$MAVEN_HOME/$HOME/bin", "\\$[A-Za-z_][A-Za-z0-9_]*");
+        for (String s : strfind) {
+            System.out.println(s);
+        }
     }
 
 }
