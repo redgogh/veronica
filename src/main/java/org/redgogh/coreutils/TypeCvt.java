@@ -29,7 +29,7 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import static org.redgogh.coreutils.string.StringUtils.strxmatch;
+import static org.redgogh.coreutils.string.StringUtils.strmatch;
 
 /**
  * TypeCvt 类提供了多种类型转换和比较功能。
@@ -261,7 +261,7 @@ public class TypeCvt {
         if (obj instanceof Number)
             return ((Number) obj).intValue() > 0;
         String bool = atos(obj, StringUtils::uppercase);
-        return strxmatch(bool, "TRUE|ON|Y|YES");
+        return strmatch(bool, "TRUE|ON|Y|YES");
     }
 
     /**
