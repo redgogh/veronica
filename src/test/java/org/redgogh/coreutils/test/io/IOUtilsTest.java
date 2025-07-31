@@ -27,6 +27,7 @@ import org.redgogh.coreutils.system.SystemUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class IOUtilsTest {
     public void writeInputStreamTest() {
         ByteArrayInputStream byteArrayInputStream =
                 new ByteArrayInputStream("Hello World2\n" .getBytes(StandardCharsets.UTF_8));
-        IOUtils.write(SystemUtils.resolvePath("~/ioutils_tmp2.txt"), byteArrayInputStream, "x");
+        IOUtils.write(new File(SystemUtils.resolvePath("~/ioutils_tmp2.txt")), byteArrayInputStream, "x");
     }
 
 }

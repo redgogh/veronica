@@ -226,10 +226,10 @@ public class SystemUtils {
      *
      * @see #getUserHome(String) 用于处理用户主目录路径转换的方法
      */
-    public static File resolvePath(String path) {
+    public static String resolvePath(String path) {
         if (path.startsWith("~/"))
             path = getUserHome(path.substring(2));
-        return new File(path);
+        return path;
     }
 
 }
