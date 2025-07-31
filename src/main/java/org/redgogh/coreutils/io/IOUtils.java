@@ -24,11 +24,11 @@ import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.exception.IOReadException;
 import org.redgogh.coreutils.exception.IOWriteException;
-import org.redgogh.coreutils.reflect.ObjectSerializer;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.StandardOpenOption;
 
 /**
@@ -63,6 +63,86 @@ public class IOUtils {
      * 标准输出缓冲区
      */
     public static final PrintStream stdout = System.out;
+
+    /**
+     * 只读模式，等同于 "r"
+     */
+    public static final OpenOption[] OPEN_MODE_R = new StandardOpenOption[]{
+            StandardOpenOption.READ
+    };
+
+    /**
+     * 写入模式，覆盖写，等同于 "w"
+     */
+    public static final OpenOption[] OPEN_MODE_W = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.TRUNCATE_EXISTING,
+            StandardOpenOption.WRITE
+    };
+
+    /**
+     * 读写模式，等同于 "rw"
+     */
+    public static final OpenOption[] OPEN_MODE_RW = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.READ,
+            StandardOpenOption.WRITE
+    };
+
+    /**
+     * 读写模式，覆盖写，等同于 "w+"
+     */
+    public static final OpenOption[] OPEN_MODE_RW_TRUNC = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.READ,
+            StandardOpenOption.WRITE,
+            StandardOpenOption.TRUNCATE_EXISTING
+    };
+
+    /**
+     * 读写追加模式，等同于 "a+"
+     */
+    public static final OpenOption[] OPEN_MODE_RW_APPEND = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.READ,
+            StandardOpenOption.WRITE,
+            StandardOpenOption.APPEND
+    };
+
+    /**
+     * 追加写入模式，等同于 "a"
+     */
+    public static final OpenOption[] OPEN_MODE_A = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.WRITE,
+            StandardOpenOption.APPEND
+    };
+
+    /**
+     * 写入并在关闭时删除文件，等同于 "d"
+     */
+    public static final OpenOption[] OPEN_MODE_D = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.WRITE,
+            StandardOpenOption.DELETE_ON_CLOSE
+    };
+
+    /**
+     * 写入并同步模式，等同于 "s"
+     */
+    public static final OpenOption[] OPEN_MODE_S = new StandardOpenOption[]{
+            StandardOpenOption.CREATE,
+            StandardOpenOption.WRITE,
+            StandardOpenOption.SYNC
+    };
+
+    /**
+     * 创建新文件写入，若文件已存在则抛异常，等同于 "x"
+     */
+    public static final OpenOption[] OPEN_MODE_X = new StandardOpenOption[]{
+            StandardOpenOption.CREATE_NEW,
+            StandardOpenOption.WRITE
+    };
 
     /**
      * 关闭所有实现了 {@link Closeable} 的对象实例，并且不需要捕获
@@ -354,55 +434,29 @@ public class IOUtils {
         }
     }
 
-    static StandardOpenOption[] openMode(String mode) {
+    /**
+     * 根据模式字符串返回对应的文件打开选项数组
+     * 支持模式：r/w/rw/w+/a+/a/d/s/x
+     *
+     * @param mode 打开模式字符串
+     * @return 对应的 OpenOption 数组
+     * @throws IllegalArgumentException 非法模式时抛出
+     */
+    private static OpenOption[] openMode(String mode) {
         return switch (mode) {
-            // 基础模式
-            case "r" -> new StandardOpenOption[]{StandardOpenOption.READ};
-            case "w" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.TRUNCATE_EXISTING,
-                    StandardOpenOption.WRITE
-            };
-            case "rw" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.READ,
-                    StandardOpenOption.WRITE
-            };
-            case "w+" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.READ,
-                    StandardOpenOption.WRITE,
-                    StandardOpenOption.TRUNCATE_EXISTING
-            };
-            case "a+" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.READ,
-                    StandardOpenOption.WRITE,
-                    StandardOpenOption.APPEND
-            };
-            // 进阶模式（可选）
-            case "a" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.WRITE,
-                    StandardOpenOption.APPEND
-            };
-            case "d" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.WRITE,
-                    StandardOpenOption.DELETE_ON_CLOSE
-            };
-            case "s" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE,
-                    StandardOpenOption.WRITE,
-                    StandardOpenOption.SYNC
-            };
-            case "x" -> new StandardOpenOption[]{
-                    StandardOpenOption.CREATE_NEW,
-                    StandardOpenOption.WRITE
-            };
+            case "r" -> OPEN_MODE_R;
+            case "w" -> OPEN_MODE_W;
+            case "rw" -> OPEN_MODE_RW;
+            case "w+" -> OPEN_MODE_RW_TRUNC;
+            case "a+" -> OPEN_MODE_RW_APPEND;
+            case "a" -> OPEN_MODE_A;
+            case "d" -> OPEN_MODE_D;
+            case "s" -> OPEN_MODE_S;
+            case "x" -> OPEN_MODE_X;
             default -> throw new IllegalArgumentException("支持的模式: r/w/rw/w+/a+/a/d/s/x，当前模式: " + mode);
         };
     }
+
 
     /**
      * 读取整个 {@code input} 输入流的数据，然后写入到指定的 {@code stream}
