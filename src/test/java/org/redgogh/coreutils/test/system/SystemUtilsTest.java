@@ -34,7 +34,7 @@ public class SystemUtilsTest {
 
     @Test
     public void getResourceTest() {
-        File file = SystemUtils.getResource("~/");
+        File file = SystemUtils.resolvePath("~/");
         Arrays.stream(file.listFiles()).forEach(System.out::println);
     }
 

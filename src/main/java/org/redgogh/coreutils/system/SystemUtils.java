@@ -226,7 +226,7 @@ public class SystemUtils {
      *
      * @see #getUserHome(String) 用于处理用户主目录路径转换的方法
      */
-    public static File getResource(String path) {
+    public static File resolvePath(String path) {
         if (path.startsWith("~/"))
             path = getUserHome(path.substring(2));
         return new File(path);

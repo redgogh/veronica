@@ -38,7 +38,7 @@ public class IOUtilsTest {
     public void writeInputStreamTest() {
         ByteArrayInputStream byteArrayInputStream =
                 new ByteArrayInputStream("Hello World2\n" .getBytes(StandardCharsets.UTF_8));
-        IOUtils.write(SystemUtils.getResource("~/ioutils_tmp2.txt"), byteArrayInputStream, "x");
+        IOUtils.write(SystemUtils.resolvePath("~/ioutils_tmp2.txt"), byteArrayInputStream, "x");
     }
 
 }
