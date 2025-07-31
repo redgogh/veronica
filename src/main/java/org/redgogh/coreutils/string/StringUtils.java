@@ -21,6 +21,9 @@ package org.redgogh.coreutils.string;
 import org.redgogh.coreutils.Optional;
 import org.redgogh.coreutils.collection.Lists;
 
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
+import java.lang.ref.SoftReference;
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
@@ -74,9 +77,8 @@ import static org.redgogh.coreutils.TypeCvt.atos;
  */
 public class StringUtils {
 
-    private static final Map<String, Pattern> compiled = new WeakHashMap<>();
-
-    private static final Map<String, PathMatcher> pathMatcherCache = new WeakHashMap<>();
+    private static final Map<String, SoftReference<Pattern>> patternCache = new WeakHashMap<>();
+    private static final ReferenceQueue<Pattern> referenceQueue = new ReferenceQueue<>();
 
     /**
      * 获取字符串的长度。
@@ -440,8 +442,7 @@ public class StringUtils {
      * @return 如果字符串匹配则返回 true；否则返回 false
      */
     public static boolean strmatch(Object obj, String regexp) {
-        Pattern pattern = _patternCacheComputeIfAbsent(regexp);
-        assert pattern != null;
+        Pattern pattern = getPattern(regexp);
         return pattern.matcher(atos(obj)).find();
     }
 
@@ -457,8 +458,7 @@ public class StringUtils {
      */
     public static String[] strfind(Object obj, String regexp) {
         List<String> matches = Lists.newArrayList();
-        Pattern pattern = _patternCacheComputeIfAbsent(regexp);
-        assert pattern != null;
+        Pattern pattern = getPattern(regexp);
         Matcher matcher = pattern.matcher(atos(obj));
         while (matcher.find()) {
             matches.add(matcher.group());
@@ -475,8 +475,26 @@ public class StringUtils {
      * @param regexp 要编译的正则表达式
      * @return 编译后的 Pattern 对象
      */
-    private static Pattern _patternCacheComputeIfAbsent(String regexp) {
-        return compiled.computeIfAbsent(regexp, k -> Pattern.compile(regexp));
+    private static Pattern getPattern(String regexp) {
+        // 先清理无效弱引用数据
+        var lambdaContext = new Object() {
+            Reference<? extends Pattern> tmpref;
+        };
+
+        while ((lambdaContext.tmpref = referenceQueue.poll()) != null) {
+            patternCache.values().removeIf(v -> v == lambdaContext.tmpref);
+        }
+
+        // 建立弱引用
+        SoftReference<Pattern> ref = patternCache.get(regexp);
+        Pattern pattern = (ref != null) ? ref.get() : null;
+
+        if (pattern == null) {
+            pattern = Pattern.compile(regexp);
+            patternCache.put(regexp, new SoftReference<>(pattern, referenceQueue));
+        }
+
+        return pattern;
     }
 
     /**
@@ -494,8 +512,7 @@ public class StringUtils {
      * @return 如果字符串符合模式，返回 true；否则返回 false
      */
     public static boolean strant(Object wstr, String pattern) {
-        PathMatcher pathMatcher =
-                pathMatcherCache.computeIfAbsent(pattern, k -> compilePathMatcher(pattern));
+        PathMatcher pathMatcher = compilePathMatcher(pattern);
         return pathMatcher.matches(Paths.get(atos(wstr)));
     }
 

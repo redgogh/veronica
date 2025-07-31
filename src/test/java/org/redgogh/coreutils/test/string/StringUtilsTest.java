@@ -81,10 +81,18 @@ public class StringUtilsTest {
     }
 
     @Test
-    public void matchTest() {
+    public void findTest() {
         String[] strfind = strfind("$JAVA_HOME/$MAVEN_HOME/$HOME/bin", "\\$[A-Za-z_][A-Za-z0-9_]*");
         for (String s : strfind) {
             System.out.println(s);
+        }
+    }
+
+    @Test
+    public void matchTest() {
+        String str = "Hello World";
+        for (int i = 0; i < 1000; i++) {
+            strmatch(str, Generator.randomLetterCode(5));
         }
     }
 
