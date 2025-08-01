@@ -23,6 +23,7 @@ import org.redgogh.coreutils.system.SystemUtils;
 /* Creates on 2025/7/31. */
 
 import java.net.URI;
+import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
@@ -65,6 +66,16 @@ public class Paths {
      */
     public static String resolve(String pathname) {
         return SystemUtils.resolvePath(pathname);
+    }
+
+    /**
+     * 校验路径是否存在
+     *
+     * @param path 路径字符串
+     * @return 如果路径存在则返回 {@code true} 反之返回 {@code false}。
+     */
+    public static boolean exists(String path) {
+        return Files.exists(Path.of(path));
     }
 
 }
