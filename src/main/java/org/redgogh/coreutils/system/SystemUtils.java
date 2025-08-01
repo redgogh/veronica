@@ -232,6 +232,9 @@ public class SystemUtils {
             path = getUserHome(path.substring(2));
 
         // 解析环境变量
+        if (!strcheckin(path, "$"))
+            return path;
+
         String[] environments = strfind(path, "\\$[A-Za-z_][A-Za-z0-9_]*");
         for (String environment : environments) {
             String envName = strcut(environment, 1, 0);
