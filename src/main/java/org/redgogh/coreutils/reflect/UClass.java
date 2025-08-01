@@ -109,7 +109,7 @@ public class UClass {
      *     <li>第二级：字段名称到UField对象的映射</li>
      * </ol>
      */
-    static class Cache {
+    static class MemberCache {
         /**
          * 缓存存储结构，使用ConcurrentHashMap保证线程安全
          * Key: 目标类的Class对象
@@ -187,7 +187,7 @@ public class UClass {
         }
     }
 
-    private static final Cache _cache = new Cache();
+    private static final MemberCache _memberCache = new MemberCache();
 
     /**
      * 构造器，使用对象实例初始化
@@ -210,7 +210,7 @@ public class UClass {
     public UClass(Class<?> descriptor) {
         this.descriptor = descriptor;
         /* init */
-        this.fields = _cache.getOrInit(descriptor);
+        this.fields = _memberCache.getOrInit(descriptor);
     }
 
     /**
