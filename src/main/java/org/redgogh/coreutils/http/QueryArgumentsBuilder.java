@@ -61,7 +61,7 @@ public class QueryArgumentsBuilder extends LinkedHashMap<String, String> {
     }
 
     /**
-     * #brief: 使用参数数组初始化 `QueryBuilder`
+     * 使用参数数组初始化 `QueryBuilder`
      *
      * <p>该构造方法接收一组参数字符串，每个参数应为“key=value”的格式，并将这些参数解析后
      * 添加到 `QueryBuilder` 实例中。适用于需要根据给定的参数字符串快速构建查询参数的场景。
@@ -83,7 +83,7 @@ public class QueryArgumentsBuilder extends LinkedHashMap<String, String> {
     }
 
     /**
-     * #brief: 将查询参数拼接到 URL 上
+     * 将查询参数拼接到 URL 上
      *
      * <p>该方法将当前 `QueryBuilder` 中的所有查询参数拼接到指定的 URL 上。
      *

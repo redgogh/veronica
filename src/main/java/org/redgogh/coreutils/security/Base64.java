@@ -15,7 +15,7 @@ import org.redgogh.coreutils.security.codec.Base64Codec;
 public interface Base64 {
 
     /**
-     * #brief: 对字符串进行 Base64 编码
+     * 对字符串进行 Base64 编码
      *
      * @param source 要进行 Base64 编码的字符串
      * @return 编码后的 Base64 字符串
@@ -23,7 +23,7 @@ public interface Base64 {
     String encode(String source);
 
     /**
-     * #brief: 对字节数组进行 Base64 编码
+     * 对字节数组进行 Base64 编码
      *
      * @param b 要进行 Base64 编码的字节数组
      * @return 编码后的 Base64 字符串
@@ -31,7 +31,7 @@ public interface Base64 {
     String encode(byte[] b);
 
     /**
-     * #brief: 对 Base64 字符串进行解码
+     * 对 Base64 字符串进行解码
      *
      * @param src 要解码的 Base64 字符串
      * @return 解码后的原始字符串
@@ -39,7 +39,7 @@ public interface Base64 {
     String decode(String src);
 
     /**
-     * #brief: 对 Base64 编码的字符串进行解码，并返回字节数组
+     * 对 Base64 编码的字符串进行解码，并返回字节数组
      *
      * <p>该方法接受一个 Base64 编码的字符串，将其解码为原始字节数组。适用于需要处理二进制数据
      * 的场景，如图像、文件等。

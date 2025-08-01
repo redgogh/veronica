@@ -16,7 +16,7 @@ import org.redgogh.coreutils.security.codec.URLCodec;
 public interface URL {
 
     /**
-     * #brief: 使用默认字符集对字符串进行 URL 编码
+     * 使用默认字符集对字符串进行 URL 编码
      *
      * @param source 要进行 URL 编码的字符串
      * @return 编码后的 URL 字符串
@@ -24,7 +24,7 @@ public interface URL {
     String encode(String source);
 
     /**
-     * #brief: 使用指定字符集对字符串进行 URL 编码
+     * 使用指定字符集对字符串进行 URL 编码
      *
      * @param source 要进行 URL 编码的字符串
      * @param enc 编码时使用的字符集
@@ -33,7 +33,7 @@ public interface URL {
     String encode(String source, String enc);
 
     /**
-     * #brief: 使用默认字符集对字符串进行 URL 解码
+     * 使用默认字符集对字符串进行 URL 解码
      *
      * @param source 要进行 URL 解码的字符串
      * @return 解码后的字符串
@@ -41,7 +41,7 @@ public interface URL {
     String decode(String source);
 
     /**
-     * #brief: 使用指定字符集对字符串进行 URL 解码
+     * 使用指定字符集对字符串进行 URL 解码
      *
      * @param source 要进行 URL 解码的字符串
      * @param enc 解码时使用的字符集

@@ -39,7 +39,7 @@ import static org.redgogh.coreutils.string.StringUtils.*;
 public class BeanUtils {
 
     /**
-     * #brief: 实例化一个类对象，根据类的构造器传入参数数据
+     * 实例化一个类对象，根据类的构造器传入参数数据
      *
      * <p>根据传入的构造器参数实例化类对象。如果使用空构造器，则不传入参数。
      *

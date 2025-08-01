@@ -76,7 +76,7 @@ public class UClass {
     public static ClassLoader classLoader = UClass.class.getClassLoader();
 
     /**
-     * #brief: 类描述符
+     * 类描述符
      *
      * <p>该属性存储类的 {@link Class} 对象描述符。它被标记为 {@code transient}，
      * 以防止在序列化过程中被保存。
@@ -84,14 +84,14 @@ public class UClass {
     private transient final Class<?> descriptor;
 
     /**
-     * #brief: 属性列表
+     * 属性列表
      *
      * <p>存储类的属性，以属性名称作为键，属性对象 {@link UField} 作为值。
      */
     private Map<String, UField> fields = null;
 
     /**
-     * #brief: 字段缓存类，用于缓存类的字段信息
+     * 字段缓存类，用于缓存类的字段信息
      *
      * <p>该类是一个线程安全的缓存实现，用于存储和管理类的字段信息（UField对象）。
      * 使用ConcurrentHashMap实现线程安全的缓存存储，支持并发访问。
@@ -118,7 +118,7 @@ public class UClass {
         private final Map<Class<?>, Map<String, UField>> cache = new ConcurrentHashMap<>();
 
         /**
-         * #brief: 检查缓存中是否包含指定类的字段信息
+         * 检查缓存中是否包含指定类的字段信息
          *
          * <p>该方法用于快速判断缓存中是否已经加载了指定类的字段信息。
          *
@@ -131,7 +131,7 @@ public class UClass {
         }
 
         /**
-         * #brief: 获取或初始化类的字段缓存
+         * 获取或初始化类的字段缓存
          *
          * <p>如果缓存中不存在指定类的字段信息，则会自动扫描类的字段并初始化缓存。
          * 该方法保证线程安全，同一时间只有一个线程会执行初始化操作。
@@ -158,7 +158,7 @@ public class UClass {
         }
 
         /**
-         * #brief: 向缓存中添加单个字段信息
+         * 向缓存中添加单个字段信息
          *
          * <p>如果缓存中不存在指定类的字段映射，会自动创建新的映射表。
          * 该方法保证线程安全，可以并发调用。
@@ -173,7 +173,7 @@ public class UClass {
         }
 
         /**
-         * #brief: 获取类的字段缓存映射
+         * 获取类的字段缓存映射
          *
          * <p>直接返回缓存中存储的字段映射，如果不存在则返回null。
          * 不会触发自动初始化。
@@ -190,7 +190,7 @@ public class UClass {
     private static final Cache _cache = new Cache();
 
     /**
-     * #brief: 构造器，使用对象实例初始化
+     * 构造器，使用对象实例初始化
      *
      * <p>通过传入对象实例的 {@link Class} 对象初始化 {@link UClass} 实例。
      *
@@ -201,7 +201,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 构造器，使用类描述符初始化
+     * 构造器，使用类描述符初始化
      *
      * <p>通过类的 {@link Class} 对象初始化 {@link UClass} 实例，并初始化属性列表。
      *
@@ -214,7 +214,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 根据类名创建 UClass 实例
+     * 根据类名创建 UClass 实例
      *
      * <p>根据给定的类名返回一个 {@link UClass} 实例。如果类名无效，将会抛出异常。
      *
@@ -226,7 +226,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 校验一个类是否存在
+     * 校验一个类是否存在
      *
      * @param className 类的全路径名称
      * @return {@code true} 表示当前类加载器已加载 {@param className} 类，
@@ -241,7 +241,7 @@ public class UClass {
     ////////////////////////////////////////////////////////////////////////////
 
     /**
-     * #brief: 根据字段名称查找并返回指定类的常量值
+     * 根据字段名称查找并返回指定类的常量值
      *
      * <p>该方法通过反射查找指定类中的常量字段，并返回与提供的名称匹配的常量值。
      * 如果找到匹配的字段并且该字段是 `static` 且 `final`，则返回其值。
@@ -263,7 +263,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 实例化一个类对象，根据类的构造器传入参数数据
+     * 实例化一个类对象，根据类的构造器传入参数数据
      *
      * <p>根据传入的构造器参数实例化类对象。如果使用空构造器，则不传入参数。
      *
@@ -283,7 +283,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 将参数数组转换成类型数组
+     * 将参数数组转换成类型数组
      *
      * <p>将传入的参数数组转换为相应的 {@link Class} 类型数组。
      *
@@ -372,7 +372,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 实例化当前类对象，可选构造函数参数
+     * 实例化当前类对象，可选构造函数参数
      *
      * <p>实例化当前类对象，可选构造函数参数。通过 {@code args} 参数列表自动选择
      * 实例化对象的构造器。如果没有参数默认使用无参构造器初始化。
@@ -444,7 +444,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 读取指定名称的字段值
+     * 读取指定名称的字段值
      *
      * <p>根据字段名称从当前实例中读取字段值。如果未找到该字段，将抛出异常。
      * 该方法确保字段存在，以避免潜在的 `null` 值处理。
@@ -460,7 +460,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 读取指定名称的字段值
+     * 读取指定名称的字段值
      *
      * <p>根据字段名称从当前实例中读取字段值。如果未找到该字段，将抛出异常。
      * 该方法确保字段存在，以避免潜在的 `null` 值处理。
@@ -575,7 +575,7 @@ public class UClass {
     }
 
     /**
-     * #brief: 获取类加载器
+     * 获取类加载器
      *
      * <p>返回加载此类的类加载器。如果类由引导类加载器加载，则返回 {@code null}。
      *

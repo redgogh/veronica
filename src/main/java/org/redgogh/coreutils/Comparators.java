@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Comparators {
 
     /**
-     * #brief: 比较模式常量 - 等于
+     * 比较模式常量 - 等于
      *
      * <p>用于表示比较模式为等于（Equal）的位掩码常量。
      * 适用于 {@code anycmp} 方法中的模式参数。
@@ -15,7 +15,7 @@ public class Comparators {
     public static final int COMPARE_MODE_EQ = 0x000001;
 
     /**
-     * #brief: 比较模式常量 - 小于等于
+     * 比较模式常量 - 小于等于
      *
      * <p>用于表示比较模式为小于等于（Less than or Equal）的位掩码常量。
      * 适用于 {@code anycmp} 方法中的模式参数。
@@ -23,7 +23,7 @@ public class Comparators {
     public static final int COMPARE_MODE_LT = 0x000002;
 
     /**
-     * #brief: 比较模式常量 - 大于
+     * 比较模式常量 - 大于
      *
      * <p>用于表示比较模式为大于（Greater than）的位掩码常量。
      * 适用于 {@code anycmp} 方法中的模式参数。
@@ -31,7 +31,7 @@ public class Comparators {
     public static final int COMPARE_MODE_GT = 0x000004;
 
     /**
-     * #brief: 比较模式常量 - 小于等于
+     * 比较模式常量 - 小于等于
      *
      * <p>用于表示比较模式为小于等于（Less than or Equal）的位掩码常量。
      * 该常量是 {@code COMPARE_MODE_LT} 和 {@code COMPARE_MODE_EQ} 的组合。
@@ -40,7 +40,7 @@ public class Comparators {
     public static final int COMPARE_MODE_LE = COMPARE_MODE_LT | COMPARE_MODE_EQ;
 
     /**
-     * #brief: 比较模式常量 - 大于等于
+     * 比较模式常量 - 大于等于
      *
      * <p>用于表示比较模式为大于等于（Greater than or Equal）的位掩码常量。
      * 该常量是 {@code COMPARE_MODE_GT} 和 {@code COMPARE_MODE_EQ} 的组合。
@@ -102,7 +102,7 @@ public class Comparators {
     }
 
     /**
-     * #brief: 通用对象比较（默认等于模式）
+     * 通用对象比较（默认等于模式）
      *
      * <p>比较两个可比较对象是否满足默认比较模式（等于）。
      * 此方法为简化调用，默认使用 {@code COMPARE_MODE_EQ} 模式。
@@ -116,7 +116,7 @@ public class Comparators {
     }
 
     /**
-     * #brief: 通用对象多模式比较
+     * 通用对象多模式比较
      *
      * <p>通过位掩码模式实现灵活的对象比较逻辑，支持多种比较模式的组合。
      * 支持的比较模式需通过 {@code COMPARE_MODE_*} 系列常量进行组合，

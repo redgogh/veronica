@@ -83,7 +83,7 @@ public class HttpClient {
     private static final OkHttpClient CLIENT = new OkHttpClient();
 
     /**
-     * #brief: 构造一个 `HttpClient` 实例
+     * 构造一个 `HttpClient` 实例
      *
      * <p>根据请求方法和 URL 初始化 `HttpClient` 对象。请求方法会被转换为大写，
      * 并与 `HttpMethod` 枚举匹配，不支持的请求方法会抛出异常。
@@ -100,7 +100,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 创建一个新的 `HttpClient` 实例
+     * 创建一个新的 `HttpClient` 实例
      *
      * <p>该方法是一个静态工厂方法，通过指定的请求方法和 URL 创建一个新的 `HttpClient` 实例。
      *
@@ -113,7 +113,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 GET 请求
+     * 直接发起一个 GET 请求
      *
      * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
      * 代码看着很乱。
@@ -126,7 +126,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 GET 请求
+     * 直接发起一个 GET 请求
      *
      * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
      * 代码看着很乱。
@@ -140,7 +140,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 GET 请求
+     * 直接发起一个 GET 请求
      *
      * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
      * 代码看着很乱。
@@ -154,7 +154,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 GET 请求
+     * 直接发起一个 GET 请求
      *
      * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
      * 代码看着很乱。
@@ -172,7 +172,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 POST 请求
+     * 直接发起一个 POST 请求
      *
      * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
      * 代码看着很乱。
@@ -187,7 +187,7 @@ public class HttpClient {
 
 
     /**
-     * #brief: 直接发起一个 POST 请求
+     * 直接发起一个 POST 请求
      *
      * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
      * 代码看着很乱。
@@ -201,7 +201,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 POST 请求
+     * 直接发起一个 POST 请求
      *
      * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
      * 代码看着很乱。
@@ -215,7 +215,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 直接发起一个 POST 请求
+     * 直接发起一个 POST 请求
      *
      * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
      * 代码看着很乱。
@@ -239,7 +239,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 添加请求头
+     * 添加请求头
      *
      * <p>该方法用于向请求中添加一个新的请求头。
      *
@@ -253,7 +253,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 设置查询构建器
+     * 设置查询构建器
      *
      * <p>该方法用于设置 HTTP 请求的查询构建器。它接收一个或多个参数字符串（每个参数应为“key=value”的格式），
      * 并使用这些参数初始化一个 `QueryBuilder` 实例，然后设置到 `HttpClient` 中。
@@ -269,7 +269,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 设置查询参数构建器
+     * 设置查询参数构建器
      *
      * <p>该方法用于设置查询参数构建器，用于构建带有查询参数的请求 URL。
      *
@@ -284,7 +284,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 设置请求体
+     * 设置请求体
      *
      * <p>该方法用于设置请求体，可以为任意对象，实际请求时会将其转换为 JSON 格式。
      *
@@ -300,7 +300,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 禁用 SSL 验证
+     * 禁用 SSL 验证
      *
      * <p>该方法用于禁用 SSL 证书验证。调用此方法后，`HttpClient` 将在发送 HTTP 请求时
      * 不对 SSL 证书进行验证。这通常用于开发或测试环境中，以避免证书验证错误影响测试进度。
@@ -315,7 +315,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 设置读取超时时间
+     * 设置读取超时时间
      *
      * <p>该方法用于设置 HTTP 请求的读取超时时间。读取超时时间指定了在等待服务器响应时，
      * 客户端的最大等待时间（以毫秒为单位）。适用于需要自定义读取超时设置的场景。
@@ -329,7 +329,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 设置连接超时时间
+     * 设置连接超时时间
      *
      * <p>该方法用于设置 HTTP 请求的连接超时时间。连接超时时间指定了客户端在与服务器建立连接时，
      * 等待的最大时间（以毫秒为单位）。适用于需要自定义连接超时设置的场景。
@@ -369,7 +369,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 发送 HTTP 请求
+     * 发送 HTTP 请求
      *
      * <p>该方法使用默认的读超时和连接超时发送 HTTP 请求，并返回响应对象。
      * 默认读取和链接超时时间 16 秒。
@@ -381,7 +381,7 @@ public class HttpClient {
     }
 
     /**
-     * #brief: 发送 HTTP 请求
+     * 发送 HTTP 请求
      *
      * <p>该方法使用指定的读超时和连接超时发送 HTTP 请求，并返回响应对象。支持设置请求体、
      * 查询参数和请求头。请求体默认为 `application/json` 格式，支持多部分请求体（MultipartBody）。
@@ -400,7 +400,7 @@ public class HttpClient {
 
 
     /**
-     * #brief: 发送 HTTP 请求
+     * 发送 HTTP 请求
      *
      * <p>该方法使用指定的读超时和连接超时发送 HTTP 请求，并返回响应对象。支持设置请求体、
      * 查询参数和请求头。请求体默认为 `application/json` 格式，支持多部分请求体（MultipartBody）。

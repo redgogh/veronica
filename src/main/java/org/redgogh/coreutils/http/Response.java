@@ -94,7 +94,7 @@ public class Response extends JSONObject {
     }
 
     /**
-     * #brief: 使用状态码和 JSON 字符串初始化响应对象
+     * 使用状态码和 JSON 字符串初始化响应对象
      *
      * <p>该构造方法通过状态码和 JSON 字符串来创建一个 `Response` 对象。JSON 字符串会被解析为
      * `JSONObject`，并存储在响应对象中。
@@ -119,7 +119,7 @@ public class Response extends JSONObject {
     }
 
     /**
-     * #brief: 获取响应的状态码
+     * 获取响应的状态码
      *
      * <p>该方法返回响应对象的状态码，通常用于判断响应的状态。
      *
@@ -130,7 +130,7 @@ public class Response extends JSONObject {
     }
 
     /**
-     * #brief: 判断响应的状态码是否与指定的码相等
+     * 判断响应的状态码是否与指定的码相等
      *
      * <p>该方法用于比较响应的状态码是否与传入的状态码相等。
      *
@@ -142,7 +142,7 @@ public class Response extends JSONObject {
     }
 
     /**
-     * #brief: 判断响应是否表示成功
+     * 判断响应是否表示成功
      *
      * <p>该方法用于判断响应的状态码是否为 200（表示成功）。
      *

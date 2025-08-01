@@ -874,7 +874,7 @@ public interface ChronoTemporal {
     String format(String pattern);
 
     /**
-     * #brief: 获取指定时间间隔后的时间点
+     * 获取指定时间间隔后的时间点
      *
      * <p>该方法基于当前时间，计算并返回指定时间间隔后的 `Chrono` 对象。
      * 时间间隔以毫秒为单位。
@@ -885,7 +885,7 @@ public interface ChronoTemporal {
     Chrono futureMoments(long duration);
 
     /**
-     * #brief: 获取指定时间间隔后的时间点（自定义时间单位）
+     * 获取指定时间间隔后的时间点（自定义时间单位）
      *
      * <p>该方法基于当前时间，计算并返回指定时间间隔后的 `Chrono` 对象。
      * 允许自定义时间单位，如秒、分钟、小时等。

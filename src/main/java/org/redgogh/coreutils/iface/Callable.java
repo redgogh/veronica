@@ -30,7 +30,7 @@ package org.redgogh.coreutils.iface;
 public interface Callable<V> {
 
     /**
-     * #brief: 执行可调用的逻辑并返回结果
+     * 执行可调用的逻辑并返回结果
      *
      * <p>该方法定义了具体的执行逻辑，可能会抛出异常。
      * 实现该方法时需要处理可能的异常情况，并返回合适的结果。

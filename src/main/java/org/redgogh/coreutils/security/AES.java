@@ -11,7 +11,7 @@ package org.redgogh.coreutils.security;
 public interface AES {
 
     /**
-     * #brief: 使用指定密钥对字符串进行 AES 加密
+     * 使用指定密钥对字符串进行 AES 加密
      *
      * @param data 要进行 AES 加密的字符串
      * @param secret 用于加密的密钥
@@ -20,7 +20,7 @@ public interface AES {
     String encrypt(String data, String secret);
 
     /**
-     * #brief: 使用指定密钥对字节数组进行 AES 加密
+     * 使用指定密钥对字节数组进行 AES 加密
      *
      * @param bytes 要进行 AES 加密的字节数组
      * @param secret 用于加密的密钥
@@ -29,7 +29,7 @@ public interface AES {
     String encrypt(byte[] bytes, String secret);
 
     /**
-     * #brief: 使用指定密钥对字符串进行 AES 解密
+     * 使用指定密钥对字符串进行 AES 解密
      *
      * @param data 要进行 AES 解密的字符串
      * @param secret 用于解密的密钥
@@ -38,7 +38,7 @@ public interface AES {
     String decrypt(String data, String secret);
 
     /**
-     * #brief: 使用指定密钥对字节数组进行 AES 解密
+     * 使用指定密钥对字节数组进行 AES 解密
      *
      * @param bytes 要进行 AES 解密的字节数组
      * @param secret 用于解密的密钥

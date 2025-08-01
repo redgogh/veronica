@@ -196,7 +196,7 @@ public class Assert {
     }
 
     /**
-     * #brief: 断言两个对象不相等
+     * 断言两个对象不相等
      *
      * <p>该方法用于判断两个对象是否不相等。如果两个
      * 对象相等，则抛出 `AssertException`，提示断言
@@ -213,7 +213,7 @@ public class Assert {
     }
 
     /**
-     * #brief: 断言两个对象不相等
+     * 断言两个对象不相等
      *
      * <p>该方法用于判断两个对象是否不相等。如果两个
      * 对象相等，则抛出 `AssertException`，提示断言
@@ -233,7 +233,7 @@ public class Assert {
     }
 
     /**
-     * #brief: 断言两个对象相等
+     * 断言两个对象相等
      *
      * <p>该方法用于判断两个对象是否相等。如果两个
      * 对象不相等，则抛出 `AssertException`，提示断言
@@ -250,7 +250,7 @@ public class Assert {
     }
 
     /**
-     * #brief: 断言两个对象相等
+     * 断言两个对象相等
      *
      * <p>该方法用于判断两个对象是否相等。如果两个
      * 对象不相等，则抛出 `AssertException`，提示断言
@@ -270,7 +270,7 @@ public class Assert {
     }
 
     /**
-     * #brief: 判断字符串对象是否为空对象
+     * 判断字符串对象是否为空对象
      *
      * @param text 文本内容
      * @throws AssertException 如果不存在文本就抛出异常
@@ -280,7 +280,7 @@ public class Assert {
     }
 
     /**
-     * #brief: 判断字符串对象是否为空对象
+     * 判断字符串对象是否为空对象
      *
      * @param text 文本内容
      * @param message 自定义异常信息

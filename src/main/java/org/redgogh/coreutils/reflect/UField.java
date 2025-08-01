@@ -75,7 +75,7 @@ public class UField {
     private final String name;
 
     /**
-     * #brief: 线程安全的字段元数据缓存类
+     * 线程安全的字段元数据缓存类
      *
      * <p>该类提供对类字段元数据(UField)的高效缓存和访问功能，采用双重映射结构存储：
      * <ul>
@@ -108,7 +108,7 @@ public class UField {
         private final Map<Class<?>, Map<String, UField>> cache = new ConcurrentHashMap<>();
 
         /**
-         * #brief: 检查缓存中是否存在指定字段
+         * 检查缓存中是否存在指定字段
          *
          * <p>该方法原子性地检查两个条件：
          * <ol>
@@ -126,7 +126,7 @@ public class UField {
         }
 
         /**
-         * #brief: 添加或更新字段缓存
+         * 添加或更新字段缓存
          *
          * <p>原子性操作流程：
          * <ol>
@@ -146,7 +146,7 @@ public class UField {
         }
 
         /**
-         * #brief: 获取缓存的字段元数据
+         * 获取缓存的字段元数据
          *
          * <p>注意：
          * <ul>

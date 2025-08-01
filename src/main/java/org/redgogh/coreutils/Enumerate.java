@@ -66,7 +66,7 @@ import static org.redgogh.coreutils.string.StringUtils.strieq;
 public class Enumerate {
 
     /**
-     * #brief: 获取指定枚举类的所有枚举值
+     * 获取指定枚举类的所有枚举值
      *
      * <p>该方法通过反射机制获取枚举类的所有枚举值。需要传入枚举类的 `Class` 对象，并返回
      * 枚举值数组。由于使用了类型转换，因此标记了 `@SuppressWarnings("unchecked")` 注解以
@@ -82,7 +82,7 @@ public class Enumerate {
     }
 
     /**
-     * #brief: 根据名称查找并返回指定枚举类的枚举值
+     * 根据名称查找并返回指定枚举类的枚举值
      *
      * <p>该方法查找枚举类中名称匹配的枚举值。如果找到与提供的名称匹配的枚举值，则返回该
      * 枚举值。如果没有找到，则抛出 `InvalidArgumentException` 异常，指明参数错误和常量不存在。
@@ -103,7 +103,7 @@ public class Enumerate {
     }
 
     /**
-     * #brief: 根据名称查找并返回指定枚举类的枚举值
+     * 根据名称查找并返回指定枚举类的枚举值
      *
      * <p>该方法在指定的枚举类中查找与提供的名称匹配的枚举值。如果找到匹配的枚举值，
      * 则返回该枚举值；如果未找到匹配项，则返回 `null`。该方法利用反射机制获取枚举

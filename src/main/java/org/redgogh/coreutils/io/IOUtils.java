@@ -519,7 +519,7 @@ public class IOUtils {
     }
 
     /**
-     * #brief: 写入一个字节数组到输出输出流中<p>
+     * 写入一个字节数组到输出输出流中<p>
      *
      * 写入一个字节数组到输出输出流中。内部只是调用了 {@link OutputStream#write(byte[], int, int)}
      * 方法执行写入操作。它的作用是能安静的调用任何 {@code write} 函数做写入操作，不需要强制

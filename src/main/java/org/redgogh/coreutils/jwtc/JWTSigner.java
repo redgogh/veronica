@@ -64,7 +64,7 @@ public class JWTSigner {
     private final Object decryptKey;
 
     /**
-     * #brief: 使用对称密钥（如 HMAC）初始化 JWTGrantor
+     * 使用对称密钥（如 HMAC）初始化 JWTGrantor
      *
      * <p>该构造函数使用相同的密钥作为加密密钥和解密密钥，适用于对称加密算法（如 HS256）。
      * 默认使用 HS256 算法。
@@ -78,7 +78,7 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 使用非对称密钥（公钥和私钥）初始化 JWTGrantor
+     * 使用非对称密钥（公钥和私钥）初始化 JWTGrantor
      *
      * <p>该构造函数使用公钥和私钥初始化 JWTGrantor，适用于非对称加密算法（如 RS256）。私钥用于加密，公钥用于解密。
      * 默认使用 RS256 算法。
@@ -93,7 +93,7 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 使用指定的加密算法和有效期生成签名的 JWT 字符串
+     * 使用指定的加密算法和有效期生成签名的 JWT 字符串
      *
      * <p>该方法使用指定的加密算法和有效期生成签名的 JWT 字符串。可以通过传入时间单位来调整有效期单位。
      * 还可以传入自定义的 JWT 声明。
@@ -133,7 +133,7 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 验证 JWT 的签名和有效性
+     * 验证 JWT 的签名和有效性
      *
      * <p>该方法验证给定的 JWT 字符串的签名，并检查其是否过期。如果验证失败或 JWT 已过期，返回 `false`。
      *
@@ -159,7 +159,7 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 解析 JWT 字符串中的声明部分并返回 JWTClaims 对象
+     * 解析 JWT 字符串中的声明部分并返回 JWTClaims 对象
      *
      * <p>该方法从 JWT 字符串中提取声明部分（即 `payload`），并将其解析为一个 `JWTClaims` 对象。
      * 该过程包括对 base64 编码的声明部分进行解码，并将解码结果转化为 JSON 对象，最终封装成 `JWTClaims`。
@@ -178,7 +178,7 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 创建一个新的签名器（JWSSigner）
+     * 创建一个新的签名器（JWSSigner）
      *
      * <p>根据给定的密钥和加密算法，创建适当的签名器。如果使用 HMAC 算法（如 HS256），则返回 MACSigner；
      * 如果使用 RSA 算法（如 RS256、RS384、RS512），则返回 RSASSASigner。如果算法无效或不支持，抛出异常。
@@ -200,7 +200,7 @@ public class JWTSigner {
     }
 
     /**
-     * #brief: 创建一个新的验证器（JWSVerifier）
+     * 创建一个新的验证器（JWSVerifier）
      *
      * <p>根据给定的密钥和加密算法，创建适当的验证器。如果使用 HMAC 算法（如 HS256），则返回 MACVerifier；
      * 如果使用 RSA 算法（如 RS256、RS384、RS512），则返回 RSASSAVerifier。如果算法无效或不支持，抛出异常。

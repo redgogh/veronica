@@ -92,7 +92,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 中的 subject（主题）
+     * 获取 JWT 中的 subject（主题）
      *
      * <p>从 JWT 声明中获取 "subject" 属性并返回其值。
      *
@@ -103,7 +103,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 中的 audience（受众）
+     * 获取 JWT 中的 audience（受众）
      *
      * <p>从 JWT 声明中获取 "audience" 属性并返回其值。
      *
@@ -114,7 +114,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 中的 issuer（签发者）
+     * 获取 JWT 中的 issuer（签发者）
      *
      * <p>从 JWT 声明中获取 "iss" 属性并返回其值。
      *
@@ -125,7 +125,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 的 issuedAt（签发时间）
+     * 获取 JWT 的 issuedAt（签发时间）
      *
      * <p>从 JWT 声明中获取 "iat" 属性并将其转换为 Chrono 对象，表示签发时间。
      *
@@ -136,7 +136,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 的 expiration（过期时间）
+     * 获取 JWT 的 expiration（过期时间）
      *
      * <p>从 JWT 声明中获取 "exp" 属性并将其转换为 Chrono 对象，表示过期时间。
      *
@@ -147,7 +147,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 检查 JWT 是否已过期
+     * 检查 JWT 是否已过期
      *
      * <p>通过检查 JWT 的 expiration 属性与当前时间的对比，判断 JWT 是否已过期。
      *
@@ -174,7 +174,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 的指定属性
+     * 获取 JWT 的指定属性
      *
      * <p>根据指定的键获取 JWT 中的属性，并通过默认转换器（BasicConverter）进行转换。
      *
@@ -186,7 +186,7 @@ public class JWTClaims extends HashMap<String, Object> {
     }
 
     /**
-     * #brief: 获取 JWT 的指定属性并应用自定义转换器
+     * 获取 JWT 的指定属性并应用自定义转换器
      *
      * <p>根据指定的键获取 JWT 中的属性，并应用提供的转换器对值进行转换。
      *

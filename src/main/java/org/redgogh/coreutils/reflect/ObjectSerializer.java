@@ -23,7 +23,7 @@ import org.redgogh.coreutils.exception.SerializationException;
 import java.io.*;
 
 /**
- * #brief: 提供对象的序列化和反序列化功能
+ * 提供对象的序列化和反序列化功能
  *
  * <p>该类包含静态方法，用于将对象序列化为文件，以及从文件反序列化对象。所有操作均使用 Java 的
  * 序列化机制进行，确保对象的状态能够持久化存储。
@@ -36,7 +36,7 @@ import java.io.*;
 public class ObjectSerializer {
 
     /**
-     * #brief: 将对象序列化并写入文件
+     * 将对象序列化并写入文件
      *
      * <p>将给定的对象序列化为字节流，并写入指定的文件中。若序列化过程中发生错误，则会记录
      * 错误信息到日志中，方便后续调试和错误排查。
@@ -54,7 +54,7 @@ public class ObjectSerializer {
     }
 
     /**
-     * #brief: 从文件反序列化对象
+     * 从文件反序列化对象
      *
      * <p>从指定文件中读取字节流，并将其反序列化为对象。如果反序列化过程中出现错误，相关
      * 错误信息将被记录，并抛出 DeserializeException，以便调用者进行处理。

@@ -39,7 +39,7 @@ package org.redgogh.coreutils.iface;
 public interface TypeMapper<T, R> {
 
     /**
-     * #brief: 执行类型映射，将输入值转换为另一种类型
+     * 执行类型映射，将输入值转换为另一种类型
      *
      * <p>该方法接收一个输入值，并将其转换为指定的输出类型。实现该方法时需定义具体的转换逻辑。
      *

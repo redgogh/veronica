@@ -52,7 +52,7 @@ public class ThreadPool {
             Executors.newScheduledThreadPool(N_THREAD);
 
     /**
-     * #brief: 提交一个可运行的任务到固定线程池
+     * 提交一个可运行的任务到固定线程池
      *
      * <p>该方法将给定的 `Runnable` 任务提交到固定线程池，以便进行并发执行。
      *
@@ -63,7 +63,7 @@ public class ThreadPool {
     }
 
     /**
-     * #brief: 提交一个可调用的任务到固定线程池
+     * 提交一个可调用的任务到固定线程池
      *
      * <p>该方法将给定的 `Callable` 任务提交到固定线程池，并返回一个 `Future` 对象以获取任务结果。
      *
@@ -76,7 +76,7 @@ public class ThreadPool {
     }
 
     /**
-     * #brief: 在指定时间后调度可运行任务的执行
+     * 在指定时间后调度可运行任务的执行
      *
      * <p>该方法将给定的 `Runnable` 任务调度到指定的时间后执行。
      *
@@ -89,7 +89,7 @@ public class ThreadPool {
     }
 
     /**
-     * #brief: 在指定时间后调度可调用任务的执行
+     * 在指定时间后调度可调用任务的执行
      *
      * <p>该方法将给定的 `Callable` 任务调度到指定的时间后执行，并返回一个 `Future` 对象以获取任务结果。
      *

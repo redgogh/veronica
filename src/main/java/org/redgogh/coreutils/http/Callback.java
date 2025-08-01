@@ -39,7 +39,7 @@ package org.redgogh.coreutils.http;
 public interface Callback {
 
     /**
-     * #brief: 处理请求失败的回调
+     * 处理请求失败的回调
      *
      * <p>该方法在 HTTP 请求失败时被调用，提供引发失败的异常信息。可用于记录错误日志、
      * 提示用户或者进行错误处理等。
@@ -49,7 +49,7 @@ public interface Callback {
     void onFailure(Throwable e);
 
     /**
-     * #brief: 处理请求成功的回调
+     * 处理请求成功的回调
      *
      * <p>该方法在 HTTP 请求成功时被调用，提供请求的响应结果。可用于处理响应数据、
      * 更新 UI 或者进行进一步的业务逻辑处理。

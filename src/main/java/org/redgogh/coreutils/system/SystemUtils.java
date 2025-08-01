@@ -88,7 +88,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 检查当前操作系统是否为 Windows
+     * 检查当前操作系统是否为 Windows
      *
      * <p>该函数用于判断当前运行环境是否为 Windows 操作系统。
      *
@@ -99,7 +99,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 检查当前操作系统是否为 Linux
+     * 检查当前操作系统是否为 Linux
      *
      * <p>该函数用于判断当前运行环境是否为 Linux 操作系统。
      *
@@ -110,7 +110,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 检查当前操作系统是否为 MacOS
+     * 检查当前操作系统是否为 MacOS
      *
      * <p>该函数用于判断当前运行环境是否为 MacOS 操作系统。
      *
@@ -121,7 +121,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 获取当前用户的主目录路径
+     * 获取当前用户的主目录路径
      *
      * <p>该函数返回当前用户的主目录路径，路径中的所有反斜杠（\）会被替换为正斜杠（/）。
      *
@@ -132,7 +132,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 获取当前用户的主目录路径，并可选择性地附加一个子路径
+     * 获取当前用户的主目录路径，并可选择性地附加一个子路径
      *
      * <p>该函数返回当前用户的主目录路径，路径中的所有反斜杠（\）会被替换为正斜杠（/）。
      * 可以通过传入 {@code concat} 参数，在主目录路径后附加一个子路径。
@@ -157,7 +157,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 根据名称获取对应的环境变量值
+     * 根据名称获取对应的环境变量值
      *
      * <p>从环境变量集合中查找指定名称的环境变量，并返回其对应的值。
      * 如果环境变量名称不存在，返回 `null`。
@@ -170,7 +170,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 返回当前系统时间的毫秒数
+     * 返回当前系统时间的毫秒数
      *
      * <p>该方法调用 `System.currentTimeMillis()`，获取自 Unix 纪元（1970-01-01 00:00:00 UTC）
      * 以来的当前时间，以毫秒为单位返回。
@@ -184,7 +184,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 返回当前系统时间的 `Chrono` 对象
+     * 返回当前系统时间的 `Chrono` 对象
      *
      * <p>该方法基于当前时间的毫秒数创建并返回一个新的 `Chrono` 对象。当前时间是通过调用
      * `time()` 方法获取的，该方法返回自 Unix 纪元（1970-01-01 00:00:00 UTC）以来的毫秒数。
@@ -198,7 +198,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 获取当前可用的处理器数量
+     * 获取当前可用的处理器数量
      *
      * <p>该方法调用 `Runtime.getRuntime().availableProcessors()`，返回当前 Java 虚拟机可用的处理器数量。
      *
@@ -211,7 +211,7 @@ public class SystemUtils {
     }
 
     /**
-     * #brief: 获取指定路径对应的文件资源
+     * 获取指定路径对应的文件资源
      *
      * <p>该方法用于根据提供的路径字符串获取对应的文件资源。支持特殊路径格式：
      * <ul>
