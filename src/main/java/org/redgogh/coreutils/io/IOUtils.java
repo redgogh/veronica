@@ -59,10 +59,6 @@ public class IOUtils {
      * 推荐缓冲区默认大小
      */
     public static final int DEFAULT_BYTE_BUFFER_SIZE = 64 * KB;
-    /**
-     * 标准输出缓冲区
-     */
-    public static final PrintStream stdout = System.out;
 
     /**
      * 只读模式，等同于 "r"
