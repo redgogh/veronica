@@ -21,9 +21,6 @@ package org.redgogh.coreutils.string;
 import org.redgogh.coreutils.Optional;
 import org.redgogh.coreutils.collection.Lists;
 
-import java.lang.ref.Reference;
-import java.lang.ref.ReferenceQueue;
-import java.lang.ref.SoftReference;
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
 import java.nio.file.Paths;
@@ -145,8 +142,8 @@ public class StringUtils {
      * @param iface 后处理选项
      * @return 转换后的小写字符串；如果输入为 null，则返回 null
      */
-    public static String lowercase(Object wstr, StringInterface... iface) {
-        return StringInterface.pipelineExecutor(atos(wstr, String::toLowerCase), iface);
+    public static String lowercase(Object wstr, StringOption... iface) {
+        return StringOption.pipelineExecutor(atos(wstr, String::toLowerCase), iface);
     }
 
     /**
@@ -159,8 +156,8 @@ public class StringUtils {
      * @param iface 后处理选项
      * @return 转换后的大写字符串；如果输入为 null，则返回 null
      */
-    public static String uppercase(Object wstr, StringInterface... iface) {
-        return StringInterface.pipelineExecutor(atos(wstr, String::toUpperCase), iface);
+    public static String uppercase(Object wstr, StringOption... iface) {
+        return StringOption.pipelineExecutor(atos(wstr, String::toUpperCase), iface);
     }
 
 
@@ -168,16 +165,16 @@ public class StringUtils {
      * 将字符串的首字母大写，并根据指定的操作数组执行进一步的字符串处理。
      *
      * <p>该方法将传入的字符串的首字母转换为大写，并根据提供的操作数组（如修剪、转换大小写等）对字符串进行处理。
-     * 通过 {@link StringInterface} 枚举支持链式操作。
+     * 通过 {@link StringOption} 枚举支持链式操作。
      *
      * @param wstr      需要处理的字符串对象
      * @param iface 要应用的字符串操作数组
      * @return 处理后的字符串
      */
-    public static String strcap(Object wstr, StringInterface... iface) {
+    public static String strcap(Object wstr, StringOption... iface) {
         StringBuilder builder = new StringBuilder(atos(wstr));
         builder.replace(0, 1, uppercase(builder.charAt(0)));
-        return StringInterface.pipelineExecutor(atos(builder), iface);
+        return StringOption.pipelineExecutor(atos(builder), iface);
     }
 
     /**
@@ -384,8 +381,8 @@ public class StringUtils {
      * @param iface 后处理选项
      * @return 替换后的字符串
      */
-    public static String strrexp(Object wstr, String regexp, String value, StringInterface... iface) {
-        return StringInterface.pipelineExecutor(atos(wstr).replaceAll(regexp, value), iface);
+    public static String strrexp(Object wstr, String regexp, String value, StringOption... iface) {
+        return StringOption.pipelineExecutor(atos(wstr).replaceAll(regexp, value), iface);
     }
 
     /**
@@ -398,12 +395,12 @@ public class StringUtils {
      * @param delim 用于拆分的分隔符
      * @return 拆分后的字符串数组
      */
-    public static String[] strtok(Object wstr, String delim, StringInterface... iface) {
+    public static String[] strtok(Object wstr, String delim, StringOption... iface) {
         String[] origins = atos(wstr).split(delim);
 
         if (iface != null) {
             for (int i = 0; i < origins.length; i++) {
-                origins[i] = StringInterface.pipelineExecutor(origins[i], iface);
+                origins[i] = StringOption.pipelineExecutor(origins[i], iface);
             }
         }
 
@@ -421,8 +418,8 @@ public class StringUtils {
      * @param len 截取的长度
      * @return 截取后的字符串
      */
-    public static String strcut(Object wstr, int off, int len, StringInterface... iface) {
-        return StringInterface.pipelineExecutor(atos(wstr, off, len), iface);
+    public static String strcut(Object wstr, int off, int len, StringOption... iface) {
+        return StringOption.pipelineExecutor(atos(wstr, off, len), iface);
     }
 
     /**
@@ -507,8 +504,8 @@ public class StringUtils {
      * @param iface 后处理操作
      * @return 去除前后空白后的字符串
      */
-    public static String strip(Object wstr, StringInterface... iface) {
-        return StringInterface.pipelineExecutor(atos(wstr).trim(), iface);
+    public static String strip(Object wstr, StringOption... iface) {
+        return StringOption.pipelineExecutor(atos(wstr).trim(), iface);
     }
 
     /**
@@ -534,7 +531,7 @@ public class StringUtils {
      * @param obj 要处理的字符串对象
      * @return 转换为驼峰风格后的字符串
      */
-    public static String strlinehmp(Object obj, StringInterface... iface) {
+    public static String strlinehmp(Object obj, StringOption... iface) {
         char[] charArray = atos(obj).toCharArray();
         StringBuilder buffer = new StringBuilder();
 
@@ -554,7 +551,7 @@ public class StringUtils {
             buffer.append(append);
         }
 
-        return StringInterface.pipelineExecutor(buffer.toString(), iface);
+        return StringOption.pipelineExecutor(buffer.toString(), iface);
     }
 
 }

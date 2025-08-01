@@ -41,12 +41,12 @@ import static org.redgogh.coreutils.string.StringUtils.*;
  * @author Red Gogh
  * @since 1.0
  */
-public enum StringInterface {
+public enum StringOption {
 
     /**
      * 字符串修剪操作，去除字符串前后的空白字符
      */
-    STRING_IFACE_TRIM_EXT {
+    TRIM {
         @Override
         public String apply(String input) {
             return strip(input);
@@ -56,7 +56,7 @@ public enum StringInterface {
     /**
      * 将字符串转换为大写字母
      */
-    STRING_IFACE_UPPER_CASE_EXT {
+    UPPERCASE {
         @Override
         public String apply(String input) {
             return uppercase(input);
@@ -66,7 +66,7 @@ public enum StringInterface {
     /**
      * 将字符串转换为小写字母
      */
-    STRING_IFACE_LOWER_CASE_EXT {
+    LOWERCASE {
         @Override
         public String apply(String input) {
             return lowercase(input);
@@ -76,17 +76,17 @@ public enum StringInterface {
     /**
      * 将字符串首字母大写
      */
-    STRING_IFACE_CAPITALIZE_EXT {
+    CAPITALIZE {
         @Override
         public String apply(String input) {
-            return strcut(input, 0, 1, STRING_IFACE_UPPER_CASE_EXT) + strcut(input,1, 0);
+            return strcut(input, 0, 1, UPPERCASE) + strcut(input,1, 0);
         }
     },
 
     /**
      * 字符串反转
      */
-    STRING_IFACE_REVERSE_EXT {
+    REVERSE {
         @Override
         public String apply(String input) {
             return atos(new StringBuilder(input).reverse());
@@ -96,7 +96,7 @@ public enum StringInterface {
     /**
      * 去除字符串中的所有空格
      */
-    STRING_IFACE_REMOVE_SPACES_EXT {
+    REMOVE_SPACE {
         @Override
         public String apply(String input) {
             return strrexp(input, "\\s+", "");
@@ -106,7 +106,7 @@ public enum StringInterface {
     /**
      * 下划线格式转驼峰
      */
-    STRING_IFACE_LINE_HMP_EXT {
+    SNAKE2CAMEL {
         @Override
         public String apply(String input) {
             return strlinehmp(input);
@@ -126,7 +126,7 @@ public enum StringInterface {
      * <h2>功能特点</h2>
      * <ul>
      *     <li>支持对字符串进行按需操作（例如修剪空白字符）。</li>
-     *     <li>通过枚举类型 {@link StringInterface} 扩展支持更多操作。</li>
+     *     <li>通过枚举类型 {@link StringOption} 扩展支持更多操作。</li>
      * </ul>
      *
      * <h2>使用示例</h2>
@@ -139,11 +139,11 @@ public enum StringInterface {
      * @param iface 要应用的字符串操作数组
      * @return 操作后的字符串
      */
-    public static String pipelineExecutor(String source, StringInterface[] iface) {
+    public static String pipelineExecutor(String source, StringOption[] iface) {
         if (iface == null)
             return source;
 
-        for (StringInterface iface_ext : iface)
+        for (StringOption iface_ext : iface)
             source = iface_ext.apply(source);
 
         return source;

@@ -30,8 +30,7 @@ import org.redgogh.coreutils.security.codec.Base64Codec;
 import org.redgogh.coreutils.security.codec.MD5Codec;
 import org.redgogh.coreutils.security.codec.SHA256Codec;
 import org.redgogh.coreutils.security.codec.URLCodec;
-import org.redgogh.coreutils.string.StringInterface;
-import org.redgogh.coreutils.string.StringUtils;
+import org.redgogh.coreutils.string.StringOption;
 import org.redgogh.coreutils.Rethrow;
 
 import javax.crypto.KeyGenerator;
@@ -131,7 +130,7 @@ public class Codec {
                 builder.append("0");
             builder.append(tmp);
         }
-        return atos(builder, StringInterface.STRING_IFACE_UPPER_CASE_EXT);
+        return atos(builder, StringOption.UPPERCASE);
     }
 
     /**

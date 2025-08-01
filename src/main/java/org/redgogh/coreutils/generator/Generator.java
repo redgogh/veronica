@@ -1,8 +1,7 @@
 package org.redgogh.coreutils.generator;
 
 import org.redgogh.coreutils.security.Codec;
-import org.redgogh.coreutils.string.StringInterface;
-import org.redgogh.coreutils.string.StringUtils;
+import org.redgogh.coreutils.string.StringOption;
 
 import java.util.Random;
 import java.util.UUID;
@@ -60,7 +59,7 @@ public class Generator {
      * @param iface 字符串扩展接口
      * @return 生成不带符号的UUID
      */
-    public static String uuid(StringInterface... iface) {
+    public static String uuid(StringOption... iface) {
         return uppercase(UUID.randomUUID(), iface)
                 .replace("-", "");
     }
@@ -73,7 +72,7 @@ public class Generator {
      *
      * @return 返回没有任何符号的 UUID
      */
-    public static String uuid(int n, StringInterface... iface) {
+    public static String uuid(int n, StringOption... iface) {
         return strcut(uuid(iface), 0, n);
     }
 

@@ -21,13 +21,13 @@ package org.redgogh.coreutils.test.string;
 import org.junit.Test;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.generator.Generator;
+import org.redgogh.coreutils.string.StringOption;
 
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static org.redgogh.coreutils.string.StringInterface.*;
 import static org.redgogh.coreutils.TypeCvt.atos;
 import static org.redgogh.coreutils.string.StringUtils.*;
 
@@ -37,12 +37,12 @@ public class StringUtilsTest {
     @Test
     public void operatorsTest() {
         String redGogh = " red_gogh ";
-        System.out.printf("STRING_OPERATOR_TRIM: <%s>\n", strcut(redGogh, 0, 0, STRING_IFACE_TRIM_EXT));
-        System.out.printf("STRING_OPERATOR_UPPER_CASE: <%s>\n", strcut(redGogh, 0, 0, STRING_IFACE_UPPER_CASE_EXT));
-        System.out.printf("STRING_OPERATOR_CAPITALIZE: <%s>\n", strcut(redGogh, 0, 0, STRING_IFACE_TRIM_EXT, STRING_IFACE_CAPITALIZE_EXT));
-        System.out.printf("STRING_OPERATOR_REVERSE: <%s>\n", strcut(redGogh, 0, 0, STRING_IFACE_REVERSE_EXT));
-        System.out.printf("STRING_OPERATOR_REMOVE_SPACES: <%s>\n", strcut(redGogh, 0, 0, STRING_IFACE_REMOVE_SPACES_EXT));
-        System.out.printf("STRING_OPERATOR_LINE_HMP: <%s>\n", strcut(redGogh, 0, 0, STRING_IFACE_REMOVE_SPACES_EXT, STRING_IFACE_LINE_HMP_EXT));
+        System.out.printf("STRING_OPERATOR_TRIM: <%s>\n", strcut(redGogh, 0, 0, StringOption.TRIM));
+        System.out.printf("STRING_OPERATOR_UPPER_CASE: <%s>\n", strcut(redGogh, 0, 0, StringOption.UPPERCASE));
+        System.out.printf("STRING_OPERATOR_CAPITALIZE: <%s>\n", strcut(redGogh, 0, 0, StringOption.TRIM, StringOption.CAPITALIZE));
+        System.out.printf("STRING_OPERATOR_REVERSE: <%s>\n", strcut(redGogh, 0, 0, StringOption.REVERSE));
+        System.out.printf("STRING_OPERATOR_REMOVE_SPACES: <%s>\n", strcut(redGogh, 0, 0, StringOption.REMOVE_SPACE));
+        System.out.printf("STRING_OPERATOR_LINE_HMP: <%s>\n", strcut(redGogh, 0, 0, StringOption.REMOVE_SPACE, StringOption.SNAKE2CAMEL));
     }
 
     @Test

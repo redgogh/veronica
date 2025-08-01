@@ -22,7 +22,7 @@ import org.json.XML;
 import org.redgogh.coreutils.exception.UnsupportedOperationException;
 import org.redgogh.coreutils.iface.TypeMapper;
 import org.redgogh.coreutils.reflect.UClass;
-import org.redgogh.coreutils.string.StringInterface;
+import org.redgogh.coreutils.string.StringOption;
 import org.redgogh.coreutils.string.StringUtils;
 
 import java.nio.ByteBuffer;
@@ -285,8 +285,8 @@ public class TypeCvt {
      *
      * @see String#valueOf(Object)
      */
-    public static String atos(Object obj, TypeMapper<String, String> mapper, StringInterface...iface) {
-        return StringInterface.pipelineExecutor(mapper.call(atos(obj)), iface);
+    public static String atos(Object obj, TypeMapper<String, String> mapper, StringOption...iface) {
+        return StringOption.pipelineExecutor(mapper.call(atos(obj)), iface);
     }
 
     /**
@@ -301,15 +301,15 @@ public class TypeCvt {
      *
      * @see String#valueOf(Object)
      */
-    public static String atos(Object obj, StringInterface...iface) {
+    public static String atos(Object obj, StringOption...iface) {
         return switch (obj) {
             case null -> "";
-            case String s -> StringInterface.pipelineExecutor(s, iface);
+            case String s -> StringOption.pipelineExecutor(s, iface);
             /* 字节数组转字符串 */
             case byte[] bytes -> atos(bytes, 0, bytes.length, iface);
             /* 字符数组转字符串 */
             case char[] chars -> atos(chars, 0, chars.length, iface);
-            default -> StringInterface.pipelineExecutor(String.valueOf(obj), iface);
+            default -> StringOption.pipelineExecutor(String.valueOf(obj), iface);
         };
     }
 
@@ -335,7 +335,7 @@ public class TypeCvt {
      * @throws ArrayIndexOutOfBoundsException
      *          如果参数 {@code len} 超出整个子字符串的大小后会抛出数组越界异常。
      */
-    public static String atos(Object obj, int off, int len, StringInterface...iface) {
+    public static String atos(Object obj, int off, int len, StringOption...iface) {
         return atos(atos(obj), off, len, iface);
     }
 
@@ -362,7 +362,7 @@ public class TypeCvt {
      * @throws ArrayIndexOutOfBoundsException
      *          如果参数 {@code len} 超出整个子字符串的大小后会抛出数组越界异常。
      */
-    public static String atos(String sub, int off, int len, StringInterface...iface) {
+    public static String atos(String sub, int off, int len, StringOption...iface) {
         return atos(sub.toCharArray(), off, len, iface);
     }
 
@@ -378,7 +378,7 @@ public class TypeCvt {
      *
      * @see String#String(byte[])
      */
-    public static String atos(byte[] b, StringInterface...iface) {
+    public static String atos(byte[] b, StringOption...iface) {
         return atos(b, 0, b.length, iface);
     }
 
@@ -405,8 +405,8 @@ public class TypeCvt {
      *
      * @see String#String(byte[], int, int)
      */
-    public static String atos(byte[] b, int off, int len, StringInterface...iface) {
-        return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(b, off, len),
+    public static String atos(byte[] b, int off, int len, StringOption...iface) {
+        return StringOption.pipelineExecutor(new String(ArrayUtils.slice(b, off, len),
                 StandardCharsets.UTF_8), iface);
     }
 
@@ -433,8 +433,8 @@ public class TypeCvt {
      *
      * @see String#String(char[], int, int)
      */
-    public static String atos(char[] a, int off, int len, StringInterface...iface) {
-        return StringInterface.pipelineExecutor(new String(ArrayUtils.slice(a, off, len)), iface);
+    public static String atos(char[] a, int off, int len, StringOption...iface) {
+        return StringOption.pipelineExecutor(new String(ArrayUtils.slice(a, off, len)), iface);
     }
 
     /**
