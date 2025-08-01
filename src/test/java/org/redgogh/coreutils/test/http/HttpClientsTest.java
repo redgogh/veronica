@@ -32,8 +32,6 @@ import org.redgogh.coreutils.http.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-import static org.redgogh.coreutils.io.IOUtils.stdout;
-
 @SuppressWarnings("ALL")
 public class HttpClientsTest {
 
@@ -93,12 +91,12 @@ public class HttpClientsTest {
                 .newCall(new Callback() {
                     @Override
                     public void onFailure(Throwable e) {
-                        stdout.printf("请求出现异常：%s\n", e.getMessage());
+                        System.out.printf("请求出现异常：%s\n", e.getMessage());
                     }
 
                     @Override
                     public void onResponse(Response response) {
-                        stdout.printf("请求成功：%s\n", response);
+                        System.out.printf("请求成功：%s\n", response);
                     }
                 });
         System.out.println("等待异步调用执行完成！");
@@ -121,7 +119,7 @@ public class HttpClientsTest {
                 .newStreamCall(new StreamCallback() {
                     @Override
                     public void onFailure(Throwable e) {
-                        stdout.printf("请求出现异常：%s\n", e.getMessage());
+                        System.out.printf("请求出现异常：%s\n", e.getMessage());
                     }
 
                     @Override
