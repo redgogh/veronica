@@ -1,7 +1,7 @@
 package org.redgogh.coreutils.security.codec;
 
 import org.redgogh.coreutils.exception.IOReadException;
-import org.redgogh.coreutils.exception.SystemRuntimeException;
+import org.redgogh.coreutils.exception.UncheckedException;
 import org.redgogh.coreutils.io.IOUtils;
 import org.redgogh.coreutils.security.Codec;
 import org.redgogh.coreutils.security.SHA256;
@@ -45,7 +45,7 @@ public class SHA256Codec implements SHA256 {
             messageDigest.update(source);
             return Codec.toByteHex(messageDigest.digest());
         } catch (Exception e) {
-            throw new SystemRuntimeException(e);
+            throw new UncheckedException(e);
         }
     }
 

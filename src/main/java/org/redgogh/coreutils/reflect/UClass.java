@@ -29,7 +29,7 @@ import org.redgogh.coreutils.Comparators;
 import org.redgogh.coreutils.TryUtils;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.collection.Lists;
-import org.redgogh.coreutils.exception.SystemRuntimeException;
+import org.redgogh.coreutils.exception.UncheckedException;
 import org.redgogh.coreutils.stream.Streams;
 
 import java.lang.annotation.Annotation;
@@ -332,12 +332,12 @@ public class UClass {
      * 检查类中是否存在指定的方法。
      *
      * <p>该方法通过方法名和参数类型检查指定类是否定义了对应的方法。如果找到匹配的方法，返回 `true`；
-     * 如果没有找到，返回 `false`。如果遇到安全异常，则抛出 {@link SystemRuntimeException}。
+     * 如果没有找到，返回 `false`。如果遇到安全异常，则抛出 {@link UncheckedException}。
      *
      * @param callMethod    方法名称
      * @param parameterTypes 方法的参数类型
      * @return 如果方法存在则返回 `true`，否则返回 `false`
-     * @throws SystemRuntimeException 如果发生安全异常
+     * @throws UncheckedException 如果发生安全异常
      */
     public boolean hasMethod(String callMethod, Class<?>... parameterTypes) {
         try {
@@ -346,7 +346,7 @@ public class UClass {
         } catch (NoSuchMethodException e) {
             return false;
         } catch (SecurityException e) {
-            throw new SystemRuntimeException(e);
+            throw new UncheckedException(e);
         }
     }
 
@@ -478,7 +478,7 @@ public class UClass {
 
         if (uField == null) {
             switch (onMissing) {
-                case THROW_EXCEPTION -> throw new SystemRuntimeException("未在 %s 类中找到 %s 属性。", getName(), name);
+                case THROW_EXCEPTION -> throw new UncheckedException("未在 %s 类中找到 %s 属性。", getName(), name);
                 case RETURN_NULL -> {
                     return null;
                 }

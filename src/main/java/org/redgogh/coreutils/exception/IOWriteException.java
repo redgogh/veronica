@@ -54,7 +54,7 @@ package org.redgogh.coreutils.exception;
  * @author Red Gogh
  * @since 1.0
  */
-public class IOWriteException extends SystemRuntimeException {
+public class IOWriteException extends UncheckedException {
 
     /**
      * 默认构造函数。

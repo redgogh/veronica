@@ -1,8 +1,7 @@
 package org.redgogh.coreutils.security.codec;
 
 import org.redgogh.coreutils.security.MD5;
-import org.redgogh.coreutils.string.StringUtils;
-import org.redgogh.coreutils.exception.SystemRuntimeException;
+import org.redgogh.coreutils.exception.UncheckedException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -80,7 +79,7 @@ public class MD5Codec implements MD5 {
             int flag = n > 16 ? 0 : 8;
             return strcut(chars, flag, (n + flag));
         } catch (NoSuchAlgorithmException e) {
-            throw new SystemRuntimeException(e);
+            throw new UncheckedException(e);
         }
     }
 

@@ -53,7 +53,7 @@ package org.redgogh.coreutils.exception;
  * @author Red Gogh
  * @since 1.0
  */
-public class UnsupportedOperationException extends SystemRuntimeException {
+public class UnsupportedOperationException extends UncheckedException {
 
     /**
      * 默认构造函数。

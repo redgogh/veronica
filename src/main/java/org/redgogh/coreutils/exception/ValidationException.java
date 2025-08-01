@@ -25,7 +25,7 @@ package org.redgogh.coreutils.exception;
  *
  * <p>支持无参构造、异常包装及格式化错误消息，以便提供详细的错误信息。
  */
-public class ValidationException extends SystemRuntimeException {
+public class ValidationException extends UncheckedException {
 
     /**
      * 无参构造，创建默认的验证异常。

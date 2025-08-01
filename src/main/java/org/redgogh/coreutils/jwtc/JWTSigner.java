@@ -9,7 +9,7 @@ import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
 import org.redgogh.coreutils.collection.Maps;
-import org.redgogh.coreutils.exception.SystemRuntimeException;
+import org.redgogh.coreutils.exception.UncheckedException;
 import org.redgogh.coreutils.security.Codec;
 import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.Rethrow;
@@ -139,7 +139,7 @@ public class JWTSigner {
      *
      * @param token JWT 字符串
      * @return 如果验证成功且未过期，返回 `true`；否则返回 `false`
-     * @throws SystemRuntimeException 如果解析或验证过程出现错误
+     * @throws UncheckedException 如果解析或验证过程出现错误
      */
     @SuppressWarnings("UnusedReturnValue")
     public boolean verify(String token) {
@@ -154,7 +154,7 @@ public class JWTSigner {
 
             return !claims.isExpiration();
         } catch (Exception e) {
-            throw new SystemRuntimeException(e);
+            throw new UncheckedException(e);
         }
     }
 

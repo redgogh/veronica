@@ -25,7 +25,7 @@ package org.redgogh.coreutils.exception;
  * 用户尝试执行不被允许的操作或违反了操作的规则。
  * </p>
  */
-public class IllegalOperatorException extends SystemRuntimeException {
+public class IllegalOperatorException extends UncheckedException {
 
     /**
      * 默认构造函数

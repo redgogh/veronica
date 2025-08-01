@@ -26,7 +26,7 @@ package org.redgogh.coreutils.exception;
  *
  * <p>支持多种构造方式，可直接创建异常、携带异常原因或格式化错误消息。
  */
-public class SerializationException extends SystemRuntimeException {
+public class SerializationException extends UncheckedException {
 
     /**
      * 无参构造，创建默认的序列化异常。

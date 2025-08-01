@@ -18,7 +18,7 @@ package org.redgogh.coreutils.http;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.redgogh.coreutils.exception.SystemRuntimeException;
+import org.redgogh.coreutils.exception.UncheckedException;
 
 import javax.net.ssl.*;
 import java.security.KeyStore;
@@ -76,7 +76,7 @@ public class SSLSocketClient {
             }
             trustManager = (X509TrustManager) trustManagers[0];
         } catch (Exception e) {
-            throw new SystemRuntimeException();
+            throw new UncheckedException();
         }
 
         return trustManager;

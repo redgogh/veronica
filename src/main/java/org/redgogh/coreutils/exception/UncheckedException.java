@@ -18,8 +18,6 @@ package org.redgogh.coreutils.exception;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.redgogh.coreutils.string.StringUtils;
-
 import static org.redgogh.coreutils.string.StringUtils.strwfmt;
 
 /**
@@ -32,10 +30,10 @@ import static org.redgogh.coreutils.string.StringUtils.strwfmt;
  *
  * <h2>构造函数</h2>
  * <ul>
- *     <li>{@link #SystemRuntimeException()} - 默认构造函数，不带任何参数。</li>
- *     <li>{@link #SystemRuntimeException(Throwable e)} - 通过已有的异常创建一个新的运行时异常。</li>
- *     <li>{@link #SystemRuntimeException(String fmt, Object... args)} - 根据格式化字符串和参数创建异常信息。</li>
- *     <li>{@link #SystemRuntimeException(String fmt, Throwable e, Object... args)} - 根据格式化字符串、已有异常和参数创建异常信息。</li>
+ *     <li>{@link #UncheckedException()} - 默认构造函数，不带任何参数。</li>
+ *     <li>{@link #UncheckedException(Throwable e)} - 通过已有的异常创建一个新的运行时异常。</li>
+ *     <li>{@link #UncheckedException(String fmt, Object... args)} - 根据格式化字符串和参数创建异常信息。</li>
+ *     <li>{@link #UncheckedException(String fmt, Throwable e, Object... args)} - 根据格式化字符串、已有异常和参数创建异常信息。</li>
  * </ul>
  *
  * <h2>使用示例</h2>
@@ -57,12 +55,12 @@ import static org.redgogh.coreutils.string.StringUtils.strwfmt;
  * @author Red Gogh
  * @since 1.0
  */
-public class SystemRuntimeException extends RuntimeException {
+public class UncheckedException extends RuntimeException {
 
     /**
      * 默认构造函数。
      */
-    public SystemRuntimeException() {
+    public UncheckedException() {
     }
 
     /**
@@ -70,7 +68,7 @@ public class SystemRuntimeException extends RuntimeException {
      *
      * @param e 原始异常，不能为 null。
      */
-    public SystemRuntimeException(Throwable e) {
+    public UncheckedException(Throwable e) {
         super(e);
     }
 
@@ -80,7 +78,7 @@ public class SystemRuntimeException extends RuntimeException {
      * @param fmt 格式化字符串，不能为 null。
      * @param args 格式化参数。
      */
-    public SystemRuntimeException(String fmt, Object... args) {
+    public UncheckedException(String fmt, Object... args) {
         super(strwfmt(fmt, args));
     }
 
@@ -91,7 +89,7 @@ public class SystemRuntimeException extends RuntimeException {
      * @param e 原始异常，不能为 null。
      * @param args 格式化参数。
      */
-    public SystemRuntimeException(String fmt, Throwable e, Object... args) {
+    public UncheckedException(String fmt, Throwable e, Object... args) {
         super(strwfmt(fmt, args), e);
     }
 

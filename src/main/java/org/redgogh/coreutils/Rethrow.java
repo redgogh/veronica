@@ -20,7 +20,7 @@ package org.redgogh.coreutils;
 
 import org.redgogh.coreutils.bean.BeanUtils;
 import org.redgogh.coreutils.exception.AssertException;
-import org.redgogh.coreutils.exception.SystemRuntimeException;
+import org.redgogh.coreutils.exception.UncheckedException;
 import org.redgogh.coreutils.iface.Action;
 import org.redgogh.coreutils.iface.Callable;
 import org.redgogh.coreutils.reflect.UClass;
@@ -204,7 +204,7 @@ public class Rethrow {
         try {
             function.call();
         } catch (Exception e) {
-            throw new SystemRuntimeException(e);
+            throw new UncheckedException(e);
         }
     }
 
@@ -222,7 +222,7 @@ public class Rethrow {
         try {
             function.call();
         } catch (Exception e) {
-            throw new SystemRuntimeException(fmt, args);
+            throw new UncheckedException(fmt, args);
         }
     }
 
@@ -240,7 +240,7 @@ public class Rethrow {
         try {
             return function.call();
         } catch (Exception e) {
-            throw new SystemRuntimeException(e.getMessage());
+            throw new UncheckedException(e.getMessage());
         }
     }
 
@@ -260,7 +260,7 @@ public class Rethrow {
         try {
             return function.call();
         } catch (Exception e) {
-            throw new SystemRuntimeException(fmt, args);
+            throw new UncheckedException(fmt, args);
         }
     }
 

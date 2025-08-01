@@ -54,7 +54,7 @@ package org.redgogh.coreutils.exception;
  * @author Red Gogh
  * @since 1.0
  */
-public class AssertException extends SystemRuntimeException {
+public class AssertException extends UncheckedException {
 
     /**
      * 默认构造函数。
