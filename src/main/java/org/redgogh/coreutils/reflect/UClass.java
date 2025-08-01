@@ -277,7 +277,7 @@ public class UClass {
             Constructor<T> constructor = descriptor.getConstructor(parametersClassArray);
             constructor.setAccessible(true);
             return constructor.newInstance(parameters);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
