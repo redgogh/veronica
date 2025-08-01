@@ -477,7 +477,7 @@ public class IOUtils {
             int len;
             while ((len = read(buf, input)) != EOF)
                 write(stream, buf, 0, len);
-        } catch (Throwable e) {
+        } catch (Exception e) {
             throw new IOWriteException(e);
         } finally {
             /* 如果出现异常关闭输入流，因为输入流中的数据已经被读取，所以
