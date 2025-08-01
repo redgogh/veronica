@@ -279,7 +279,10 @@ public class HttpClient {
     public HttpClient setQueryArgumentsBuilder(QueryArgumentsBuilder queryArgumentsBuilder) {
         if (this.queryArgumentsBuilder == null)
             this.queryArgumentsBuilder = new QueryArgumentsBuilder();
-        this.queryArgumentsBuilder.putAll(queryArgumentsBuilder);
+
+        if (queryArgumentsBuilder != null)
+            this.queryArgumentsBuilder.putAll(queryArgumentsBuilder);
+
         return this;
     }
 

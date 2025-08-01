@@ -138,4 +138,23 @@ public class HttpClientsTest {
                 });
     }
 
+    @Test
+    public void getAndOpenTest() {
+        // 使用 open 方式
+        Response openResponse = HttpClient.open("GET", "https://www.baidu.com")
+                .configure(new RequestConfigure()
+                        .addHeader("Accept", "*/*")
+                        .setConnectTimeout(3000)
+                        .setReadTimeout(3000)
+                        .setSslVerificationDisable(true))
+                .newCall();
+        System.out.println(openResponse.getMessage());
+
+        System.out.println("\n---------------------------------------------------\n");
+
+        // 使用 get 方式
+        Response getResponse = HttpClient.get("https://www.baidu.com");
+        System.out.println(getResponse.getMessage());
+    }
+
 }
