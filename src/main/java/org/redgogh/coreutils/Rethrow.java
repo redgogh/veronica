@@ -222,7 +222,7 @@ public class Rethrow {
         try {
             function.call();
         } catch (Exception e) {
-            throw new UncheckedException(fmt, args);
+            throw new UncheckedException(fmt, e, args);
         }
     }
 
@@ -260,7 +260,7 @@ public class Rethrow {
         try {
             return function.call();
         } catch (Exception e) {
-            throw new UncheckedException(fmt, args);
+            throw new UncheckedException(fmt, e, args);
         }
     }
 
