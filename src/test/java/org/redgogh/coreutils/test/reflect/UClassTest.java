@@ -98,6 +98,13 @@ public class UClassTest {
 
         uClass.invoke(judy,"sayIntroduce");
         uClass.staticInvoke("say", "如此江山，岂不让人留恋 ~");
+
+        Chrono start = Chrono.now();
+        uClass.invoke(judy,"sayIntroduce");
+        uClass.staticInvoke("say", "如此江山，岂不让人留恋 ~");
+        Chrono end = Chrono.now();
+
+        System.out.println(end.getTime() - start.getTime() + "ms");
     }
 
 }

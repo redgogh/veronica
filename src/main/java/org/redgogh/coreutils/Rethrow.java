@@ -240,7 +240,7 @@ public class Rethrow {
         try {
             return function.call();
         } catch (Exception e) {
-            throw new UncheckedException(e.getMessage());
+            throw new UncheckedException(e);
         }
     }
 

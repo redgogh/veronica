@@ -76,6 +76,11 @@ public class UClass {
     public static ClassLoader classLoader = UClass.class.getClassLoader();
 
     /**
+     * 空类型数组
+     */
+    private static final Class<?>[] EMPTY_CLASS_ARRAY = new Class<?>[0];
+
+    /**
      * 类描述符
      *
      * <p>该属性存储类的 {@link Class} 对象描述符。它被标记为 {@code transient}，
@@ -164,7 +169,7 @@ public class UClass {
          * 该方法保证线程安全，可以并发调用。
          *
          * @param inClass 目标类的Class对象，不能为null
-         * @param uField 要添加的UField对象，不能为null
+         * @param uField  要添加的UField对象，不能为null
          * @throws NullPointerException 如果inClass或uField参数为null
          */
         public void put(Class<?> inClass, UField uField) {
@@ -188,6 +193,109 @@ public class UClass {
     }
 
     private static final MemberCache _memberCache = new MemberCache();
+
+    /**
+     * 方法缓存类，用于缓存类的方法信息（Method对象）
+     *
+     * <p>该类是线程安全的缓存实现，用于存储和管理类的方法信息。
+     * 使用ConcurrentHashMap保证线程安全，支持并发访问。
+     *
+     * <p>缓存结构为两级映射：
+     * <ol>
+     *     <li>第一级：Class对象到方法名+参数类型签名的映射</li>
+     *     <li>第二级：方法签名字符串到Method对象的映射</li>
+     * </ol>
+     *
+     * <p>方法签名字符串格式示例：
+     * <pre>
+     *     methodName(java.lang.String, int)
+     * </pre>
+     */
+    static class MethodCache {
+        /**
+         * 缓存存储结构，线程安全
+         * Key: 目标类Class对象
+         * Value: 方法签名到Method对象的映射
+         */
+        private final Map<Class<?>, Map<String, Method>> cache = new ConcurrentHashMap<>();
+
+        /**
+         * 检查缓存中是否包含指定类的方法信息
+         *
+         * @param clazz 目标类，不能为null
+         * @return 如果缓存中包含该类的方法缓存返回true，否则false
+         * @throws NullPointerException 如果clazz为null
+         */
+        public boolean contains(Class<?> clazz) {
+            return cache.containsKey(clazz);
+        }
+
+        /**
+         * 根据方法名和参数对象获取或初始化Method缓存
+         *
+         * <p>如果缓存中不存在对应Method，会反射查找并缓存
+         *
+         * @param clazz      目标类，不能为null
+         * @param methodName 方法名，不能为null
+         * @param args       参数对象，用于推断参数类型，可为null或空数组
+         * @return Method对象，如果找不到方法抛异常
+         * @throws NoSuchMethodException 如果找不到匹配的方法
+         * @throws NullPointerException  如果clazz或methodName为null
+         */
+        public Method getOrInit(Class<?> clazz, String methodName, Object... args) throws NoSuchMethodException {
+            Map<String, Method> methods = cache.computeIfAbsent(clazz, k -> new ConcurrentHashMap<>());
+            Class<?>[] paramTypes = toClassArray(args);
+
+            String key = buildMethodKey(methodName, paramTypes);
+
+            Method method = methods.get(key);
+            if (method != null) {
+                return method;
+            }
+
+            // 反射查找
+            method = clazz.getDeclaredMethod(methodName, paramTypes);
+            method.setAccessible(true);
+            methods.put(key, method);
+
+            return method;
+        }
+
+        /**
+         * 根据类和方法名获取缓存Method，不自动初始化，找不到返回null
+         *
+         * @param clazz      目标类，不能为null
+         * @param methodName 方法名，不能为null
+         * @param paramTypes 参数类型数组，可为null或空数组
+         * @return Method对象或null
+         * @throws NullPointerException 如果clazz或methodName为null
+         */
+        public Method get(Class<?> clazz, String methodName, Class<?>... paramTypes) {
+            Map<String, Method> methods = cache.get(clazz);
+            if (methods == null) return null;
+            String key = buildMethodKey(methodName, paramTypes == null ? new Class<?>[0] : paramTypes);
+            return methods.get(key);
+        }
+
+        /**
+         * 构建方法签名字符串作为缓存key
+         *
+         * <p>格式：methodName(java.lang.String, int)
+         */
+        private static String buildMethodKey(String methodName, Class<?>[] paramTypes) {
+            StringBuilder sb = new StringBuilder(methodName).append("(");
+            for (int i = 0; i < paramTypes.length; i++) {
+                sb.append(paramTypes[i].getName());
+                if (i < paramTypes.length - 1) {
+                    sb.append(", ");
+                }
+            }
+            sb.append(")");
+            return sb.toString();
+        }
+    }
+
+    private static final MethodCache _methodCache = new MethodCache();
 
     /**
      * 构造器，使用对象实例初始化
@@ -230,7 +338,7 @@ public class UClass {
      *
      * @param className 类的全路径名称
      * @return {@code true} 表示当前类加载器已加载 {@param className} 类，
-     *         {@code false} 反之类不存在。
+     * {@code false} 反之类不存在。
      */
     public static boolean hasClass(String className) {
         return TryUtils.ifError(() -> Class.forName(className), true, false);
@@ -248,8 +356,8 @@ public class UClass {
      * 如果没有找到匹配的常量字段，则返回 `null`。
      *
      * @param aClass 需要查找常量的类的 `Class` 对象
-     * @param name 要查找的常量字段名称
-     * @param <T> 常量值的类型
+     * @param name   要查找的常量字段名称
+     * @param <T>    常量值的类型
      * @return 与提供名称匹配的常量值，如果未找到则返回 `null`
      */
     @SuppressWarnings("unchecked")
@@ -290,18 +398,21 @@ public class UClass {
      * @param parameters 参数数组
      * @return 转换后的类型数组
      */
-    public static Class<?>[] toClassArray(Object... parameters) {
-        List<Class<?>> parametersClassList = Lists.newArrayList();
-        for (Object parameter : parameters)
-            parametersClassList.add(parameter.getClass());
-        Class<?>[] parametersClassArray = new Class<?>[parametersClassList.size()];
-        parametersClassList.toArray(parametersClassArray);
-        return parametersClassArray;
+    private static Class<?>[] toClassArray(Object... parameters) {
+        if (parameters == null || parameters.length == 0)
+            return EMPTY_CLASS_ARRAY;
+
+        Class<?>[] classes = new Class<?>[parameters.length];
+        for (int i = 0; i < parameters.length; i++)
+            classes[i] = (parameters[i] == null) ? Object.class : parameters[i].getClass();
+
+        return classes;
     }
 
     ////////////////////////////////////////////////////////////////////////////
     // java class methods
-    ////////////////////////////////////////////////////////////////////////////
+
+    /// /////////////////////////////////////////////////////////////////////////
 
     public String getName() {
         return descriptor.getName();
@@ -334,7 +445,7 @@ public class UClass {
      * <p>该方法通过方法名和参数类型检查指定类是否定义了对应的方法。如果找到匹配的方法，返回 `true`；
      * 如果没有找到，返回 `false`。如果遇到安全异常，则抛出 {@link UncheckedException}。
      *
-     * @param callMethod    方法名称
+     * @param callMethod     方法名称
      * @param parameterTypes 方法的参数类型
      * @return 如果方法存在则返回 `true`，否则返回 `false`
      * @throws UncheckedException 如果发生安全异常
@@ -363,7 +474,7 @@ public class UClass {
     /**
      * 返回描述符上声明的指定注解实例。
      *
-     * @param <A> 注解类型
+     * @param <A>        注解类型
      * @param annotation 注解类型对应的 Class 对象
      * @return 如果注解存在则返回注解实例，否则返回 null
      */
@@ -449,9 +560,9 @@ public class UClass {
      * <p>根据字段名称从当前实例中读取字段值。如果未找到该字段，将抛出异常。
      * 该方法确保字段存在，以避免潜在的 `null` 值处理。
      *
-     * @param name 字段的名称
+     * @param name     字段的名称
      * @param instance 要读取字段值的对象实例
-     * @param <R> 字段值的类型
+     * @param <R>      字段值的类型
      * @return 指定字段的值
      * @throws IllegalArgumentException 如果未找到指定字段
      */
@@ -465,10 +576,10 @@ public class UClass {
      * <p>根据字段名称从当前实例中读取字段值。如果未找到该字段，将抛出异常。
      * 该方法确保字段存在，以避免潜在的 `null` 值处理。
      *
-     * @param name 字段的名称
-     * @param instance 要读取字段值的对象实例
+     * @param name      字段的名称
+     * @param instance  要读取字段值的对象实例
      * @param onMissing 如果字段未找到如何处理
-     * @param <R> 字段值的类型
+     * @param <R>       字段值的类型
      * @return 指定字段的值
      * @throws IllegalArgumentException 如果未找到指定字段
      */
@@ -567,9 +678,7 @@ public class UClass {
      */
     private Object invoke0(Object obj, String name, Object... args) {
         return Rethrow.allow(() -> {
-            Method method = args == null ? descriptor.getDeclaredMethod(name) :
-                    descriptor.getDeclaredMethod(name, toClassArray(args));
-            method.setAccessible(true);
+            Method method = _methodCache.getOrInit(descriptor, name, args);
             return method.invoke(obj, args);
         });
     }
