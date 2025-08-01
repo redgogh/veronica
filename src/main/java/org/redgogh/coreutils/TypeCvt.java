@@ -302,17 +302,15 @@ public class TypeCvt {
      * @see String#valueOf(Object)
      */
     public static String atos(Object obj, StringInterface...iface) {
-        if (obj == null)
-            return "";
-        if (obj instanceof String)
-            return StringInterface.pipelineExecutor((String) obj, iface);
-        /* 字节数组转字符串 */
-        if (obj instanceof byte[])
-            return atos((byte[]) obj, 0, ((byte[]) obj).length,  iface);
-        /* 字符数组转字符串 */
-        if (obj instanceof char[])
-            return atos((char[]) obj, 0, ((char[]) obj).length, iface);
-        return StringInterface.pipelineExecutor(String.valueOf(obj), iface);
+        return switch (obj) {
+            case null -> "";
+            case String s -> StringInterface.pipelineExecutor(s, iface);
+            /* 字节数组转字符串 */
+            case byte[] bytes -> atos(bytes, 0, bytes.length, iface);
+            /* 字符数组转字符串 */
+            case char[] chars -> atos(chars, 0, chars.length, iface);
+            default -> StringInterface.pipelineExecutor(String.valueOf(obj), iface);
+        };
     }
 
     /**

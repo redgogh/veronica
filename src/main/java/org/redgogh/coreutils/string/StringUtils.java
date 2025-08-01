@@ -247,6 +247,8 @@ public class StringUtils {
      * @return 格式化后的字符串
      */
     public static String strwfmt(Object wstr, Object... args) {
+        if (wstr == null)
+            return "";
         return String.format(atos(wstr), args);
     }
 
