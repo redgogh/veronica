@@ -148,13 +148,13 @@ public class HttpClientsTest {
                         .setReadTimeout(3000)
                         .setSslVerificationDisable(true))
                 .newCall();
-        System.out.println(openResponse.getMessage());
+        System.out.println(openResponse.getContent());
 
         System.out.println("\n---------------------------------------------------\n");
 
         // 使用 get 方式
         Response getResponse = HttpClient.get("https://www.baidu.com");
-        System.out.println(getResponse.getMessage());
+        System.out.println(getResponse.getContent());
     }
 
 }

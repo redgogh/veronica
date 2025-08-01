@@ -79,10 +79,10 @@ public class Response extends JSONObject {
     private final int code;
 
     /**
-     * 如果接口没有正常的 JSON 返回对象等结构的话，那么 message 就是
+     * 如果接口没有正常的 JSON 返回对象等结构的话，那么 content 就是
      * 接口返回信息。有可能是 `Not Found` 等文本。
      */
-    private String message;
+    private String content;
 
     /**
      * 响应头
@@ -108,11 +108,11 @@ public class Response extends JSONObject {
         this.headers = headers;
 
         /* 处理响应 */
-        String content = TryUtils.ifError(responseBody::string, "{}");
-        Object object = TryUtils.ifError(() -> JSONObject.parseObject(content), content);
+        String body = TryUtils.ifError(responseBody::string, "{}");
+        Object object = TryUtils.ifError(() -> JSONObject.parseObject(body), body);
 
         if (object instanceof String)
-            this.message = atos(object, StringUtils::strip);
+            this.content = atos(object, StringUtils::strip);
 
         if (object instanceof Map)
             putAll((Map<String, Object>) object);
@@ -191,7 +191,7 @@ public class Response extends JSONObject {
         /* failed */
         JSONObject retval = new JSONObject();
         retval.put("code", code);
-        retval.put("message", message);
+        retval.put("content", content);
         return retval.toString();
     }
 
@@ -199,12 +199,12 @@ public class Response extends JSONObject {
         return code;
     }
 
-    public String getMessage() {
-        return message;
+    public String getContent() {
+        return content;
     }
 
     public void callback(Callback callback) {
-        callback.apply(code, message);
+        callback.apply(code, content);
     }
 
 }
