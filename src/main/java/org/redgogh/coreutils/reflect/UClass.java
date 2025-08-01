@@ -26,7 +26,7 @@ package org.redgogh.coreutils.reflect;
 /* Creates on 2019/5/16. */
 
 import org.redgogh.coreutils.Comparators;
-import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.TryUtils;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.collection.Lists;
 import org.redgogh.coreutils.exception.SystemRuntimeException;
@@ -233,7 +233,7 @@ public class UClass {
      *         {@code false} 反之类不存在。
      */
     public static boolean hasClass(String className) {
-        return Optional.ifError(() -> Class.forName(className), true, false);
+        return TryUtils.ifError(() -> Class.forName(className), true, false);
     }
 
     ////////////////////////////////////////////////////////////////////////////

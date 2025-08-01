@@ -19,18 +19,12 @@ package org.redgogh.coreutils.test.io;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.redgogh.coreutils.Assert;
-import org.redgogh.coreutils.Optional;
-import org.redgogh.coreutils.exception.AssertException;
 import org.redgogh.coreutils.io.IOUtils;
 import org.redgogh.coreutils.system.SystemUtils;
 
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("ALL")
 public class IOUtilsTest {

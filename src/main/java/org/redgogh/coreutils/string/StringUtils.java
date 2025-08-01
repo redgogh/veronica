@@ -18,7 +18,7 @@ package org.redgogh.coreutils.string;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.TryUtils;
 import org.redgogh.coreutils.collection.Lists;
 
 import java.nio.file.FileSystems;
@@ -433,7 +433,7 @@ public class StringUtils {
      */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public static boolean strdig(Object wstr) {
-        return Optional.ifError(() -> Double.parseDouble(atos(wstr)), true, false);
+        return TryUtils.ifError(() -> Double.parseDouble(atos(wstr)), true, false);
     }
 
     /**

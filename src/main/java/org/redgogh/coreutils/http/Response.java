@@ -20,7 +20,7 @@ package org.redgogh.coreutils.http;
 
 import com.alibaba.fastjson.JSONObject;
 import org.redgogh.coreutils.string.StringUtils;
-import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.TryUtils;
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
 
@@ -108,8 +108,8 @@ public class Response extends JSONObject {
         this.headers = headers;
 
         /* 处理响应 */
-        String content = Optional.ifError(responseBody::string, "{}");
-        Object object = Optional.ifError(() -> JSONObject.parseObject(content), content);
+        String content = TryUtils.ifError(responseBody::string, "{}");
+        Object object = TryUtils.ifError(() -> JSONObject.parseObject(content), content);
 
         if (object instanceof String)
             this.message = atos(object, StringUtils::strip);

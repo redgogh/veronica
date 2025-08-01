@@ -19,15 +19,7 @@ package org.redgogh.coreutils.test.system;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.redgogh.coreutils.Assert;
-import org.redgogh.coreutils.Optional;
-import org.redgogh.coreutils.exception.AssertException;
 import org.redgogh.coreutils.system.SystemUtils;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @SuppressWarnings("ALL")
 public class SystemUtilsTest {

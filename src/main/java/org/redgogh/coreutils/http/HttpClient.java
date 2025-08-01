@@ -21,10 +21,9 @@ package org.redgogh.coreutils.http;
 import com.alibaba.fastjson.JSON;
 import org.redgogh.coreutils.collection.Maps;
 import org.redgogh.coreutils.exception.HttpRequestException;
-import org.redgogh.coreutils.string.StringUtils;
 import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.Rethrow;
-import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.TryUtils;
 import okhttp3.*;
 
 import java.io.File;
@@ -95,7 +94,7 @@ public class HttpClient {
      */
     private HttpClient(String method, String url) {
         String upperMethod = uppercase(method);
-        this.method = Optional.ifError(() -> HttpMethod.valueOf(upperMethod), null);
+        this.method = TryUtils.ifError(() -> HttpMethod.valueOf(upperMethod), null);
         Assert.notNull(this.method, "不支持的请求方式 - %s", this.method);
         this.url = url;
     }

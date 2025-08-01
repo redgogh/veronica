@@ -19,7 +19,7 @@ package org.redgogh.coreutils.test;
 \* -------------------------------------------------------------------------------- */
 
 import org.redgogh.coreutils.Assert;
-import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.TryUtils;
 import org.junit.Test;
 import org.redgogh.coreutils.exception.AssertException;
 
@@ -32,9 +32,9 @@ public class AssertTest {
     @Test
     public void ifEmptyTest() {
         List<String> list = new ArrayList<>();
-        System.out.printf("-Test: Assert.ifEmpty() object `list` is empty: %s\n", Optional.ifError(() -> Assert.notEmpty(list), "SUCCESS", "ERROR"));
+        System.out.printf("-Test: Assert.ifEmpty() object `list` is empty: %s\n", TryUtils.ifError(() -> Assert.notEmpty(list), "SUCCESS", "ERROR"));
         list.add("Hello");
-        System.out.printf("-Test: Assert.ifEmpty() object `list` not empty: %s\n", Optional.ifError(() -> Assert.notEmpty(list), "SUCCESS", "ERROR"));
+        System.out.printf("-Test: Assert.ifEmpty() object `list` not empty: %s\n", TryUtils.ifError(() -> Assert.notEmpty(list), "SUCCESS", "ERROR"));
     }
 
     @Test

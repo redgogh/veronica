@@ -23,7 +23,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jetbrains.annotations.NotNull;
-import org.redgogh.coreutils.Optional;
+import org.redgogh.coreutils.TryUtils;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.TypeCvt;
 import org.redgogh.coreutils.annotations.RowColumn;
@@ -34,7 +34,6 @@ import org.redgogh.coreutils.io.Paths;
 import org.redgogh.coreutils.reflect.UClass;
 import org.redgogh.coreutils.reflect.UField;
 import org.redgogh.coreutils.stream.Streams;
-import org.redgogh.coreutils.system.SystemUtils;
 import org.redgogh.coreutils.time.DateFormatter;
 
 import java.io.ByteArrayOutputStream;
@@ -245,7 +244,7 @@ public class DataWorkBook implements Iterable<Row> {
      * @throws IllegalArgumentException 如果工作表名称为 {@code null} 或空字符串。
      */
     public void checkout(String name) {
-        sheet = Optional.ifNullable(wb.getSheet(name), () -> wb.createSheet(name));
+        sheet = TryUtils.ifNullable(wb.getSheet(name), () -> wb.createSheet(name));
     }
 
     /**
@@ -262,7 +261,7 @@ public class DataWorkBook implements Iterable<Row> {
      * @throws IllegalArgumentException 如果工作表名称为 {@code null} 或空字符串。
      */
     public void createSheet(String name) {
-        Optional.ifNullable(wb.getSheet(name), () -> wb.createSheet(name));
+        TryUtils.ifNullable(wb.getSheet(name), () -> wb.createSheet(name));
     }
 
     /**

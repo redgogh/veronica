@@ -21,7 +21,6 @@ package org.redgogh.coreutils;
 /* Creates on 2023/4/29. */
 
 import org.redgogh.coreutils.iface.Callable;
-import org.redgogh.coreutils.string.StringUtils;
 import org.redgogh.coreutils.iface.Action;
 
 import static org.redgogh.coreutils.string.StringUtils.strempty;
@@ -29,7 +28,7 @@ import static org.redgogh.coreutils.string.StringUtils.strempty;
 /**
  * @author Red Gogh
  */
-public class Optional {
+public class TryUtils {
 
     /**
      * 如果给定的值为 null，则返回指定的替代值；否则返回原值。
