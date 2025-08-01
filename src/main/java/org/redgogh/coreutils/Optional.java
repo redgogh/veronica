@@ -89,7 +89,7 @@ public class Optional {
         try {
             function.call();
             return orSuccess;
-        } catch (Throwable e) {
+        } catch (Exception e) {
             return orError;
         }
     }
@@ -107,7 +107,7 @@ public class Optional {
     public static <T> T ifError(Callable<T> function, T orError) {
         try {
             return function.call();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             return orError;
         }
     }
