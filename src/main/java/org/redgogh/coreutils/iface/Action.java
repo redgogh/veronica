@@ -34,8 +34,8 @@ public interface Action {
      * <p>该方法定义了具体的执行逻辑，可能会抛出异常。
      * 实现该方法时需要处理可能的异常情况。
      *
-     * @throws Throwable 可能抛出的异常，需在调用时处理
+     * @throws Exception 可能抛出的异常，需在调用时处理
      */
-    void call() throws Throwable;
+    void call() throws Exception;
 
 }

@@ -73,7 +73,7 @@ public class Rethrow {
         public void allow(Action function) {
             try {
                 function.call();
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
@@ -93,7 +93,7 @@ public class Rethrow {
         public void allow(Action function, String fmt, Object... args) {
             try {
                 function.call();
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, fmt, args);
@@ -113,7 +113,7 @@ public class Rethrow {
         public <T> T allow(Callable<T> function) {
             try {
                 return function.call();
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
@@ -135,7 +135,7 @@ public class Rethrow {
         public <T> T allow(Callable<T> function, String fmt, Object... args) {
             try {
                 return function.call();
-            } catch (Throwable e) {
+            } catch (Exception e) {
                 if (expected.isInstance(e))
                     throw (RuntimeException) e;
                 throw (RuntimeException) BeanUtils.newInstance(expected, fmt, args);
@@ -166,7 +166,7 @@ public class Rethrow {
     public static void swallow(Action function) {
         try {
             function.call();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             logWarn("Rethrow#swallow: {}", e.getMessage());
         }
     }
@@ -186,7 +186,7 @@ public class Rethrow {
     public static <T> T swallow(Callable<T> function) {
         try {
             return function.call();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             logWarn("Rethrow#swallow: {}", e.getMessage());
             return null;
         }
@@ -203,8 +203,8 @@ public class Rethrow {
     public static void allow(Action function) {
         try {
             function.call();
-        } catch (Throwable e) {
-            throw new SystemRuntimeException(e.getMessage());
+        } catch (Exception e) {
+            throw new SystemRuntimeException(e);
         }
     }
 
@@ -221,7 +221,7 @@ public class Rethrow {
     public static void allow(Action function, String fmt, Object... args) {
         try {
             function.call();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             throw new SystemRuntimeException(fmt, args);
         }
     }
@@ -239,7 +239,7 @@ public class Rethrow {
     public static <T> T allow(Callable<T> function) {
         try {
             return function.call();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             throw new SystemRuntimeException(e.getMessage());
         }
     }
@@ -259,7 +259,7 @@ public class Rethrow {
     public static <T> T allow(Callable<T> function, String fmt, Object... args) {
         try {
             return function.call();
-        } catch (Throwable e) {
+        } catch (Exception e) {
             throw new SystemRuntimeException(fmt, args);
         }
     }

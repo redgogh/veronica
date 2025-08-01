@@ -36,8 +36,8 @@ public interface Callable<V> {
      * 实现该方法时需要处理可能的异常情况，并返回合适的结果。
      *
      * @return 函数执行后的结果
-     * @throws Throwable 可能抛出的异常，需在调用时处理
+     * @throws Exception 可能抛出的异常，需在调用时处理
      */
-    V call() throws Throwable;
+    V call() throws Exception;
 
 }
