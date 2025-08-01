@@ -46,7 +46,7 @@ public interface Callback {
      *
      * @param e 请求失败的异常
      */
-    void onFailure(Throwable e);
+    void onFailure(Exception e);
 
     /**
      * 处理请求成功的回调

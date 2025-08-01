@@ -39,7 +39,7 @@ public interface StreamCallback {
      *
      * @param e 发生的异常，包含错误信息。
      */
-    void onFailure(Throwable e);
+    void onFailure(Exception e);
 
     /**
      * 当成功接收到字节流响应时调用。

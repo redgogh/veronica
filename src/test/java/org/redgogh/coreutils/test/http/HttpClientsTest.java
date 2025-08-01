@@ -90,7 +90,7 @@ public class HttpClientsTest {
                 .setReadTimeout(3)
                 .newCall(new Callback() {
                     @Override
-                    public void onFailure(Throwable e) {
+                    public void onFailure(Exception e) {
                         System.out.printf("请求出现异常：%s\n", e.getMessage());
                     }
 
@@ -118,7 +118,7 @@ public class HttpClientsTest {
                 .sslVerifierDisable()
                 .newStreamCall(new StreamCallback() {
                     @Override
-                    public void onFailure(Throwable e) {
+                    public void onFailure(Exception e) {
                         System.out.printf("请求出现异常：%s\n", e.getMessage());
                     }
 
