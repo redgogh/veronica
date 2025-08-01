@@ -320,7 +320,7 @@ public class HttpClient {
      * <p>该方法用于设置 HTTP 请求的读取超时时间。读取超时时间指定了在等待服务器响应时，
      * 客户端的最大等待时间（以毫秒为单位）。适用于需要自定义读取超时设置的场景。
      *
-     * @param readTimeout 读取超时时间（秒）
+     * @param readTimeout 读取超时时间（毫秒）
      * @return 当前 `HttpClient` 实例
      */
     public HttpClient setReadTimeout(int readTimeout) {
@@ -334,7 +334,7 @@ public class HttpClient {
      * <p>该方法用于设置 HTTP 请求的连接超时时间。连接超时时间指定了客户端在与服务器建立连接时，
      * 等待的最大时间（以毫秒为单位）。适用于需要自定义连接超时设置的场景。
      *
-     * @param connectTimeout 连接超时时间（秒）
+     * @param connectTimeout 连接超时时间（毫秒）
      * @return 当前 `HttpClient` 实例
      */
     public HttpClient setConnectTimeout(int connectTimeout) {
