@@ -96,7 +96,7 @@ public class BeanUtils {
         UClass dstClass = new UClass(dst);
         for (UField field : dstClass.getDeclaredFields()) {
             String name = field.getName();
-            if (ignores.length > 0 && strcheckin(name, ignores))
+            if (ignores.length > 0 && strhas(name, ignores))
                 continue;
             Rethrow.swallow(() -> copyValue(src, new UClass(src), dst, dstClass, field));
         }
@@ -116,7 +116,7 @@ public class BeanUtils {
         UClass dstClass = new UClass(dst);
         for (UField dstField : dstClass.getDeclaredFields()) {
             String name = dstField.getName();
-            if (ignores.length > 0 && strcheckin(name, ignores))
+            if (ignores.length > 0 && strhas(name, ignores))
                 continue;
             Rethrow.swallow(() -> dstField.write(dst, srcClass.read(name, src)));
         }

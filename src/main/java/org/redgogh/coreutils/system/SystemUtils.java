@@ -78,11 +78,11 @@ public class SystemUtils {
     private static OperatorSystem getos() {
         // initialize
         String _OS_NAME = System.getProperty("os.name");
-        if (stricheckin(_OS_NAME, "Windows"))
+        if (strihas(_OS_NAME, "Windows"))
             return OperatorSystem.WINDOWS;
-        else if (stricheckin(_OS_NAME, "Linux"))
+        else if (strihas(_OS_NAME, "Linux"))
             return OperatorSystem.LINUX;
-        else if (stricheckin(_OS_NAME, "Mac"))
+        else if (strihas(_OS_NAME, "Mac"))
             return OperatorSystem.MACOS;
         return OperatorSystem.UNKNOWN;
     }
@@ -232,7 +232,7 @@ public class SystemUtils {
             path = getUserHome(path.substring(2));
 
         // 解析环境变量
-        if (!strcheckin(path, "$"))
+        if (!strhas(path, "$"))
             return path;
 
         String[] environments = strfind(path, "\\$[A-Za-z_][A-Za-z0-9_]*");
