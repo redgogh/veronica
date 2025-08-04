@@ -31,4 +31,14 @@ public class SystemUtilsTest {
         System.out.println(SystemUtils.resolvePath("$MAVEN_HOME/bin"));
     }
 
+    @Test
+    public void osPropertiesTest() {
+        System.out.println(SystemUtils.osName());
+        System.out.println(SystemUtils.osArch());
+        System.out.println(SystemUtils.osVersion());
+        System.out.println(SystemUtils.workDir());
+        System.out.println(SystemUtils.tempDir());
+        System.out.println(SystemUtils.availableProcessors());
+    }
+
 }

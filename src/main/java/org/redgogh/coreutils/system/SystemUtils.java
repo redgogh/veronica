@@ -120,6 +120,66 @@ public class SystemUtils {
     }
 
     /**
+     * 获取当前操作系统的名称
+     *
+     * <p>通过调用 `System.getProperty("os.name")` 获取操作系统的名称，
+     * 如 "Windows 11"、"Linux"、"Mac OS X" 等。
+     *
+     * @return 当前操作系统的名称字符串
+     */
+    public static String osName() {
+        return System.getProperty("os.name");
+    }
+
+    /**
+     * 获取当前操作系统的架构
+     *
+     * <p>通过调用 `System.getProperty("os.arch")` 获取操作系统的体系结构，
+     * 如 "x86", "amd64", "aarch64" 等。
+     *
+     * @return 当前操作系统的架构字符串
+     */
+    public static String osArch() {
+        return System.getProperty("os.arch");
+    }
+
+    /**
+     * 获取当前操作系统的版本
+     *
+     * <p>通过调用 `System.getProperty("os.version")` 获取操作系统的版本信息，
+     * 如 "10.0"、"11.2.3" 等。
+     *
+     * @return 当前操作系统的版本字符串
+     */
+    public static String osVersion() {
+        return System.getProperty("os.version");
+    }
+
+    /**
+     * 获取当前用户的工作目录
+     *
+     * <p>返回当前程序运行时的工作目录路径，等同于 `System.getProperty("user.dir")`，
+     * 通常是程序启动时所在的目录。
+     *
+     * @return 当前工作目录的绝对路径
+     */
+    public static String workDir() {
+        return System.getProperty("user.dir");
+    }
+
+    /**
+     * 获取系统的临时目录路径
+     *
+     * <p>通过调用 `System.getProperty("java.io.tmpdir")` 获取系统的临时文件目录，
+     * 通常用于存放临时文件，路径依操作系统不同而异。
+     *
+     * @return 系统临时目录路径
+     */
+    public static String tempDir() {
+        return System.getProperty("java.io.tmpdir");
+    }
+
+    /**
      * 获取当前用户的主目录路径
      *
      * <p>该函数返回当前用户的主目录路径，路径中的所有反斜杠（\）会被替换为正斜杠（/）。
