@@ -20,7 +20,6 @@ package org.redgogh.coreutils.system;
 
 import org.redgogh.coreutils.time.Chrono;
 
-import java.io.File;
 import java.util.Map;
 import java.util.regex.Pattern;
 
