@@ -1,3 +1,19 @@
 #!/bin/bash
 
-mvn clean install -Dgpg.skip=true
+set -euo pipefail
+
+PROJECT_NAME="$(basename "$(pwd)")"
+BUILD_PROFILE=${1:-release}
+
+echo "==> Building project: $PROJECT_NAME"
+echo "==> Using profile: $BUILD_PROFILE"
+
+start_time=$(date +%s)
+
+# 编译并跳过 GPG 签名，可根据需要添加 -DskipTests 等参数
+mvn clean install -P${BUILD_PROFILE} -Dgpg.skip=true
+
+end_time=$(date +%s)
+elapsed=$((end_time - start_time))
+
+echo "==> Build finished in $((elapsed)) sec."
