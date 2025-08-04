@@ -28,6 +28,7 @@ import static org.redgogh.coreutils.string.StringUtils.strwfmt;
  * @author Red Gogh
  * @since 1.0
  */
+@SuppressWarnings("UnusedReturnValue")
 public class Threads {
 
     /** 非守护线程工厂，线程名前缀为 worker[%d] */
@@ -52,7 +53,6 @@ public class Threads {
      * @param task 要执行的 Runnable 任务
      * @return 启动后的守护线程实例
      */
-    @SuppressWarnings("UnusedReturnValue")
     public static Thread runDaemon(Runnable task) {
         Thread t = workerDaemonThreadFactory.newThread(task);
         t.start();
@@ -65,7 +65,6 @@ public class Threads {
      * @param task 要异步执行的任务
      * @return CompletableFuture 以便链式操作
      */
-    @SuppressWarnings("UnusedReturnValue")
     public static CompletableFuture<Void> runAsync(Runnable task) {
         return CompletableFuture.runAsync(task);
     }
