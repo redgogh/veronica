@@ -347,7 +347,7 @@ public final class Chrono extends Date
     /**
      * @return 当前系统时间戳
      */
-    public static long timestamp() {
+    public static long epochMillis() {
         return System.currentTimeMillis();
     }
 
