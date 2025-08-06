@@ -115,7 +115,7 @@ public class JSONUtils {
                 content = xtos(content);
             return (T) JSONObject.parse(content);
         }
-        return (T) JSONObject.parse(toJSONString(obj));
+        return (T) JSONObject.parse(stringify(obj));
     }
 
     /**
