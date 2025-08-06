@@ -45,12 +45,12 @@ public class JSONUtilsTest {
     @Test
     public void testEval() {
         HighStudent highStudent = JSONUtils.get(content, "$.users[0]", HighStudent.class);
-        System.out.println(JSONUtils.toJSONString(highStudent));
+        System.out.println(JSONUtils.stringify(highStudent));
 
         System.out.println("=======================");
 
         List<HighStudent> highStudents = JSONUtils.getList(content, "$.users", HighStudent.class);
-        System.out.println(JSONUtils.toJSONString(highStudents));
+        System.out.println(JSONUtils.stringify(highStudents));
     }
 
 }

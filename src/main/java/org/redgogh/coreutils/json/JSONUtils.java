@@ -64,7 +64,7 @@ public class JSONUtils {
      * @param obj 任意 Java 对象
      * @return JSON 格式字符串
      */
-    public static String toJSONString(Object obj) {
+    public static String stringify(Object obj) {
         return JSON.toJSONString(obj);
     }
 
