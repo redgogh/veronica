@@ -345,6 +345,13 @@ public final class Chrono extends Date
     }
 
     /**
+     * @return 当前系统时间戳
+     */
+    public static long timestamp() {
+        return System.currentTimeMillis();
+    }
+
+    /**
      * 使用文本日期字符串创建 `Chrono` 实例。
      *
      * @param text 日期字符串
