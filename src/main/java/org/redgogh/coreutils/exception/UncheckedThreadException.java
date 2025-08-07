@@ -18,7 +18,7 @@ package org.redgogh.coreutils.exception;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import static org.redgogh.coreutils.string.StringUtils.strwfmt;
+import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
  * @author Red Gogh
@@ -47,7 +47,7 @@ public class UncheckedThreadException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedThreadException(String fmt, Object... args) {
-        super(strwfmt(fmt, args));
+        super(strfmt(fmt, args));
     }
 
     /**
@@ -58,7 +58,7 @@ public class UncheckedThreadException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedThreadException(String fmt, Throwable e, Object... args) {
-        super(strwfmt(fmt, args), e);
+        super(strfmt(fmt, args), e);
     }
 
 }

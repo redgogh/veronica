@@ -30,7 +30,7 @@ import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.redgogh.coreutils.string.StringUtils.strwfmt;
+import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
  * `UField` 类封装了 Java 反射中的 `Field` 对象，提供对字段的访问和操作功能。
@@ -185,7 +185,7 @@ public class UField {
         this.modifiers = field.getModifiers();
         this.inClass = field.getDeclaringClass();
         this.name = field.getName();
-        this.path = strwfmt("%s#%s", inClass.getName(), name);
+        this.path = strfmt("%s#%s", inClass.getName(), name);
         this.originType = field.getType();
     }
 

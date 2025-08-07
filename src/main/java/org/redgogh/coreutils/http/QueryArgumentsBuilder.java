@@ -27,7 +27,7 @@ import java.util.Map;
 
 import static org.redgogh.coreutils.TypeCvt.atos;
 import static org.redgogh.coreutils.string.StringUtils.strtok;
-import static org.redgogh.coreutils.string.StringUtils.strwfmt;
+import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
  * `QueryBuilder` 是一个继承自 `LinkedHashMap<String, String>` 的类，用于构建 HTTP 请求的查询参数。
@@ -97,9 +97,9 @@ public class QueryArgumentsBuilder extends LinkedHashMap<String, String> {
         StringBuilder builder = new StringBuilder();
 
         for (Map.Entry<String, String> entry : entrySet())
-            builder.append(strwfmt("%s=%s&", entry.getKey(), entry.getValue()));
+            builder.append(strfmt("%s=%s&", entry.getKey(), entry.getValue()));
         String finalArguments = atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
 
-        return strwfmt("%s?%s", url, finalArguments);
+        return strfmt("%s?%s", url, finalArguments);
     }
 }

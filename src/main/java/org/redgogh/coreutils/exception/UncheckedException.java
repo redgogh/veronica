@@ -18,7 +18,7 @@ package org.redgogh.coreutils.exception;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import static org.redgogh.coreutils.string.StringUtils.strwfmt;
+import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
  * `SystemRuntimeException` 是一个自定义的运行时异常类，用于在系统中抛出各种运行时异常。
@@ -79,7 +79,7 @@ public class UncheckedException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedException(String fmt, Object... args) {
-        super(strwfmt(fmt, args));
+        super(strfmt(fmt, args));
     }
 
     /**
@@ -90,7 +90,7 @@ public class UncheckedException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedException(String fmt, Throwable e, Object... args) {
-        super(strwfmt(fmt, args), e);
+        super(strfmt(fmt, args), e);
     }
 
 }

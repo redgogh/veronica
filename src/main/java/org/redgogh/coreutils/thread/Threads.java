@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
 import static org.redgogh.coreutils.string.StringUtils.strhas;
-import static org.redgogh.coreutils.string.StringUtils.strwfmt;
+import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
  * 线程工具类，提供线程创建、执行、管理和查询的便捷方法。
@@ -135,7 +135,7 @@ public class Threads {
     public static ThreadFactory namedThreadFactory(String prefix, boolean daemon) {
         AtomicInteger count = new AtomicInteger(1);
         return r -> {
-            Thread t = new Thread(r, strwfmt(prefix.concat("-%d"), count.getAndIncrement()));
+            Thread t = new Thread(r, strfmt(prefix.concat("-%d"), count.getAndIncrement()));
             t.setDaemon(daemon);
             return t;
         };
