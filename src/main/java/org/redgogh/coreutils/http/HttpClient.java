@@ -529,12 +529,7 @@ public class HttpClient {
      */
     private Response newCallResponse(okhttp3.Response okResponse) throws IOException {
         /* response */
-        Response retval = new Response(okResponse.code(), okResponse.headers(), okResponse.body());
-
-        Assert.checkTrue(okResponse.isSuccessful(), "HTTP请求出错（%s）\n    - URL：%s \n    - Request Body：%s \n    - Message: %s",
-                okResponse.code(), url, JSON.toJSONString(object), retval);
-
-        return retval;
+        return new Response(okResponse.code(), okResponse.headers(), okResponse.body());
     }
 
     private void async(Call call, Callback callback) {
