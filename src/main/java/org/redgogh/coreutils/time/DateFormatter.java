@@ -48,8 +48,10 @@ import static org.redgogh.coreutils.string.StringUtils.strlen;
 public class DateFormatter {
 
     private static final int STRING_TEMP_DATE_MONTH = 7; // strlen("0000-00");
-    private static final int STRING_TEMP_DATE_DAY = 10; //strlen("0000-00-00");
-    private static final int STRING_TEMP_DATE_TIME = 19; //strlen("0000-00-00 00:00:00");
+    private static final int STRING_TEMP_DATE_DAY = 10; // strlen("0000-00-00");
+    private static final int STRING_TEMP_DATE_TIME = 19; // strlen("0000-00-00 00:00:00");
+    private static final int STRING_TEMP_DATE_MILLISECONDS_3 = 23; // strlen("0000-00-00 00:00:00.000");
+    private static final int STRING_TEMP_DATE_MILLISECONDS_6 = 26; // strlen("0000-00-00 00:00:00.000000");
 
     /** 短横线格式化风格 */
     public static final String DASH_PATTERN_Y4H2M2D2H2M2S2 = "yyyy-MM-dd HH:mm:ss";
@@ -185,6 +187,18 @@ public class DateFormatter {
                 return strhas(text, "-")
                         ? parse(text, "yyyy-MM-dd HH:mm:ss")
                         : parse(text, "yyyy/MM/dd HH:mm:ss");
+            }
+
+            case STRING_TEMP_DATE_MILLISECONDS_3: {
+                return strhas(text, "-")
+                        ? parse(text, "yyyy-MM-dd HH:mm:ss.SSS")
+                        : parse(text, "yyyy/MM/dd HH:mm:ss.SSS");
+            }
+
+            case STRING_TEMP_DATE_MILLISECONDS_6: {
+                return strhas(text, "-")
+                        ? parse(text, "yyyy-MM-dd HH:mm:ss.SSSSSS")
+                        : parse(text, "yyyy/MM/dd HH:mm:ss.SSSSSS");
             }
 
             default:

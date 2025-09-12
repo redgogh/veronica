@@ -17,6 +17,7 @@
 - 新增 `xtos` 函数用于将 `xml` 转为 `json` 字符串操作。
 - 新增 `FileUtils` 针对于文件操作的工具类。
 - 新增 `ObjectSerializer` 用于序列化与反序列化对象。
+- 新增 `DateFormatter` 解析支持带毫秒的日期格式。
 
 ## 👻 优化功能
 
