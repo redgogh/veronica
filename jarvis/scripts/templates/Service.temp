@@ -1,0 +1,13 @@
+package {{ package }}.service;
+
+import com.baomidou.mybatisplus.extension.service.IService;
+import {{ package }}.entities.{{ module.entity }};
+
+/**
+ * {{ module.desc }}管理接口
+ *
+ * @author Red Gogh
+ */
+public interface {{ module.entity }}Service extends IService<{{ module.entity }}> {
+
+}

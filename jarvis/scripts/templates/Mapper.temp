@@ -1,0 +1,16 @@
+package {{ package }}.mappers;
+
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+
+import {{ package }}.entities.{{ module.entity }};
+
+/**
+ * {{ module.desc }}数据库操作接口
+ *
+ * @author Red Gogh
+ */
+@Mapper
+public interface {{ module.entity }}Mapper extends BaseMapper<{{ module.entity }}> {
+
+}
