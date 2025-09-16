@@ -17,4 +17,4 @@
 #
 # --------------------------------------------------------------------------------
 SCRIPT_DIR=$(dirname "$(dirname "$(realpath "$0")")")
-python $SCRIPT_DIR/devcli/scripts/devcli.py "$@"
+python $SCRIPT_DIR/jarvis/scripts/jarvis.py "$@"
