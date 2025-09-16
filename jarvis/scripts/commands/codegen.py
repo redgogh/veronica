@@ -56,8 +56,6 @@ def render_ctrl(tempdir, moduledir, vars):
 
     rendered = render(f'{tempdir}/Controller.temp', vars)
 
-    print(rendered)
-
     with open(f'{pathname}/{vars["module"]["entity"]}Controller.java', 'w', encoding='UTF-8') as javafile:
         javafile.write(rendered)
 
