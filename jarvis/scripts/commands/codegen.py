@@ -15,92 +15,37 @@
     limitations under the License.
 
 """
-import os
-from cmath import phase
-
+import _code_G
 import console
-from pathlib import Path
-from jinja2 import Template
+import configparser
 
-pathname = __file__.replace('\\', '/')
-script_name = pathname.split('/')[-1].split('.')[0]
+from pathlib import Path
+
+script_name = __file__.replace('\\', '/').split('/')[-1].split('.')[0]
 
 configure = {
     'desc': '代码生成器',
     'sys': 'Windows/Linux/MacOS',
 }
 
-def render(pathname: str, vargs):
-    path = Path(pathname)
+def read_alias_data(pathname):
+    config = configparser.ConfigParser()
+    config.optionxform = str
 
-    if not path.exists():
-        console.write(f'错误：模板文件不存在：{pathname}', console.RED)
+    try:
+        content_str = ''
+        with open(pathname, 'r') as file:
+            content_str = '[DEFAULT]\n' + file.read()
+        config.read_string(content_str)
+        return dict(config['DEFAULT'])
+    except Exception as e:
+        console.write(f"读取配置文件错误: {e}", color=console.RED)
+        return {}
 
-    template = Template(path.read_text(encoding='UTF-8'))
-
-    # 渲染页面
-    return template.render(
-        package=vargs['package'],
-        mapping=vargs['mapping'],
-        module=vargs['module']
-    )
-
-def render_ctrl(tempdir, moduledir, vars):
-    """
-    生成 Controller 代码
-    """
-    pathname = f'{moduledir}/controller'
-
-    # 不存在则创建
-    Path(pathname).mkdir(parents=True, exist_ok=True)
-
-    rendered = render(f'{tempdir}/Controller.temp', vars)
-
-    with open(f'{pathname}/{vars["module"]["entity"]}Controller.java', 'w', encoding='UTF-8') as javafile:
-        javafile.write(rendered)
-
-def render_service(tempdir, moduledir, vars):
-    """
-    生成 Service 代码
-    """
-    pathname = f'{moduledir}/service'
-
-    # 不存在则创建
-    Path(pathname).mkdir(parents=True, exist_ok=True)
-
-    # Service 接口
-    rendered = render(f'{tempdir}/Service.temp', vars)
-    with open(f'{pathname}/{vars["module"]["entity"]}Service.java', 'w', encoding='UTF-8') as javafile:
-        javafile.write(rendered)
-
-    # Service Impl 实现
-    rendered = render(f'{tempdir}/ServiceImplements.temp', vars)
-    with open(f'{pathname}/{vars["module"]["entity"]}ServiceImplements.java', 'w', encoding='UTF-8') as javafile:
-        javafile.write(rendered)
-
-def render_entities(tempdir, moduledir, vars):
-    """
-    生成 Entities 代码
-    """
-    pathname = f'{moduledir}/entities'
-
-    Path(pathname).mkdir(parents=True, exist_ok=True)
-
-    rendered = render(f'{tempdir}/Entity.temp', vars)
-    with open(f'{pathname}/{vars["module"]["entity"]}.java', 'w', encoding='UTF-8') as javafile:
-        javafile.write(rendered)
-
-def render_mappers(tempdir, moduledir, vars):
-    """
-    生成 Mapper 代码
-    """
-    pathname = f'{moduledir}/mappers'
-
-    Path(pathname).mkdir(parents=True, exist_ok=True)
-
-    rendered = render(f'{tempdir}/Mapper.temp', vars)
-    with open(f'{pathname}/{vars["module"]["entity"]}Mapper.java', 'w', encoding='UTF-8') as javafile:
-        javafile.write(rendered)
+def write_alias_data(data, pathname):
+    with open(pathname, 'w', encoding='utf-8') as f:
+        for key, value in data.items():
+            f.write(f'{key}={value}\n')
 
 def reg(subparsers):
     """
@@ -112,12 +57,18 @@ def reg(subparsers):
     :param subparsers: argparse 模块创建的子解析器对象，用于添加子命令。
     """
     parser = subparsers.add_parser(script_name, help=f"{configure['desc']} ({configure['sys']})")
+
     parser.add_argument('--basedir', help='代码所在目录（默认运行目录）')
     parser.add_argument('--tempdir', help='模板目录')
+    parser.add_argument('--alias', help='设置别名，示例：--alias "COM=com.example"')
+    parser.add_argument('--delete', action='store_true', help='标识删除操作，--delete --alias "<key>"')
 
-    parser.add_argument('-P', '--package', required=True, help='包名')
-    parser.add_argument('-M', '--module-name', required=True, help='模块名称，如：UserInfo')
-    parser.add_argument('-D', '--module-desc', required=True, help='模块描述，如：用户信息')
+    parser.add_argument('-p', '--package', help='包名')
+    parser.add_argument('-t', '--entity-table', help='数据库表名')
+    parser.add_argument('-m', '--module-name', help='模块名称，如：UserInfo')
+    parser.add_argument('-d', '--module-desc', help='模块描述，如：用户信息')
+
+    parser.add_argument('-X', type=str, help="组合标志：-s -c -m")
 
 def handle(args):
     """
@@ -128,23 +79,26 @@ def handle(args):
 
     :param args: argparse 模块解析后的参数对象，包含用户输入的参数及选项。
     """
-    tempdir = f'{Path(__file__).parents[1]}/templates'
-    sourcedir = f'{Path.cwd()}/src/main/java'
-    moduledir = f'{sourcedir}/{args.package.replace(".", "/")}'
+    alias_data = dict()
 
-    mapping = args.package.split('.')[-1]
+    # 生成配置文件路径
+    conf_home = f'{Path.home()}/Documents/{script_name}'
+    Path(conf_home).mkdir(parents=True, exist_ok=True)
+    alias_file = f'{conf_home}/alias.properties'
 
-    vars = {
-        'package': args.package,
-        'mapping': mapping,
-        'module': {
-            'varname': args.module_name[0].lower() + args.module_name[1:],
-            'entity': args.module_name,
-            'desc': args.module_desc,
-        }
-    }
+    # 读取配置
+    if Path(alias_file).exists():
+        alias_data = read_alias_data(alias_file)
 
-    render_ctrl(tempdir, moduledir, vars)
-    render_service(tempdir, moduledir, vars)
-    render_entities(tempdir, moduledir, vars)
-    render_mappers(tempdir, moduledir, vars)
+    if args.alias is not None:
+        if args.delete:
+            del alias_data[args.alias]
+        else:
+            alias_arr = args.alias.split("=")
+            alias_data[alias_arr[0]] = alias_arr[1]
+
+        write_alias_data(alias_data, alias_file)
+        exit()
+
+    # 生成代码
+    _code_G.execute(alias_data, args)

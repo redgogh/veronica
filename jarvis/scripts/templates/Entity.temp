@@ -13,7 +13,7 @@ import java.util.Date;
  * @author Red Gogh
  */
 @Data
-@TableName("{{ module.entity }}")
+@TableName("{{ module.table }}")
 public class {{ module.entity }} {
 
     /**
