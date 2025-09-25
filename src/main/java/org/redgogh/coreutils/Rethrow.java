@@ -25,6 +25,8 @@ import org.redgogh.coreutils.iface.Action;
 import org.redgogh.coreutils.iface.Callable;
 import org.redgogh.coreutils.reflect.UClass;
 
+import static org.redgogh.coreutils.string.StringUtils.strfmt;
+
 /**
  * @author Red Gogh
  */
@@ -58,8 +60,12 @@ public class Rethrow {
         /** 期望抛出的异常类型 */
         private final Class<? extends RuntimeException> expected;
 
-        public ExpectedThrow(Class<? extends RuntimeException> expected) {
+        /** 异常信息 */
+        private String throwMessage = null;
+
+        public ExpectedThrow(Class<? extends RuntimeException> expected, String throwMessage) {
             this.expected = expected;
+            this.throwMessage = throwMessage;
         }
 
         /**
@@ -76,27 +82,11 @@ public class Rethrow {
             } catch (Exception e) {
                 if (expected.isInstance(e))
                     throw (RuntimeException) e;
-                throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
-            }
-        }
-
-        /**
-         * 执行指定的无返回值函数，如果发生异常则抛出断言异常，并使用自定义的异常信息。
-         *
-         * <p>此方法用于执行可能抛出异常的操作，并在发生异常时提供详细的异常信息和格式化支持。
-         *
-         * @param function 要执行的函数
-         * @param fmt 自定义异常信息的格式
-         * @param args 格式化参数
-         * @throws AssertException 如果函数执行时发生异常
-         */
-        public void allow(Action function, String fmt, Object... args) {
-            try {
-                function.call();
-            } catch (Exception e) {
-                if (expected.isInstance(e))
-                    throw (RuntimeException) e;
-                throw (RuntimeException) BeanUtils.newInstance(expected, fmt, args);
+                if (throwMessage != null) {
+                    throw (RuntimeException) BeanUtils.newInstance(expected, throwMessage, EMPTY_ARGS);
+                } else {
+                    throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
+                }
             }
         }
 
@@ -116,29 +106,11 @@ public class Rethrow {
             } catch (Exception e) {
                 if (expected.isInstance(e))
                     throw (RuntimeException) e;
-                throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
-            }
-        }
-
-        /**
-         * 执行指定的有返回值函数，如果发生异常则抛出断言异常，并使用自定义的异常信息。
-         *
-         * <p>此方法用于执行可能抛出异常的操作，并在发生异常时提供详细的异常信息和格式化支持。
-         *
-         * @param function 要执行的函数
-         * @param fmt 自定义异常信息的格式
-         * @param args 格式化参数
-         * @param <T> 返回值的类型
-         * @return 函数返回的值；如果发生异常，则抛出 {@link AssertException}
-         * @throws AssertException 如果函数执行时发生异常
-         */
-        public <T> T allow(Callable<T> function, String fmt, Object... args) {
-            try {
-                return function.call();
-            } catch (Exception e) {
-                if (expected.isInstance(e))
-                    throw (RuntimeException) e;
-                throw (RuntimeException) BeanUtils.newInstance(expected, fmt, args);
+                if (throwMessage != null) {
+                    throw (RuntimeException) BeanUtils.newInstance(expected, throwMessage, EMPTY_ARGS);
+                } else {
+                    throw (RuntimeException) BeanUtils.newInstance(expected, e.getMessage(), EMPTY_ARGS);
+                }
             }
         }
     }
@@ -153,7 +125,20 @@ public class Rethrow {
      * @return 异常包装类
      */
     public static ExpectedThrow expect(Class<? extends RuntimeException> expected) {
-        return new ExpectedThrow(expected);
+        return expect(expected, null);
+    }
+
+    /**
+     * 重新封装异常类型并抛出
+     *
+     * <p>指定一个异常类型，若发生异常后则将异常类型封装成指定的异常并
+     * 抛出
+     *
+     * @param expected 期望抛出的异常类型
+     * @return 异常包装类
+     */
+    public static ExpectedThrow expect(Class<? extends RuntimeException> expected, String fmt, Object... args) {
+        return new ExpectedThrow(expected, fmt == null ? null : strfmt(fmt, args));
     }
 
     /**

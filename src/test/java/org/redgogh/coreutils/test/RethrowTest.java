@@ -32,7 +32,7 @@ public class RethrowTest {
 
     @Test
     public void rethrowTest() {
-        Rethrow.expect(IOWriteException.class).allow(() -> {
+        Rethrow.expect(IOWriteException.class, "OH～").allow(() -> {
             throw new RuntimeException("Rethrow to IOWriteException test");
         });
     }
