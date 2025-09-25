@@ -48,7 +48,7 @@ public class HttpClientsTest {
         multipartBody.put("document", new File("src/main/java/com/redgogh/tools/ArrayUtils.java"));
 
         Response response = HttpClient.open("POST", "http://127.0.0.1:8001/security/check/file")
-                .addRequestBody(multipartBody)
+                .setBody(multipartBody)
                 .newCall();
 
         System.out.println(response);
@@ -57,7 +57,7 @@ public class HttpClientsTest {
     @Test
     public void callJSONBodyTest() {
         Response response = HttpClient.open("POST", "http://127.0.0.1:8001/security/save")
-                .addRequestBody(Maps.of("id", "12138", "name", "zs", "age", "18"))
+                .setBody(Maps.of("id", "12138", "name", "zs", "age", "18"))
                 .newCall();
 
         System.out.println(response);
@@ -65,11 +65,11 @@ public class HttpClientsTest {
 
     @Test
     public void callGetTest() {
-        QueryArgumentsBuilder queryArgumentsBuilder = new QueryArgumentsBuilder();
+        Arguments queryArgumentsBuilder = new Arguments();
         queryArgumentsBuilder.putAll(Maps.of("id", "12138", "name", "zs", "age", "18"));
         Response response = HttpClient.open("GET", "http://127.0.0.1:8001/security/get")
-                .setQueryArgumentsBuilder(queryArgumentsBuilder)
-                .sslVerifierDisable()
+                .setArguments(queryArgumentsBuilder)
+                .skipSSL()
                 .newCall();
 
         System.out.println(response);
@@ -78,7 +78,7 @@ public class HttpClientsTest {
     @Test
     public void getUserTest() {
         Response response = HttpClient.open("GET", "http://127.0.0.1:8001/testing/user")
-                .sslVerifierDisable()
+                .skipSSL()
                 .newCall();
         System.out.println(response);
     }
@@ -86,7 +86,7 @@ public class HttpClientsTest {
     @Test
     public void callAsyncTest() throws InterruptedException {
         HttpClient.open("POST", "http://127.0.0.1:8001/testing/async-call")
-                .setQueryArgumentsBuilder(new QueryArgumentsBuilder("sleep=1"))
+                .setArguments(new Arguments("sleep=1"))
                 .setReadTimeout(3)
                 .newCall(new Callback() {
                     @Override
@@ -107,7 +107,7 @@ public class HttpClientsTest {
     @Test
     public void downloadFileTest() {
         StreamResponse octet = HttpClient.open("GET", "https://repo.huaweicloud.com/java/jdk/8u202-b08-demos/jdk-8u202-windows-x64-demos.zip")
-                .sslVerifierDisable()
+                .skipSSL()
                 .newStreamCall();
         octet.transferTo(new File("Desktop://jdk-8u202-windows-x64-demos.zip"));
     }
@@ -115,7 +115,7 @@ public class HttpClientsTest {
     @Test
     public void asyncDownloadFileTest() throws InterruptedException {
         HttpClient.open("GET", "https://repo.huaweicloud.com/java/jdk/8u202-b08-demos/jdk-8u202-windows-x64-demos.zip")
-                .sslVerifierDisable()
+                .skipSSL()
                 .newStreamCall(new StreamCallback() {
                     @Override
                     public void onFailure(Exception e) {
@@ -136,25 +136,6 @@ public class HttpClientsTest {
                 .callback((code, body) -> {
                     System.out.println(body);
                 });
-    }
-
-    @Test
-    public void getAndOpenTest() {
-        // 使用 open 方式
-        Response openResponse = HttpClient.open("GET", "https://www.baidu.com")
-                .configure(new RequestConfigure()
-                        .addHeader("Accept", "*/*")
-                        .setConnectTimeout(3000)
-                        .setReadTimeout(3000)
-                        .setSslVerificationDisable(true))
-                .newCall();
-        System.out.println(openResponse.getContent());
-
-        System.out.println("\n---------------------------------------------------\n");
-
-        // 使用 get 方式
-        Response getResponse = HttpClient.get("https://www.baidu.com");
-        System.out.println(getResponse.getContent());
     }
 
 }

@@ -65,13 +65,22 @@ public class HttpClient {
     private String url;
 
     /** 查询参数构建器，用于构建请求的查询参数。 */
-    private QueryArgumentsBuilder queryArgumentsBuilder;
+    private Arguments arguments = new Arguments();
 
     /** 请求体，可以是任意对象类型。 */
     private Object object;
 
-    /** Http 请求配置 */
-    private RequestConfigure configure = new RequestConfigure();
+    /** 禁用 SSL 证书验证 */
+    private boolean isSkipSSL = false;
+
+    /** 读取响应的超时时间 */
+    private int readTimeout = 60000;
+
+    /** 连接请求的超时时间 */
+    private int connectTimeout = 60000;
+
+    /** 请求头 */
+    private HttpHeaders headers = new HttpHeaders();
 
     /**
      * `HttpMethod` 枚举定义了支持的 HTTP 请求方法。
@@ -100,6 +109,107 @@ public class HttpClient {
     }
 
     /**
+     * 发送 GET 请求（无参数和请求头）
+     *
+     * <p>该方法用于发送一个简单的 GET 请求到指定 URL，不包含任何查询参数和自定义请求头。
+     * 适用于基本的 GET 请求场景。
+     *
+     * @param url 请求的目标 URL
+     * @return 服务器返回的 {@link Response} 响应对象
+     */
+    public static Response get(String url) {
+        return get(url, null, null);
+    }
+
+    /**
+     * 发送带查询参数的 GET 请求
+     *
+     * <p>该方法用于发送一个包含查询参数的 GET 请求到指定 URL，但不包含自定义请求头。
+     * 适用于需要传递查询参数的 GET 请求场景。
+     *
+     * @param url 请求的目标 URL
+     * @param arguments 查询参数集合
+     * @return 服务器返回的 {@link Response} 响应对象
+     */
+    public static Response get(String url, Arguments arguments) {
+        return get(url, arguments, null);
+    }
+
+    /**
+     * 发送带请求头的 GET 请求
+     *
+     * <p>该方法用于发送一个包含自定义请求头的 GET 请求到指定 URL，但不包含查询参数。
+     * 适用于需要设置特定请求头的 GET 请求场景。
+     *
+     * @param url 请求的目标 URL
+     * @param headers 自定义请求头集合
+     * @return 服务器返回的 {@link Response} 响应对象
+     */
+    public static Response get(String url, HttpHeaders headers) {
+        return get(url, null, headers);
+    }
+
+    /**
+     * 发送完整的 GET 请求
+     *
+     * <p>该方法用于发送一个完整的 GET 请求，可以同时包含查询参数和自定义请求头。
+     * 适用于需要完整配置的 GET 请求场景。
+     *
+     * @param url 请求的目标 URL
+     * @param arguments 查询参数集合，可为 {@code null}
+     * @param headers 自定义请求头集合，可为 {@code null}
+     * @return 服务器返回的 {@link Response} 响应对象
+     */
+    public static Response get(String url, Arguments arguments, HttpHeaders headers) {
+        HttpClient client = open("GET", url);
+
+        if (arguments != null)
+            client.setArguments(arguments);
+
+        if (Maps.isEmpty(headers))
+            client.addHeader(headers);
+
+        return client.newCall();
+    }
+
+    /**
+     * 发送 POST 请求（带请求体）
+     *
+     * <p>该方法用于发送一个包含请求体的 POST 请求到指定 URL，不包含自定义请求头。
+     * 适用于基本的 POST 请求场景。
+     *
+     * @param url 请求的目标 URL
+     * @param body 请求体内容，可为 {@code null}
+     * @return 服务器返回的 {@link Response} 响应对象
+     */
+    public static Response post(String url, Object body) {
+        return post(url, body, null);
+    }
+
+    /**
+     * 发送完整的 POST 请求
+     *
+     * <p>该方法用于发送一个完整的 POST 请求，包含请求体和自定义请求头。
+     * 适用于需要完整配置的 POST 请求场景。
+     *
+     * @param url 请求的目标 URL
+     * @param body 请求体内容，可为 {@code null}
+     * @param headers 自定义请求头映射，可为 {@code null}
+     * @return 服务器返回的 {@link Response} 响应对象
+     */
+    public static Response post(String url, Object body, Map<String, String> headers) {
+        HttpClient client = open("POST", url);
+
+        if (body != null)
+            client.setBody(body);
+
+        if (Maps.isEmpty(headers))
+            headers.forEach(client::addHeader);
+
+        return client.newCall();
+    }
+
+    /**
      * 创建一个新的 `HttpClient` 实例
      *
      * <p>该方法是一个静态工厂方法，通过指定的请求方法和 URL 创建一个新的 `HttpClient` 实例。
@@ -113,128 +223,16 @@ public class HttpClient {
     }
 
     /**
-     * 直接发起一个 GET 请求
+     * 添加请求头
      *
-     * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
-     * 代码看着很乱。
+     * <p>该方法用于向请求中添加一个新的请求头。
      *
-     * @param url 请求地址
-     * @return 响应
+     * @param name 请求头的名称
+     * @param value 请求头的值
+     * @return 当前 `HttpClient` 实例，以支持链式调用
      */
-    public static Response get(String url) {
-        return get(url, null, null);
-    }
-
-    /**
-     * 直接发起一个 GET 请求
-     *
-     * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param builder 请求参数，如果没有可以为空
-     * @return 响应
-     */
-    public static Response get(String url, QueryArgumentsBuilder builder) {
-        return get(url, null, builder);
-    }
-
-    /**
-     * 直接发起一个 GET 请求
-     *
-     * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param configure 请求配置信息
-     * @return 响应
-     */
-    public static Response get(String url, RequestConfigure configure) {
-        return get(url, configure, null);
-    }
-
-    /**
-     * 直接发起一个 GET 请求
-     *
-     * <p>使用通用请求配置直接发起一个 GET 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param configure 请求配置信息
-     * @param builder 请求参数，如果没有可以为空
-     * @return 响应
-     */
-    public static Response get(String url, RequestConfigure configure, QueryArgumentsBuilder builder) {
-        return open("GET", url)
-                .configure(configure)
-                .setQueryArgumentsBuilder(builder)
-                .newCall();
-    }
-
-    /**
-     * 直接发起一个 POST 请求
-     *
-     * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param configure 请求配置信息
-     * @return 响应
-     */
-    public static Response post(String url) {
-        return post(url, null, null);
-    }
-
-
-    /**
-     * 直接发起一个 POST 请求
-     *
-     * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param body 请求体，如果没有可以为空
-     * @return 响应
-     */
-    public static Response post(String url, Object body) {
-        return post(url, null, body);
-    }
-
-    /**
-     * 直接发起一个 POST 请求
-     *
-     * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param configure 请求配置信息
-     * @return 响应
-     */
-    public static Response post(String url, RequestConfigure configure) {
-        return post(url, configure, null);
-    }
-
-    /**
-     * 直接发起一个 POST 请求
-     *
-     * <p>使用通用请求配置直接发起一个 POST 请求，避免过多的配置让
-     * 代码看着很乱。
-     *
-     * @param url 请求地址
-     * @param configure 请求配置信息
-     * @param body 请求体，如果没有可以为空
-     * @return 响应
-     */
-    public static Response post(String url, RequestConfigure configure, Object body) {
-        return open("POST", url)
-                .configure(configure)
-                .addRequestBody(body)
-                .newCall();
-    }
-
-    public HttpClient configure(RequestConfigure configure) {
-        if (configure != null)
-            this.configure = configure;
+    public HttpClient addHeader(String name, String value) {
+        headers.put(name, value);
         return this;
     }
 
@@ -247,8 +245,9 @@ public class HttpClient {
      * @param value 请求头的值
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
-    public HttpClient addHeader(String name, String value) {
-        configure.addHeader(name, value);
+    public HttpClient addHeader(HttpHeaders headers) {
+        if (headers != null)
+            headers.putAll(headers);
         return this;
     }
 
@@ -261,11 +260,11 @@ public class HttpClient {
      * <p>适用于需要动态构建和设置查询参数的场景。
      *
      * @param parameters 参数数组，每个参数应为“key=value”格式的字符串
-     * @see QueryArgumentsBuilder
+     * @see Arguments
      * @return 当前的 `HttpClient` 实例
      */
-    public HttpClient addQueryArguments(String ...parameters) {
-        return setQueryArgumentsBuilder(new QueryArgumentsBuilder(parameters));
+    public HttpClient addArguments(String ...parameters) {
+        return setArguments(new Arguments(parameters));
     }
 
     /**
@@ -276,12 +275,9 @@ public class HttpClient {
      * @param queryArgumentsBuilder 用于构建查询参数的 `QueryBuilder` 对象
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
-    public HttpClient setQueryArgumentsBuilder(QueryArgumentsBuilder queryArgumentsBuilder) {
-        if (this.queryArgumentsBuilder == null)
-            this.queryArgumentsBuilder = new QueryArgumentsBuilder();
-
-        if (queryArgumentsBuilder != null)
-            this.queryArgumentsBuilder.putAll(queryArgumentsBuilder);
+    public HttpClient setArguments(Arguments varguments) {
+        if (varguments != null)
+            this.arguments.putAll(varguments);
 
         return this;
     }
@@ -294,10 +290,9 @@ public class HttpClient {
      * @param object 请求体对象
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
-    public HttpClient addRequestBody(Object object) {
+    public HttpClient setBody(Object object) {
         if (strhas(method, HttpMethod.GET, HttpMethod.HEAD))
             throw new HttpRequestException("GET 或 HEAD 方法不支持请求主体。");
-
         this.object = object;
         return this;
     }
@@ -312,8 +307,8 @@ public class HttpClient {
      *
      * @return 当前的 `HttpClient` 实例，允许链式调用
      */
-    public HttpClient sslVerifierDisable() {
-        configure.setSslVerificationDisable(true);
+    public HttpClient skipSSL() {
+        isSkipSSL = true;
         return this;
     }
 
@@ -327,7 +322,7 @@ public class HttpClient {
      * @return 当前 `HttpClient` 实例
      */
     public HttpClient setReadTimeout(int readTimeout) {
-        configure.setReadTimeout(readTimeout);
+        this.readTimeout = readTimeout;
         return this;
     }
 
@@ -341,7 +336,7 @@ public class HttpClient {
      * @return 当前 `HttpClient` 实例
      */
     public HttpClient setConnectTimeout(int connectTimeout) {
-        configure.setConnectTimeout(connectTimeout);
+        this.connectTimeout = connectTimeout;
         return this;
     }
 
@@ -414,14 +409,13 @@ public class HttpClient {
      */
     private okhttp3.Response newCall0(Object callback) throws IOException {
         /* init url. */
-        if (queryArgumentsBuilder != null)
-            url = queryArgumentsBuilder.argConcatBuild(url);
+        url = arguments.argConcatBuild(url);
 
         OkHttpClient.Builder clientBuilder = CLIENT.newBuilder();
-        clientBuilder.connectTimeout(configure.getConnectTimeout(), TimeUnit.MILLISECONDS);
-        clientBuilder.readTimeout(configure.getReadTimeout(), TimeUnit.MILLISECONDS);
+        clientBuilder.connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
+        clientBuilder.readTimeout(readTimeout, TimeUnit.MILLISECONDS);
 
-        if (configure.isSslVerificationDisable()) {
+        if (isSkipSSL) {
             clientBuilder.sslSocketFactory(SSLSocketClient.getSSLSocketFactory(), SSLSocketClient.getX509TrustManager());
             clientBuilder.hostnameVerifier(SSLSocketClient.getHostnameVerifier());
         }
@@ -517,8 +511,8 @@ public class HttpClient {
         }
 
         /* add headers. */
-        if (!Maps.isEmpty(configure.getHeaders()))
-            configure.getHeaders().forEach(requestBuilder::addHeader);
+        if (!Maps.isEmpty(headers))
+            headers.forEach(requestBuilder::addHeader);
 
         /* final execute request. */
         return client.newCall(requestBuilder.build());

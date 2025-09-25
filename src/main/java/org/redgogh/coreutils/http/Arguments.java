@@ -20,8 +20,6 @@ package org.redgogh.coreutils.http;
 
 /* Creates on 2023/6/26. */
 
-import org.redgogh.coreutils.string.StringUtils;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -49,14 +47,14 @@ import static org.redgogh.coreutils.string.StringUtils.strfmt;
  * @since 1.0
  * @author Red Gogh
  */
-public class QueryArgumentsBuilder extends LinkedHashMap<String, String> {
+public class Arguments extends LinkedHashMap<String, String> {
 
     /**
      * 无参数构造方法
      *
      * <p>创建一个空的 `QueryBuilder` 实例。此实例不包含任何参数。
      */
-    public QueryArgumentsBuilder() {
+    public Arguments() {
         this((String[]) null);
     }
 
@@ -73,7 +71,7 @@ public class QueryArgumentsBuilder extends LinkedHashMap<String, String> {
      *
      * @param parameters 参数数组，每个参数应为“key=value”格式的字符串
      */
-    public QueryArgumentsBuilder(String ...parameters) {
+    public Arguments(String ...parameters) {
         if (parameters != null) {
             for (String parameter : parameters) {
                 String[] a = strtok(parameter, "=");
