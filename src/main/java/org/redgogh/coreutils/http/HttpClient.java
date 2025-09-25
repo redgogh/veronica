@@ -161,15 +161,10 @@ public class HttpClient {
      * @return 服务器返回的 {@link Response} 响应对象
      */
     public static Response get(String url, Arguments arguments, HttpHeaders headers) {
-        HttpClient client = open("GET", url);
-
-        if (arguments != null)
-            client.setArguments(arguments);
-
-        if (Maps.isEmpty(headers))
-            client.addHeader(headers);
-
-        return client.newCall();
+        return open("GET", url)
+                .addHeader(headers)
+                .setArguments(arguments)
+                .newCall();
     }
 
     /**
@@ -197,16 +192,11 @@ public class HttpClient {
      * @param headers 自定义请求头映射，可为 {@code null}
      * @return 服务器返回的 {@link Response} 响应对象
      */
-    public static Response post(String url, Object body, Map<String, String> headers) {
-        HttpClient client = open("POST", url);
-
-        if (body != null)
-            client.setBody(body);
-
-        if (Maps.isEmpty(headers))
-            headers.forEach(client::addHeader);
-
-        return client.newCall();
+    public static Response post(String url, Object body, HttpHeaders headers) {
+        return open("POST", url)
+                .addHeader(headers)
+                .setBody(body)
+                .newCall();
     }
 
     /**
@@ -246,8 +236,8 @@ public class HttpClient {
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
     public HttpClient addHeader(HttpHeaders headers) {
-        if (headers != null)
-            headers.putAll(headers);
+        if (!Maps.isEmpty(headers))
+            this.headers.putAll(headers);
         return this;
     }
 
