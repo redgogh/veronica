@@ -60,7 +60,7 @@ def reg(subparsers):
 
     parser.add_argument('--basedir', help='代码所在目录（默认运行目录）')
     parser.add_argument('--tempdir', help='模板目录')
-    parser.add_argument('--alias', help='设置别名，示例：--alias "COM=com.example"')
+    parser.add_argument('--alias', const=True, nargs='?', help='设置别名，示例：--alias "COM=com.example"')
     parser.add_argument('--delete', action='store_true', help='标识删除操作，--delete --alias "<key>"')
 
     parser.add_argument('-p', '--package', help='包名')
@@ -91,13 +91,17 @@ def handle(args):
         alias_data = read_alias_data(alias_file)
 
     if args.alias is not None:
-        if args.delete:
-            del alias_data[args.alias]
+        if args.alias is True:
+            for (k, v) in alias_data.items():
+                print(f' * {k}: {v}')
         else:
-            alias_arr = args.alias.split("=")
-            alias_data[alias_arr[0]] = alias_arr[1]
+            if args.delete:
+                del alias_data[args.alias]
+            else:
+                alias_arr = args.alias.split("=")
+                alias_data[alias_arr[0]] = alias_arr[1]
 
-        write_alias_data(alias_data, alias_file)
+            write_alias_data(alias_data, alias_file)
         exit()
 
     # 生成代码
