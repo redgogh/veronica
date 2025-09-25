@@ -165,7 +165,7 @@ public class IOUtils {
      * @return 返回所有文件中的字节数据
      */
     public static byte[] read(File file) {
-        Assert.checkTrue(file != null && file.isFile(), "文件不能为空且不能是目录！");
+        Assert.isTrue(file != null && file.isFile(), "文件不能为空且不能是目录！");
         return Rethrow.allow(() -> read(new FileInputStream(file)));
     }
 
