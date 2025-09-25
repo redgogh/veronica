@@ -42,6 +42,7 @@
 - 优化 `UClass` 以及 `UField` 方法，新增反射结果缓存，避免重复执行反射函数。
 - 优化 `StringUtils#strmatch` 缓存策略，使用更简单高效的 `LRU` 淘汰策略。
 - 优化 `HttpClient#Response` 返回逻辑，内部不做错误校验。
+- 优化 `HttpClient` API，更简单易用。
 
 ## 🐞 BUG 修复
 
