@@ -29,6 +29,7 @@ import okhttp3.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import static org.redgogh.coreutils.string.StringUtils.strhas;
@@ -222,7 +223,7 @@ public class HttpClient {
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
     public HttpClient addHeader(String name, String value) {
-        headers.put(name, value);
+        headers.addHeader(name, value);
         return this;
     }
 
@@ -236,8 +237,9 @@ public class HttpClient {
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
     public HttpClient addHeader(HttpHeaders headers) {
-        if (!Maps.isEmpty(headers))
-            this.headers.putAll(headers);
+        Assert.notNull(headers);
+        if (!headers.isEmpty())
+            this.headers.forEach(headers::addHeader);
         return this;
     }
 
@@ -501,7 +503,7 @@ public class HttpClient {
         }
 
         /* add headers. */
-        if (!Maps.isEmpty(headers))
+        if (!headers.isEmpty())
             headers.forEach(requestBuilder::addHeader);
 
         /* final execute request. */

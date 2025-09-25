@@ -18,7 +18,11 @@ package org.redgogh.coreutils.http;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import java.util.HashMap;
+import org.redgogh.coreutils.collection.Lists;
+import org.redgogh.coreutils.collection.Maps;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * HttpHeaders
@@ -26,6 +30,38 @@ import java.util.HashMap;
  * @author Red Gogh
  * @since 1.0
  */
-public class HttpHeaders extends HashMap<String, String> {
+public class HttpHeaders {
+
+    private final Map<String, List<String>> headers = Maps.newHashMap();
+
+    public void addHeader(String name, String value) {
+        if (headers.containsKey(name)) {
+            headers.get(name).add(value);
+        } else {
+            List<String> values = Lists.newArrayList();
+            values.add(value);
+            headers.put(name, values);
+        }
+    }
+
+    public String getHeader(String name) {
+        return headers.containsKey(name) ? headers.get(name).getFirst() : null;
+    }
+
+    public int size() {
+        return headers.size();
+    }
+
+    public boolean isEmpty() {
+        return headers.isEmpty();
+    }
+
+    public interface Iter {
+        void action(String name, String value);
+    }
+
+    public void forEach(Iter iter) {
+        headers.forEach((name, values) -> values.forEach(value -> iter.action(name, value)));
+    }
 
 }
