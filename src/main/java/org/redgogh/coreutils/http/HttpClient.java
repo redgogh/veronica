@@ -20,7 +20,7 @@ package org.redgogh.coreutils.http;
 
 import com.alibaba.fastjson.JSON;
 import org.redgogh.coreutils.collection.Maps;
-import org.redgogh.coreutils.exception.HttpRequestException;
+import org.redgogh.coreutils.exception.HttpException;
 import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.TryUtils;
@@ -282,7 +282,7 @@ public class HttpClient {
      */
     public HttpClient setBody(Object object) {
         if (strhas(method, HttpMethod.GET, HttpMethod.HEAD))
-            throw new HttpRequestException("GET 或 HEAD 方法不支持请求主体。");
+            throw new HttpException("GET 或 HEAD 方法不支持请求主体。");
         this.object = object;
         return this;
     }
@@ -376,13 +376,13 @@ public class HttpClient {
      *
      * @param callback 回调接口，如果改对象不为 `null` 则是异步调用。
      * @return 响应对象 `Response`
-     * @throws HttpRequestException 如果请求发送失败
+     * @throws HttpException 如果请求发送失败
      */
     public Response newCall(Callback callback) {
         try (okhttp3.Response response = newCall0(callback)) {
             return newCallResponse(response);
         } catch (IOException e) {
-            throw new HttpRequestException(e);
+            throw new HttpException(e.getMessage());
         }
     }
 
@@ -395,7 +395,7 @@ public class HttpClient {
      *
      * @param callback 回调接口，如果改对象不为 `null` 则是异步调用。
      * @return 响应对象 `Response`
-     * @throws HttpRequestException 如果请求发送失败
+     * @throws HttpException 如果请求发送失败
      */
     private okhttp3.Response newCall0(Object callback) throws IOException {
         /* init url. */

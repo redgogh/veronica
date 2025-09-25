@@ -29,10 +29,10 @@ package org.redgogh.coreutils.exception;
  *
  * <h2>构造函数</h2>
  * <ul>
- *     <li>{@link #HttpRequestException()} - 默认构造函数，不带任何参数。</li>
- *     <li>{@link #HttpRequestException(Throwable e)} - 通过已有的异常创建一个新的 HTTP 请求异常。</li>
- *     <li>{@link #HttpRequestException(String fmt, Object... args)} - 根据格式化字符串和参数创建异常信息。</li>
- *     <li>{@link #HttpRequestException(String fmt, Throwable e, Object... args)} - 根据格式化字符串、已有异常和参数创建异常信息。</li>
+ *     <li>{@link #HttpException()} - 默认构造函数，不带任何参数。</li>
+ *     <li>{@link #HttpException(Throwable e)} - 通过已有的异常创建一个新的 HTTP 请求异常。</li>
+ *     <li>{@link #HttpException(String fmt, Object... args)} - 根据格式化字符串和参数创建异常信息。</li>
+ *     <li>{@link #HttpException(String fmt, Throwable e, Object... args)} - 根据格式化字符串、已有异常和参数创建异常信息。</li>
  * </ul>
  *
  * <h2>使用示例</h2>
@@ -54,12 +54,12 @@ package org.redgogh.coreutils.exception;
  * @author Red Gogh
  * @since 1.0
  */
-public class HttpRequestException extends UncheckedException {
+public class HttpException extends UncheckedException {
 
     /**
      * 默认构造函数。
      */
-    public HttpRequestException() {
+    public HttpException() {
     }
 
     /**
@@ -67,7 +67,7 @@ public class HttpRequestException extends UncheckedException {
      *
      * @param e 原始异常，不能为 null。
      */
-    public HttpRequestException(Throwable e) {
+    public HttpException(Throwable e) {
         super(e);
     }
 
@@ -77,7 +77,7 @@ public class HttpRequestException extends UncheckedException {
      * @param fmt 格式化字符串，不能为 null。
      * @param args 格式化参数。
      */
-    public HttpRequestException(String fmt, Object... args) {
+    public HttpException(String fmt, Object... args) {
         super(fmt, args);
     }
 
@@ -88,7 +88,7 @@ public class HttpRequestException extends UncheckedException {
      * @param e 原始异常，不能为 null。
      * @param args 格式化参数。
      */
-    public HttpRequestException(String fmt, Throwable e, Object... args) {
+    public HttpException(String fmt, Throwable e, Object... args) {
         super(fmt, e, args);
     }
 }
