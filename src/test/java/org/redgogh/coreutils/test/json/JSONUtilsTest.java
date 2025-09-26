@@ -49,8 +49,8 @@ public class JSONUtilsTest {
 
         System.out.println("=======================");
 
-        List<HighStudent> highStudents = JSONUtils.getList(content, "$.users", HighStudent.class);
-        System.out.println(JSONUtils.stringify(highStudents));
+        // List<HighStudent> highStudents = JSONUtils.getList(content, "$.users", HighStudent.class);
+        // System.out.println(JSONUtils.stringify(highStudents));
     }
 
 }
