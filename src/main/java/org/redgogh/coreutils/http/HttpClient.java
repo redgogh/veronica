@@ -90,6 +90,8 @@ public class HttpClient {
         GET, POST, PUT, PATCH, DELETE, HEAD
     }
 
+    private static final HttpHeaders EMPTY_HTTP_HEADERS = new HttpHeaders();
+
     private static final OkHttpClient CLIENT = new OkHttpClient();
 
     /**
@@ -119,7 +121,7 @@ public class HttpClient {
      * @return 服务器返回的 {@link Response} 响应对象
      */
     public static Response get(String url) {
-        return get(url, null, null);
+        return get(url, null, EMPTY_HTTP_HEADERS);
     }
 
     /**
@@ -133,7 +135,7 @@ public class HttpClient {
      * @return 服务器返回的 {@link Response} 响应对象
      */
     public static Response get(String url, Arguments arguments) {
-        return get(url, arguments, null);
+        return get(url, arguments, EMPTY_HTTP_HEADERS);
     }
 
     /**
@@ -163,7 +165,7 @@ public class HttpClient {
      */
     public static Response get(String url, Arguments arguments, HttpHeaders headers) {
         return open("GET", url)
-                .addHeader(headers)
+                .setHeaders(headers)
                 .setArguments(arguments)
                 .newCall();
     }
@@ -195,7 +197,7 @@ public class HttpClient {
      */
     public static Response post(String url, Object body, HttpHeaders headers) {
         return open("POST", url)
-                .addHeader(headers)
+                .setHeaders(headers)
                 .setBody(body)
                 .newCall();
     }
@@ -236,7 +238,7 @@ public class HttpClient {
      * @param value 请求头的值
      * @return 当前 `HttpClient` 实例，以支持链式调用
      */
-    public HttpClient addHeader(HttpHeaders headers) {
+    public HttpClient setHeaders(HttpHeaders headers) {
         Assert.notNull(headers);
         if (!headers.isEmpty())
             this.headers.forEach(headers::addHeader);
