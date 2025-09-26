@@ -17,4 +17,4 @@
 #
 # --------------------------------------------------------------------------------
 SCRIPT_DIR=$(dirname "$(dirname "$(realpath "$0")")")
-python $SCRIPT_DIR/jarvis/scripts/jarvis.py "$@"
+python $SCRIPT_DIR/fx/scripts/fx.py "$@"

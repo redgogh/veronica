@@ -22,4 +22,4 @@ set parent_dir=%current_dir%\..
 cd /d %parent_dir%
 set parent_dir=%cd%
 
-python %parent_dir%/devcli/scripts/devcli.py %*
+python %parent_dir%/devcli/scripts/fx.py %*
