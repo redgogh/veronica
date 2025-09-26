@@ -19,10 +19,10 @@ package org.redgogh.coreutils.http;
 \* -------------------------------------------------------------------------------- */
 
 import com.alibaba.fastjson.JSONObject;
-import org.redgogh.coreutils.string.StringUtils;
-import org.redgogh.coreutils.TryUtils;
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
+import org.redgogh.coreutils.TryUtils;
+import org.redgogh.coreutils.string.StringUtils;
 
 import java.util.Map;
 

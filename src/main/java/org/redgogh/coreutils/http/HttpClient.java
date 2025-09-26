@@ -19,21 +19,19 @@ package org.redgogh.coreutils.http;
 \* -------------------------------------------------------------------------------- */
 
 import com.alibaba.fastjson.JSON;
-import org.redgogh.coreutils.collection.Maps;
-import org.redgogh.coreutils.exception.HttpException;
+import okhttp3.*;
 import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.Rethrow;
 import org.redgogh.coreutils.TryUtils;
-import okhttp3.*;
+import org.redgogh.coreutils.exception.HttpException;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-import static org.redgogh.coreutils.string.StringUtils.strhas;
 import static org.redgogh.coreutils.TypeCvt.atos;
+import static org.redgogh.coreutils.string.StringUtils.strhas;
 import static org.redgogh.coreutils.string.StringUtils.uppercase;
 
 /**
@@ -181,7 +179,7 @@ public class HttpClient {
      * @return 服务器返回的 {@link Response} 响应对象
      */
     public static Response post(String url, Object body) {
-        return post(url, body, null);
+        return post(url, body, EMPTY_HTTP_HEADERS);
     }
 
     /**

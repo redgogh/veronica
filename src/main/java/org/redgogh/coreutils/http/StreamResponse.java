@@ -18,9 +18,9 @@ package org.redgogh.coreutils.http;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
+import okhttp3.ResponseBody;
 import org.redgogh.coreutils.Assert;
 import org.redgogh.coreutils.io.IOUtils;
-import okhttp3.ResponseBody;
 
 import java.io.Closeable;
 import java.io.File;
