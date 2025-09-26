@@ -18,6 +18,7 @@
 - 新增 `FileUtils` 针对于文件操作的工具类。
 - 新增 `ObjectSerializer` 用于序列化与反序列化对象。
 - 新增 `DateFormatter` 解析支持带毫秒的日期格式。
+- 新增 `JSONUtils` 工具类
 
 ## 👻 优化功能
 
