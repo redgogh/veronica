@@ -118,11 +118,11 @@ public class JSONUtils {
      * @throws JSONException 如果 JSON 解析失败
      */
     @SuppressWarnings("unchecked")
-    public static <T> T get(Object rootObject, String path, Class<T> uClass) {
+    public static <T> T get(Object rootObject, String path, Class<?> uClass) {
         Object o = get(rootObject, path);
 
         if (o instanceof JSONObject object)
-            return object.toJavaObject(uClass);
+            return (T) object.toJavaObject(uClass);
 
         if (o instanceof JSONArray array)
             return (T) array.toJavaList(uClass);

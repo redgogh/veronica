@@ -44,14 +44,12 @@
         <fastjson.version>2.0.26</fastjson.version>
         <java-jwt.version>4.3.0</java-jwt.version>
         <okhttp.version>4.12.0</okhttp.version>
-        <ip2region.version>2.6.1</ip2region.version>
-        <scala.version>2.10.4</scala.version>
         <apache-poi.version>5.2.3</apache-poi.version>
         <asm.version>9.5</asm.version>
         <junit.version>4.13.2</junit.version>
         <poi.version>5.4.0</poi.version>
         <nimbus-jose-jwt.version>10.0.2</nimbus-jose-jwt.version>
-        <json.version>20171018</json.version>
+        <json.version>20231013</json.version>
         <!-- compile -->
         <java.compiler.version>21</java.compiler.version>
         <maven.compiler.source>${java.compiler.version}</maven.compiler.source>

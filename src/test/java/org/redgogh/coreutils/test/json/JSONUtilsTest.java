@@ -24,6 +24,8 @@ import org.redgogh.coreutils.student.HighStudent;
 
 import java.util.List;
 
+import static org.apache.commons.math3.stat.inference.TestUtils.t;
+
 @SuppressWarnings("ALL")
 public class JSONUtilsTest {
 
@@ -49,8 +51,8 @@ public class JSONUtilsTest {
 
         System.out.println("=======================");
 
-        // List<HighStudent> highStudents = JSONUtils.getList(content, "$.users", HighStudent.class);
-        // System.out.println(JSONUtils.stringify(highStudents));
+        List<HighStudent> highStudents = JSONUtils.get(content, "$.users", HighStudent.class);
+        System.out.println(JSONUtils.stringify(highStudents));
     }
 
 }
