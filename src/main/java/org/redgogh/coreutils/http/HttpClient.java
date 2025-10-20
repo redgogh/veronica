@@ -239,7 +239,7 @@ public class HttpClient {
     public HttpClient setHeaders(HttpHeaders headers) {
         Assert.notNull(headers);
         if (!headers.isEmpty())
-            this.headers.forEach(headers::addHeader);
+            headers.forEach(this.headers::addHeader);
         return this;
     }
 
