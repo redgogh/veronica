@@ -15,7 +15,7 @@
 
 - 移除断言`Assert#ignore`忽略异常函数。取而代之使用`Capaturer#icall`。
 - 私有化`HttpClient#newCall0`方法，避免外部错误引用该方法从而产生异常。
-- 更新整个项目包结构，将原来的`org.redgogh.tools`更新为`org.redgogh.karasuba.lang`。
+- 更新整个项目包结构，将原来的`org.ekko.tools`更新为`org.ekko.karasuba.lang`。
 - `Enumerates`命名更新为`Enumerate`。
 
 ## 🐞 BUG 修复
