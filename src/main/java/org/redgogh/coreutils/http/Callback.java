@@ -32,7 +32,7 @@ package org.redgogh.coreutils.http;
  *     <li>`onResponse(Response response)`：当 HTTP 请求成功时调用，传入请求的响应结果。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @see Response
  * @since 1.0
  */

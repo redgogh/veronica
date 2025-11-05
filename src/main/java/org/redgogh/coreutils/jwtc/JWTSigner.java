@@ -40,7 +40,7 @@ import static org.redgogh.coreutils.TypeCvt.atob;
  *     boolean isValid = grantor.verify(token);
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class JWTSigner {

@@ -2,7 +2,7 @@ package org.redgogh.coreutils.security.cipher;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2023 Red Gogh                                                   *|
+|*    Copyright (C) 2023 Ekko                                                   *|
 |*                                                                                  *|
 |*    This program is free software: you can redistribute it and/or modify          *|
 |*    it under the terms of the GNU General Public License as published by          *|
@@ -40,7 +40,7 @@ import static org.redgogh.coreutils.TypeCvt.atob;
 import static org.redgogh.coreutils.TypeCvt.atos;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 @SuppressWarnings("DataFlowIssue")
 public class RSACipher implements RSA {

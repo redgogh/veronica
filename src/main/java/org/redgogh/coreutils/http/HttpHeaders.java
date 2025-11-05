@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  * HttpHeaders
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class HttpHeaders {

@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
 import static org.redgogh.coreutils.string.StringUtils.strcut;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class MD5Codec implements MD5 {
 

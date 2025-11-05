@@ -9,7 +9,7 @@ import org.redgogh.coreutils.security.codec.MD5Codec;
  * <p>该接口的实现类需实现 MD5 加密算法，支持对字符串和字节数组进行加密，
  * 返回不同格式的 MD5 哈希值。
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  * @see MD5Codec 实现类示例
  */

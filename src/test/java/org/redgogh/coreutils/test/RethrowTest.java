@@ -25,7 +25,7 @@ import org.redgogh.coreutils.exception.IOWriteException;
 import java.util.List;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 @SuppressWarnings("ALL")
 public class RethrowTest {

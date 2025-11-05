@@ -26,7 +26,7 @@ import org.redgogh.coreutils.iface.Action;
 import static org.redgogh.coreutils.string.StringUtils.strempty;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class TryUtils {
 

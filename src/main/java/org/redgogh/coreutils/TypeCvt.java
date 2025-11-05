@@ -44,7 +44,7 @@ import static org.redgogh.coreutils.string.StringUtils.strmatch;
  *     boolean flag = atobool("true");
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @see java.util.Objects
  */
 public class TypeCvt {

@@ -28,7 +28,7 @@ import static org.redgogh.coreutils.string.StringUtils.strlen;
  *     String subject = (String) claims.get("sub");
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class JWTClaims extends HashMap<String, Object> {

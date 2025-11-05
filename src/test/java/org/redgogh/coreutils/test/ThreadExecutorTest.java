@@ -28,7 +28,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 @SuppressWarnings("ALL")
 public class ThreadExecutorTest {

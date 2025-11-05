@@ -54,7 +54,7 @@ public class StringUtilsTest {
 
     @Test
     public void strcutExmaple() {
-        String author = "Red Gogh";
+        String author = "Ekko";
         System.out.println(strcut(author, 0, -1));
     }
 

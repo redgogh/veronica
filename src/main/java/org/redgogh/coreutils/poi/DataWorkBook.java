@@ -63,7 +63,7 @@ import static org.redgogh.coreutils.string.StringUtils.strnempty;
  *
  * <p>注意：在使用此类时，请确保已添加 Apache POI 依赖。
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class DataWorkBook implements Iterable<Row> {
 

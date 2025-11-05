@@ -34,7 +34,7 @@ import java.io.File;
  * <p>此类通常用于处理来自服务器的字节流数据，提供了方法来
  * 读取响应内容和处理响应状态。
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class StreamResponse implements Closeable {
 

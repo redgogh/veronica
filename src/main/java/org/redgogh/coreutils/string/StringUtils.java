@@ -66,7 +66,7 @@ import static org.redgogh.coreutils.TypeCvt.atos;
  *     boolean isEqual = streq("test", "TEST");
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class StringUtils {

@@ -2,7 +2,7 @@ package org.redgogh.coreutils.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2023 Red Gogh                                                   *|
+|*    Copyright (C) 2023 Ekko                                                   *|
 |*                                                                                  *|
 |*    This program is free software: you can redistribute it and/or modify          *|
 |*    it under the terms of the GNU General Public License as published by          *|
@@ -47,7 +47,7 @@ import org.redgogh.coreutils.security.cipher.RSACipher;
  *     String encrypted = Crypt.AES.encrypt("Hello World", "mysecretkey");
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public final class Crypt {

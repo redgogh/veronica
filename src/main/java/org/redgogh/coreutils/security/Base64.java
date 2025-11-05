@@ -8,7 +8,7 @@ import org.redgogh.coreutils.security.codec.Base64Codec;
  * <p>该接口的实现类需要提供将字符串或字节数组进行 Base64 编码，
  * 以及将 Base64 字符串解码为原始内容的功能。
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  * @see Base64Codec 实现类示例
  */

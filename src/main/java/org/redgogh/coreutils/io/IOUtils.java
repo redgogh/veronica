@@ -35,7 +35,7 @@ import java.nio.file.StandardOpenOption;
  * IO操作工具包，整合大部分IO操作，使得在Java中更多的IO操作
  * 变得简单、简洁、易用。
  *
- * @author Red Gogh   
+ * @author Ekko   
  */
 public class IOUtils {
 

@@ -1,7 +1,7 @@
 package org.redgogh.coreutils.reflect;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public enum OnMissing {
 

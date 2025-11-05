@@ -45,7 +45,7 @@ import static org.redgogh.coreutils.Comparators.anyeq;
  * @param <A> 元组的第一个元素类型
  * @param <B> 元组的第二个元素类型
  * @param <C> 元组的第三个元素类型
- * @author Red Gogh
+ * @author Ekko
  */
 @SuppressWarnings("ClassCanBeRecord")
 public class Tuple<A, B, C> {

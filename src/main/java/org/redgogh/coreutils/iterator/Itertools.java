@@ -12,7 +12,7 @@ import java.util.List;
  * <p>该类中的方法旨在简化对集合或迭代器的常见操作，如配对、分组、排序等。通过简洁的接口，
  * 可以方便地处理迭代器相关的常见任务。
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class Itertools {

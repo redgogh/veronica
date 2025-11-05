@@ -45,7 +45,7 @@ import static org.redgogh.coreutils.string.StringUtils.strfmt;
  *     <li>支持检查字段上的注解。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class UField {

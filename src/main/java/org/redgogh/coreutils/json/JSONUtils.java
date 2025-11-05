@@ -31,7 +31,7 @@ import static org.redgogh.coreutils.string.StringUtils.strip;
  *
  * <p>提供对象序列化、反序列化、格式化、压缩、路径提取、自动格式识别等功能。
  *
- * @author Red Gogh
+ * @author Ekko
  * @see com.alibaba.fastjson.JSON
  * @see com.alibaba.fastjson.JSONObject
  * @see com.alibaba.fastjson.JSONPath

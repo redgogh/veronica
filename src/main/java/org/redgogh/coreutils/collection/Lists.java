@@ -69,7 +69,7 @@ import java.util.stream.Collectors;
  *
  * <p>完整的使用示例和测试用例可以参考项目的测试包下的相关测试类。
  *
- * @author Red Gogh
+ * @author Ekko
  *
  * @see Collection
  * @see List

@@ -52,7 +52,7 @@ import static org.redgogh.coreutils.string.StringUtils.strfmt;
  *     throw new SystemRuntimeException("错误代码：%d，描述：%s", errorCode, errorMessage);
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class UncheckedException extends RuntimeException {

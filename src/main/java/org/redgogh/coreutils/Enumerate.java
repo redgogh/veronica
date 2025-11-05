@@ -55,7 +55,7 @@ import static org.redgogh.coreutils.string.StringUtils.strieq;
  *
  * <p>完整的使用示例和测试用例可以参考项目的测试包下的相关测试类。
  *
- * @author Red Gogh
+ * @author Ekko
  *
  * @see Enum
  * @see IllegalArgumentException

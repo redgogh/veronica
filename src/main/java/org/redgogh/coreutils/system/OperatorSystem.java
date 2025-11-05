@@ -21,7 +21,7 @@ package org.redgogh.coreutils.system;
 /**
  * 操作系统枚举类
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public enum OperatorSystem {
 

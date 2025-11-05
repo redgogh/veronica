@@ -38,7 +38,7 @@ import static org.redgogh.coreutils.string.StringUtils.*;
  *     strcut(a, off, len, STRING_IFACE_TRIM_EXT)
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public enum StringOption {

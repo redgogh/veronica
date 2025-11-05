@@ -40,7 +40,7 @@ import java.util.stream.Stream;
  *
  * <p>本类旨在通过工具方法的封装，提升代码可读性和维护性，特别适用于需要流式操作的场景。
  *
- * @author Red Gogh
+ * @author Ekko
  * @see java.util.stream.Stream
  * @since 1.0
  */

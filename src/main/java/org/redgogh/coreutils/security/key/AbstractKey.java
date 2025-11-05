@@ -2,7 +2,7 @@ package org.redgogh.coreutils.security.key;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2023 Red Gogh                                                   *|
+|*    Copyright (C) 2023 Ekko                                                   *|
 |*                                                                                  *|
 |*    This program is free software: you can redistribute it and/or modify          *|
 |*    it under the terms of the GNU General Public License as published by          *|
@@ -34,7 +34,7 @@ import static org.redgogh.coreutils.TypeCvt.atos;
 import static org.redgogh.coreutils.string.StringUtils.*;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public abstract class AbstractKey {
 

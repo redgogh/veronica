@@ -45,7 +45,7 @@ import static org.redgogh.coreutils.string.StringUtils.strtok;
  *
  * @see LinkedHashMap
  * @since 1.0
- * @author Red Gogh
+ * @author Ekko
  */
 public class Arguments extends LinkedHashMap<String, String> {
 

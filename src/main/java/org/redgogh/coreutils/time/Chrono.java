@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  *
  * <p>此类是不可变的，线程安全的，且支持序列化。
  *
- * @author Red Gogh
+ * @author Ekko
  * @see ChronoTemporal
  * @see Temporal
  * @see Comparable

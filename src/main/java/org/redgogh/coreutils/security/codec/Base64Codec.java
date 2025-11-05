@@ -5,7 +5,7 @@ import org.redgogh.coreutils.security.Base64;
 import static org.redgogh.coreutils.TypeCvt.atos;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class Base64Codec implements Base64 {
     @Override

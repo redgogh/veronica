@@ -10,7 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 import static org.redgogh.coreutils.TypeCvt.atos;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class AESCipher implements AES {
 

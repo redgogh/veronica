@@ -33,7 +33,7 @@ import static org.redgogh.coreutils.string.StringUtils.strfmt;
  * 运行时断言工具类，这个类断言失败后并不会直接停止整个程序，而是会将所有失败的断言
  * 信息作为 Runtime 异常抛出。
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class Assert {
 

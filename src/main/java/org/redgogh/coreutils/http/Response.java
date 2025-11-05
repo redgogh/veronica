@@ -66,7 +66,7 @@ import static org.redgogh.coreutils.string.StringUtils.streq;
  *     boolean isSuccess = response.isSuccess();
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  *
  * @see JSONObject
  * @since 1.0

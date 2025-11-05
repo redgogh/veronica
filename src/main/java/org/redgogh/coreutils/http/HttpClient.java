@@ -51,7 +51,7 @@ import static org.redgogh.coreutils.string.StringUtils.uppercase;
  *     <li>{@link HttpMethod}: 定义了支持的 HTTP 请求方法，如 GET、POST 等。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 @SuppressWarnings("all")

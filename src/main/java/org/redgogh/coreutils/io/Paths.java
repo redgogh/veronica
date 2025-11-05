@@ -13,7 +13,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 /**
  * 路径相关的工具方法
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class Paths {
 

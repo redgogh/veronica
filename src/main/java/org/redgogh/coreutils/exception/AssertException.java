@@ -51,7 +51,7 @@ package org.redgogh.coreutils.exception;
  *     throw new AssertException("断言失败：%s 应为 true", "条件");
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class AssertException extends UncheckedException {

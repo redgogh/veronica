@@ -22,7 +22,7 @@ import static org.redgogh.coreutils.string.StringUtils.uppercase;
  *     <li>生成指定范围内的随机双精度数。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class Generator {

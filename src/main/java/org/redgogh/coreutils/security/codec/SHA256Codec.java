@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class SHA256Codec implements SHA256 {
 

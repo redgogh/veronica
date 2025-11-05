@@ -42,7 +42,7 @@ import static org.redgogh.coreutils.Comparators.anyeq;
  *
  * @param <A> 第一个元素的类型
  * @param <B> 第二个元素的类型
- * @author Red Gogh
+ * @author Ekko
  */
 @SuppressWarnings("ClassCanBeRecord")
 public class Pair<A, B> {

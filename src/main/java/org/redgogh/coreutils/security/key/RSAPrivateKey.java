@@ -2,7 +2,7 @@ package org.redgogh.coreutils.security.key;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2023 Red Gogh                                                   *|
+|*    Copyright (C) 2023 Ekko                                                   *|
 |*                                                                                  *|
 |*    This program is free software: you can redistribute it and/or modify          *|
 |*    it under the terms of the GNU General Public License as published by          *|
@@ -35,7 +35,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import static org.redgogh.coreutils.io.IOUtils.strread;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class RSAPrivateKey extends AbstractKey {
 

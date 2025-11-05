@@ -21,7 +21,7 @@ package org.redgogh.coreutils.exception;
 import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class UncheckedThreadException extends RuntimeException {
 

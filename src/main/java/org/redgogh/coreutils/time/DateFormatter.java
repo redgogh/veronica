@@ -42,7 +42,7 @@ import static org.redgogh.coreutils.string.StringUtils.strlen;
  *     <li>支持默认日期格式和自定义日期格式。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class DateFormatter {

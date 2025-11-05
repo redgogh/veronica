@@ -28,7 +28,7 @@ import org.redgogh.coreutils.reflect.UClass;
 import static org.redgogh.coreutils.string.StringUtils.strfmt;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class Rethrow {
 

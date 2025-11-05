@@ -40,7 +40,7 @@ import java.util.LinkedHashMap;
  *
  * @see LinkedHashMap
  * @since 1.0
- * @author Red Gogh
+ * @author Ekko
  */
 public class MultipartBody extends LinkedHashMap<String, Object> {
 

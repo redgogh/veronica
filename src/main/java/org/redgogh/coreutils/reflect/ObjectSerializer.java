@@ -31,7 +31,7 @@ import java.io.*;
  * <p>主要功能包括将对象保存到指定文件中，并从该文件加载对象，以便在不同的程序运行间共享
  * 或恢复对象状态。
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class ObjectSerializer {
 

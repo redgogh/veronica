@@ -51,7 +51,7 @@ package org.redgogh.coreutils.exception;
  *     throw new HttpRequestException("HTTP 请求失败：状态码 %d", responseCode);
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class HttpException extends UncheckedException {

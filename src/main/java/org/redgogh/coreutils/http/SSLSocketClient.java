@@ -26,9 +26,6 @@ import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 
-/**
- * <a href=”https://www.cnblogs.com/xidianzxm/p/14310104.html“>参考文档</a>
- */
 @SuppressWarnings("all")
 public class SSLSocketClient {
 

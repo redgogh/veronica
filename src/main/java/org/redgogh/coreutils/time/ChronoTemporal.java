@@ -58,7 +58,7 @@ import java.util.concurrent.TimeUnit;
  *     <li>{@link #format(String)}: 格式化时间为自定义格式的字符串。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @see ZonedDateTime
  * @see Chrono
  */

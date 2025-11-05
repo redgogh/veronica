@@ -65,7 +65,7 @@ import static org.redgogh.coreutils.string.StringUtils.streq;
  *     <li>访问属性和调用静态方法时需要保证传入的名称正确，否则会抛出异常。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @see Class
  * @see Constructor
  * @see Method

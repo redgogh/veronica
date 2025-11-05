@@ -11,7 +11,7 @@ import java.net.URLEncoder;
 import static org.redgogh.coreutils.string.StringUtils.*;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class URLCodec implements URL {
 

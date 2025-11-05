@@ -50,7 +50,7 @@ package org.redgogh.coreutils.exception;
  *     throw new UnsupportedOperationException("操作 %s 不被支持：%s", operationName, errorMessage);
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class UnsupportedOperationException extends UncheckedException {

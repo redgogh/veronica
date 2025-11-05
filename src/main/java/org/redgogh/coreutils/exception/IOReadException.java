@@ -51,7 +51,7 @@ package org.redgogh.coreutils.exception;
  *     throw new IOReadException("读取文件 %s 时发生错误：%s", filePath, errorMessage);
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public class IOReadException extends UncheckedException {

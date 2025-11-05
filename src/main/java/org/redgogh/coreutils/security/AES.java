@@ -5,7 +5,7 @@ package org.redgogh.coreutils.security;
  *
  * <p>该接口的实现类需要提供 AES 加密和解密功能，确保数据的安全性和机密性。
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public interface AES {

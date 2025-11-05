@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Red Gogh
+ * @author Ekko
  */
 public class ChunkList<E> extends ArrayList<List<E>> {
 

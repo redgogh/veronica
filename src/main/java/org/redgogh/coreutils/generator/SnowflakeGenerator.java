@@ -23,7 +23,7 @@ package org.redgogh.coreutils.generator;
 /**
  * 雪花算法生成器实例化对象.
  *
- * @author Red Gogh
+ * @author Ekko
  */
 final class SnowflakeGenerator {
 

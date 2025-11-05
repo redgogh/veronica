@@ -25,7 +25,7 @@ import java.io.File;
 /**
  * 对象序列化与反序列化操作工具
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class ObjectSerializer {
 

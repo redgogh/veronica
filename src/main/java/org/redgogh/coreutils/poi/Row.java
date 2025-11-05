@@ -37,7 +37,7 @@ import static org.redgogh.coreutils.TypeCvt.atos;
  *      String firstValue = row.get(0);
  * </pre>
  *
- * @author Red Gogh
+ * @author Ekko
  */
 public class Row extends ArrayList<String> {
 

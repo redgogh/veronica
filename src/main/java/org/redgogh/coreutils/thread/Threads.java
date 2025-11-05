@@ -25,7 +25,7 @@ import static org.redgogh.coreutils.string.StringUtils.strfmt;
  *   <li>查询所有活动线程及按名称筛选线程集合。</li>
  * </ul>
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 @SuppressWarnings("UnusedReturnValue")

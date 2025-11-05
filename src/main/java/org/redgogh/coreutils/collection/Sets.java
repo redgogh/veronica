@@ -56,7 +56,7 @@ import java.util.*;
  * <p>该类旨在为开发者提供方便且高效的 Set 操作工具，是日常开发中处理 Set 对象的理想选择。同时因 Set 对象也是 Collection 接口
  * 的实现类之一，所以它也可以使用 Lists 中的许多操作函数。
  *
- * @author Red Gogh
+ * @author Ekko
  *
  * @see Set
  * @see HashSet

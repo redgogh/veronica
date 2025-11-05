@@ -23,7 +23,7 @@ package org.redgogh.coreutils.iface;
  *
  * <p>实现该接口的类需要提供具体的 `call` 方法，以执行特定的逻辑。
  *
- * @author Red Gogh
+ * @author Ekko
  * @since 1.0
  */
 public interface Action {
