@@ -52,6 +52,18 @@ public class JSONUtils {
     /**
      * 将 JSON 字符串反序列化为指定类型的 Java 对象。
      *
+     * @param json 要反序列化的 JSON 字符串
+     * @return 反序列化后的 Java 对象
+     * @throws JSONException 如果 JSON 格式无效或反序列化失败
+     * @throws IllegalArgumentException 如果 json 参数为 null 或空字符串
+     */
+    public static JSONObject from(String json) {
+        return (JSONObject) parse(json);
+    }
+
+    /**
+     * 将 JSON 字符串反序列化为指定类型的 Java 对象。
+     *
      * @param <T> 目标对象的类型参数
      * @param json 要反序列化的 JSON 字符串
      * @param clazz 目标对象的 Class 类型
