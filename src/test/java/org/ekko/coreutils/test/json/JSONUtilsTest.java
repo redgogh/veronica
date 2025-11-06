@@ -18,6 +18,8 @@ package org.ekko.coreutils.test.json;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
+import com.alibaba.fastjson.JSONArray;
+import org.ekko.coreutils.collection.Lists;
 import org.junit.Test;
 import org.ekko.coreutils.json.JSONUtils;
 import org.ekko.coreutils.student.HighStudent;
@@ -53,6 +55,15 @@ public class JSONUtilsTest {
 
         List<HighStudent> highStudents = JSONUtils.get(content, "$.users", HighStudent.class);
         System.out.println(JSONUtils.stringify(highStudents));
+    }
+
+    @Test
+    public void testParse() {
+        List<String> users = Lists.of("a", "b", "c");
+        JSONArray array = JSONUtils.parse(users);
+        for (int i = 0; i < array.size(); i++) {
+            System.out.println(array.get(i));
+        }
     }
 
 }
