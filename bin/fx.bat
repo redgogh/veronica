@@ -1,6 +1,6 @@
 @REM --------------------------------------------------------------------------------
 @REM
-@REM    Copyright (C) 2019-2024 RedGogh All rights reserved.
+@REM    Copyright (C) 2019-2024 Viakko All rights reserved.
 @REM
 @REM    Licensed under the Apache License, Version 2.0 (the "License");
 @REM    you may not use this file except in compliance with the License.

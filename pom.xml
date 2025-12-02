@@ -3,17 +3,17 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <name>coreutils</name>
+    <name>tools</name>
 
-    <groupId>io.github.redgogh</groupId>
-    <artifactId>coreutils</artifactId>
+    <groupId>io.github.Viakko</groupId>
+    <artifactId>tools</artifactId>
     <version>3.0.3</version>
 
     <developers>
         <developer>
-            <id>redgogh</id>
+            <id>Viakko</id>
             <name>Red Gogh</name>
-            <email>redgogh@vip.qq.com</email>
+            <email>Viakko@vip.qq.com</email>
         </developer>
     </developers>
 
@@ -24,13 +24,13 @@
         </license>
     </licenses>
 
-    <url>https://github.com/redgogh/karasuba-io</url>
+    <url>https://github.com/Viakko/karasuba-io</url>
     <description>一套现代化、高复用的 Java 工具类库，涵盖集合、IO、异常、加解密、HTTP、反射、时间、线程、Excel 等常见开发场景。</description>
 
     <scm>
-        <connection>scm:git@github.com:redgogh/karasuba-io.git</connection>
-        <developerConnection>scm:git@github.com:redgogh/karasuba-io.git</developerConnection>
-        <url>https://github.com/redgogh/karasuba-io</url>
+        <connection>scm:git@github.com:Viakko/karasuba-io.git</connection>
+        <developerConnection>scm:git@github.com:Viakko/karasuba-io.git</developerConnection>
+        <url>https://github.com/Viakko/karasuba-io</url>
     </scm>
 
     <distributionManagement>

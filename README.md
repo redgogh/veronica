@@ -1,4 +1,4 @@
-# Coreutils
+# tools
 
 ![offical](Documents/svg/offical.svg)
 ![test](Documents/svg/test.svg)
@@ -41,12 +41,12 @@ mvn clean package -DskipTests
 
 ```xml
 <dependency>
-  <groupId>io.github.redgogh</groupId>
-  <artifactId>coreutils</artifactId>
+  <groupId>io.github.Viakko</groupId>
+  <artifactId>tools</artifactId>
   <version>3.0.3</version>
 </dependency>
 ```
 
 ## 许可证
 
-**Copyright © 2019 Coreutils Contributors.**
+**Copyright © 2019 tools Contributors.**

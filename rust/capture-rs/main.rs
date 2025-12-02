@@ -1,5 +1,5 @@
 //!
-//!    Copyright (C) 2019-2024 RedGogh All rights reserved.
+//!    Copyright (C) 2019-2024 Viakko All rights reserved.
 //!
 //!    Licensed under the Apache License, Version 2.0 (the "License");
 //!    you may not use this file except in compliance with the License.
@@ -61,7 +61,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let tasks = workflows::load(&String::from("./workflows.yaml"))?;
     // open web client
     // let client = web_driver::open_web_client("https://tht.changhong.com/#/user/login").await?;
-    let client = web_driver::open_web_client("https://github.com/redgogh/devtools").await?;
+    let client = web_driver::open_web_client("https://github.com/Viakko/devtools").await?;
 
     for task in tasks {
         if task.enable {
