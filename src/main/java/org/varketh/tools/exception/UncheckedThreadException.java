@@ -18,7 +18,7 @@ package org.varketh.tools.exception;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import static org.varketh.tools.string.StringUtils.strfmt;
+import static org.varketh.tools.string.StringUtils.fmt;
 
 /**
  * @author Varketh Nockrath
@@ -47,7 +47,7 @@ public class UncheckedThreadException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedThreadException(String fmt, Object... args) {
-        super(strfmt(fmt, args));
+        super(fmt(fmt, args));
     }
 
     /**
@@ -58,7 +58,7 @@ public class UncheckedThreadException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedThreadException(String fmt, Throwable e, Object... args) {
-        super(strfmt(fmt, args), e);
+        super(fmt(fmt, args), e);
     }
 
 }

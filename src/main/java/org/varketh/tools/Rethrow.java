@@ -25,7 +25,7 @@ import org.varketh.tools.iface.Action;
 import org.varketh.tools.iface.Callable;
 import org.varketh.tools.reflect.UClass;
 
-import static org.varketh.tools.string.StringUtils.strfmt;
+import static org.varketh.tools.string.StringUtils.fmt;
 
 /**
  * @author Varketh Nockrath
@@ -138,7 +138,7 @@ public class Rethrow {
      * @return 异常包装类
      */
     public static ExpectedThrow expect(Class<? extends RuntimeException> expected, String fmt, Object... args) {
-        return new ExpectedThrow(expected, fmt == null ? null : strfmt(fmt, args));
+        return new ExpectedThrow(expected, fmt == null ? null : fmt(fmt, args));
     }
 
     /**

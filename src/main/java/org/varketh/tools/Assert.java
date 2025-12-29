@@ -27,7 +27,7 @@ import java.util.Map;
 
 import static org.varketh.tools.Comparators.anyeq;
 import static org.varketh.tools.string.StringUtils.strempty;
-import static org.varketh.tools.string.StringUtils.strfmt;
+import static org.varketh.tools.string.StringUtils.fmt;
 
 /**
  * 运行时断言工具类，这个类断言失败后并不会直接停止整个程序，而是会将所有失败的断言
@@ -63,7 +63,7 @@ public class Assert {
      */
     public static void isTrue(boolean expr, String fmt, Object... args) {
         if (!expr)
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -92,7 +92,7 @@ public class Assert {
      */
     public static void isFalse(boolean expr, String fmt, Object... args) {
         if (expr)
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -117,7 +117,7 @@ public class Assert {
      */
     public static <E> void notEmpty(Collection<E> collection, String fmt, Object... args) {
         if (Lists.isEmpty(collection))
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -142,7 +142,7 @@ public class Assert {
      */
     public static <K, V> void notEmpty(Map<K, V> map, String fmt, Object... args) {
         if (Maps.isEmpty(map))
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -167,7 +167,7 @@ public class Assert {
      */
     public static void notEmpty(String source, String fmt, Object... args) {
         if (strempty(source))
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
 
@@ -195,7 +195,7 @@ public class Assert {
      */
     public static void notNull(Object expr, String fmt, Object... args) {
         if (expr == null)
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -222,7 +222,7 @@ public class Assert {
      */
     public static void isNull(Object expr, String fmt, Object... args) {
         if (expr != null)
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -259,7 +259,7 @@ public class Assert {
      */
     public static void notEquals(Object actual, Object expected, String fmt, Object... args) {
         if (anyeq(actual, expected))
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -296,7 +296,7 @@ public class Assert {
      */
     public static void isEquals(Object actual, Object expected, String fmt, Object... args) {
         if (anyeq(actual, expected))
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
     /**
@@ -319,7 +319,7 @@ public class Assert {
      */
     public static void hasText(String text, String fmt, Object... args) {
         if (strempty(text))
-            throw new IllegalArgumentException(strfmt(fmt, args));
+            throw new IllegalArgumentException(fmt(fmt, args));
     }
 
 }

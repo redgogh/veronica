@@ -24,7 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.varketh.tools.TypeCvt.atos;
-import static org.varketh.tools.string.StringUtils.strfmt;
+import static org.varketh.tools.string.StringUtils.fmt;
 import static org.varketh.tools.string.StringUtils.strtok;
 
 /**
@@ -95,9 +95,9 @@ public class Arguments extends LinkedHashMap<String, String> {
         StringBuilder builder = new StringBuilder();
 
         for (Map.Entry<String, String> entry : entrySet())
-            builder.append(strfmt("%s=%s&", entry.getKey(), entry.getValue()));
+            builder.append(fmt("%s=%s&", entry.getKey(), entry.getValue()));
         String finalArguments = atos(builder, 0, -1); /* 删掉最后一个字符 ‘&’ */
 
-        return strfmt("%s?%s", url, finalArguments);
+        return fmt("%s?%s", url, finalArguments);
     }
 }

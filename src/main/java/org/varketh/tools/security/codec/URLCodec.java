@@ -33,7 +33,7 @@ public class URLCodec implements URL {
                 source = strcut(source, strlen(CRYPT_PREFIX_HTTP), 0);
                 temporary = CRYPT_PREFIX_HTTP;
             }
-            return strfmt("%s%s", temporary, URLEncoder.encode(source, enc));
+            return fmt("%s%s", temporary, URLEncoder.encode(source, enc));
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }

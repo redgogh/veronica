@@ -18,7 +18,7 @@ package org.varketh.tools.exception;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import static org.varketh.tools.string.StringUtils.strfmt;
+import static org.varketh.tools.string.StringUtils.fmt;
 
 /**
  * `SystemRuntimeException` 是一个自定义的运行时异常类，用于在系统中抛出各种运行时异常。
@@ -79,7 +79,7 @@ public class UncheckedException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedException(String fmt, Object... args) {
-        super(strfmt(fmt, args));
+        super(fmt(fmt, args));
     }
 
     /**
@@ -90,7 +90,7 @@ public class UncheckedException extends RuntimeException {
      * @param args 格式化参数。
      */
     public UncheckedException(String fmt, Throwable e, Object... args) {
-        super(strfmt(fmt, args), e);
+        super(fmt(fmt, args), e);
     }
 
 }
