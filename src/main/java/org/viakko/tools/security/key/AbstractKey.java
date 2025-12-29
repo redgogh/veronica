@@ -1,4 +1,4 @@
-package org.Viakko.tools.security.key;
+package org.viakko.tools.security.key;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,12 +25,12 @@ package org.Viakko.tools.security.key;
 
 /* Creates on 2025/2/20. */
 
-import org.Viakko.tools.security.Codec;
+import org.viakko.tools.security.Codec;
 
 import java.security.Key;
 
-import static org.Viakko.tools.TypeCvt.atos;
-import static org.Viakko.tools.string.StringUtils.*;
+import static org.viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.string.StringUtils.*;
 
 /**
  * @author Ekko

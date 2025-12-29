@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.jwtc;
+package org.viakko.tools.test.jwtc;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,18 +19,18 @@ package org.Viakko.tools.test.jwtc;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.Viakko.tools.jwtc.JWTClaims;
-import org.Viakko.tools.jwtc.JWTSigner;
-import org.Viakko.tools.security.Crypt;
-import org.Viakko.tools.security.key.RSAPrivateKey;
-import org.Viakko.tools.security.key.RSAPublicKey;
-import org.Viakko.tools.tuple.Pair;
+import org.viakko.tools.jwtc.JWTClaims;
+import org.viakko.tools.jwtc.JWTSigner;
+import org.viakko.tools.security.Crypt;
+import org.viakko.tools.security.key.RSAPrivateKey;
+import org.viakko.tools.security.key.RSAPublicKey;
+import org.viakko.tools.tuple.Pair;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.concurrent.TimeUnit;
 
-import static org.Viakko.tools.generator.Generator.b32md5;
+import static org.viakko.tools.generator.Generator.b32md5;
 
 @SuppressWarnings("ALL")
 public class JWTSignerTest {

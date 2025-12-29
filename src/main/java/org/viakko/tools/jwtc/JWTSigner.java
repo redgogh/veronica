@@ -1,4 +1,4 @@
-package org.Viakko.tools.jwtc;
+package org.viakko.tools.jwtc;
 
 import com.alibaba.fastjson.JSONObject;
 import com.nimbusds.jose.*;
@@ -8,18 +8,18 @@ import com.nimbusds.jose.crypto.RSASSASigner;
 import com.nimbusds.jose.crypto.RSASSAVerifier;
 import com.nimbusds.jwt.JWTClaimsSet;
 import com.nimbusds.jwt.SignedJWT;
-import org.Viakko.tools.collection.Maps;
-import org.Viakko.tools.exception.UncheckedException;
-import org.Viakko.tools.security.Codec;
-import org.Viakko.tools.Assert;
-import org.Viakko.tools.Rethrow;
-import org.Viakko.tools.Comparators;
+import org.viakko.tools.collection.Maps;
+import org.viakko.tools.exception.UncheckedException;
+import org.viakko.tools.security.Codec;
+import org.viakko.tools.Assert;
+import org.viakko.tools.Rethrow;
+import org.viakko.tools.Comparators;
 
 import java.security.PrivateKey;
 
 import static com.nimbusds.jose.JWSAlgorithm.*;
-import static org.Viakko.tools.generator.Generator.uuid;
-import static org.Viakko.tools.TypeCvt.atob;
+import static org.viakko.tools.generator.Generator.uuid;
+import static org.viakko.tools.TypeCvt.atob;
 
 /**
  * `JWTGrantor` 是一个用于生成和验证 JSON Web Token (JWT) 的类。

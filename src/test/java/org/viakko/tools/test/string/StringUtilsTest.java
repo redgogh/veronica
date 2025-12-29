@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.string;
+package org.viakko.tools.test.string;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,17 +19,17 @@ package org.Viakko.tools.test.string;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.Viakko.tools.collection.Lists;
-import org.Viakko.tools.generator.Generator;
-import org.Viakko.tools.string.StringOption;
+import org.viakko.tools.collection.Lists;
+import org.viakko.tools.generator.Generator;
+import org.viakko.tools.string.StringOption;
 
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import static org.Viakko.tools.TypeCvt.atos;
-import static org.Viakko.tools.string.StringUtils.*;
+import static org.viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.string.StringUtils.*;
 
 @SuppressWarnings("ALL")
 public class StringUtilsTest {

@@ -1,4 +1,4 @@
-package org.Viakko.tools.reflect;
+package org.viakko.tools.reflect;
 
 /**
  * @author Ekko

@@ -1,13 +1,13 @@
-package org.Viakko.tools.generator;
+package org.viakko.tools.generator;
 
-import org.Viakko.tools.security.Codec;
-import org.Viakko.tools.string.StringOption;
+import org.viakko.tools.security.Codec;
+import org.viakko.tools.string.StringOption;
 
 import java.util.Random;
 import java.util.UUID;
 
-import static org.Viakko.tools.string.StringUtils.strcut;
-import static org.Viakko.tools.string.StringUtils.uppercase;
+import static org.viakko.tools.string.StringUtils.strcut;
+import static org.viakko.tools.string.StringUtils.uppercase;
 
 /**
  * `Generator` 是一个用于生成随机数的工具类，提供了多种生成随机整数、浮点数和双精度数的方法。

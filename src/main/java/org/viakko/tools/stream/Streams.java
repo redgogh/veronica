@@ -1,6 +1,6 @@
-package org.Viakko.tools.stream;
+package org.viakko.tools.stream;
 
-import org.Viakko.tools.collection.Lists;
+import org.viakko.tools.collection.Lists;
 
 import java.util.Collection;
 import java.util.Comparator;

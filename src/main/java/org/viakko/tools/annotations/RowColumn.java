@@ -1,6 +1,6 @@
-package org.Viakko.tools.annotations;
+package org.viakko.tools.annotations;
 
-import org.Viakko.tools.time.DateFormatter;
+import org.viakko.tools.time.DateFormatter;
 
 import java.lang.annotation.*;
 

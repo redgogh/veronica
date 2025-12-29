@@ -1,4 +1,4 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
 /**
  * `AES` 接口定义了用于 AES 加密和解密的方法，支持对字符串和字节数组的处理。

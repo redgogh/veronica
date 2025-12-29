@@ -1,12 +1,12 @@
-package org.Viakko.tools.security.codec;
+package org.viakko.tools.security.codec;
 
-import org.Viakko.tools.security.MD5;
-import org.Viakko.tools.exception.UncheckedException;
+import org.viakko.tools.security.MD5;
+import org.viakko.tools.exception.UncheckedException;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import static org.Viakko.tools.string.StringUtils.strcut;
+import static org.viakko.tools.string.StringUtils.strcut;
 
 /**
  * @author Ekko

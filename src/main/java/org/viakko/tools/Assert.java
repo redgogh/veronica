@@ -1,8 +1,8 @@
-package org.Viakko.tools;
+package org.viakko.tools;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,16 +18,16 @@ package org.Viakko.tools;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.collection.Lists;
-import org.Viakko.tools.collection.Maps;
+import org.viakko.tools.collection.Lists;
+import org.viakko.tools.collection.Maps;
 
 import java.lang.IllegalArgumentException;
 import java.util.Collection;
 import java.util.Map;
 
-import static org.Viakko.tools.Comparators.anyeq;
-import static org.Viakko.tools.string.StringUtils.strempty;
-import static org.Viakko.tools.string.StringUtils.strfmt;
+import static org.viakko.tools.Comparators.anyeq;
+import static org.viakko.tools.string.StringUtils.strempty;
+import static org.viakko.tools.string.StringUtils.strfmt;
 
 /**
  * 运行时断言工具类，这个类断言失败后并不会直接停止整个程序，而是会将所有失败的断言

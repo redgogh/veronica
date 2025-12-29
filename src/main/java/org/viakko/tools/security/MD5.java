@@ -1,6 +1,6 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
-import org.Viakko.tools.security.codec.MD5Codec;
+import org.viakko.tools.security.codec.MD5Codec;
 
 /**
  * `MD5` 接口定义了用于生成 MD5 哈希值的多种方法，支持 32 位和 16 位的 MD5 哈希，

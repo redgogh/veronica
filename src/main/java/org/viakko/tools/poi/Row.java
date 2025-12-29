@@ -1,8 +1,8 @@
-package org.Viakko.tools.poi;
+package org.viakko.tools.poi;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,13 +18,13 @@ package org.Viakko.tools.poi;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.collection.Lists;
-import org.Viakko.tools.iface.TypeMapper;
+import org.viakko.tools.collection.Lists;
+import org.viakko.tools.iface.TypeMapper;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static org.Viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.TypeCvt.atos;
 
 /**
  * 表示一行数据，继承自 {@link ArrayList}，用于存储字符串类型的单元格数据。

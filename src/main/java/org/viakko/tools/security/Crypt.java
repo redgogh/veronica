@@ -1,4 +1,4 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,8 +25,8 @@ package org.Viakko.tools.security;
 
 /* Creates on 2023/5/16. */
 
-import org.Viakko.tools.security.cipher.AESCipher;
-import org.Viakko.tools.security.cipher.RSACipher;
+import org.viakko.tools.security.cipher.AESCipher;
+import org.viakko.tools.security.cipher.RSACipher;
 
 /**
  * `Crypt` 是一个工具类，提供了多种加密和解密算法的实现，支持常见的加密需求。

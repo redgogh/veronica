@@ -1,4 +1,4 @@
-package org.Viakko.tools;
+package org.viakko.tools;
 
 import java.util.Objects;
 

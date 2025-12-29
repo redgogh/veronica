@@ -1,13 +1,13 @@
-package org.Viakko.tools.security.codec;
+package org.viakko.tools.security.codec;
 
-import org.Viakko.tools.Rethrow;
-import org.Viakko.tools.security.URL;
+import org.viakko.tools.Rethrow;
+import org.viakko.tools.security.URL;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 
-import static org.Viakko.tools.string.StringUtils.*;
+import static org.viakko.tools.string.StringUtils.*;
 
 /**
  * @author Ekko

@@ -1,6 +1,6 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
-import org.Viakko.tools.security.codec.Base64Codec;
+import org.viakko.tools.security.codec.Base64Codec;
 
 /**
  * `Base64` 接口定义了用于进行 Base64 编码和解码的方法。

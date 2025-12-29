@@ -1,8 +1,8 @@
-package org.Viakko.tools.io;
+package org.viakko.tools.io;
 
 import org.jetbrains.annotations.NotNull;
-import org.Viakko.tools.Rethrow;
-import org.Viakko.tools.system.SystemUtils;
+import org.viakko.tools.Rethrow;
+import org.viakko.tools.system.SystemUtils;
 
 import java.io.File;
 import java.io.IOException;

@@ -1,8 +1,8 @@
-package org.Viakko.tools.http;
+package org.viakko.tools.http;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -23,9 +23,9 @@ package org.Viakko.tools.http;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.Viakko.tools.TypeCvt.atos;
-import static org.Viakko.tools.string.StringUtils.strfmt;
-import static org.Viakko.tools.string.StringUtils.strtok;
+import static org.viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.string.StringUtils.strfmt;
+import static org.viakko.tools.string.StringUtils.strtok;
 
 /**
  * `QueryBuilder` 是一个继承自 `LinkedHashMap<String, String>` 的类，用于构建 HTTP 请求的查询参数。

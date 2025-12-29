@@ -1,8 +1,8 @@
-package org.Viakko.tools.poi;
+package org.viakko.tools.poi;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,7 +18,7 @@ package org.Viakko.tools.poi;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.time.DateFormatter;
+import org.viakko.tools.time.DateFormatter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;

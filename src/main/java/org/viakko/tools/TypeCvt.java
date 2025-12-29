@@ -1,8 +1,8 @@
-package org.Viakko.tools;
+package org.viakko.tools;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,17 +19,17 @@ package org.Viakko.tools;
 \* -------------------------------------------------------------------------------- */
 
 import org.json.XML;
-import org.Viakko.tools.exception.UnsupportedOperationException;
-import org.Viakko.tools.iface.TypeMapper;
-import org.Viakko.tools.reflect.UClass;
-import org.Viakko.tools.string.StringOption;
-import org.Viakko.tools.string.StringUtils;
+import org.viakko.tools.exception.UnsupportedOperationException;
+import org.viakko.tools.iface.TypeMapper;
+import org.viakko.tools.reflect.UClass;
+import org.viakko.tools.string.StringOption;
+import org.viakko.tools.string.StringUtils;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
-import static org.Viakko.tools.string.StringUtils.strmatch;
+import static org.viakko.tools.string.StringUtils.strmatch;
 
 /**
  * TypeCvt 类提供了多种类型转换和比较功能。

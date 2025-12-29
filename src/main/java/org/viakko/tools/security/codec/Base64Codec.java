@@ -1,8 +1,8 @@
-package org.Viakko.tools.security.codec;
+package org.viakko.tools.security.codec;
 
-import org.Viakko.tools.security.Base64;
+import org.viakko.tools.security.Base64;
 
-import static org.Viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.TypeCvt.atos;
 
 /**
  * @author Ekko

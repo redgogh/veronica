@@ -1,4 +1,4 @@
-package org.Viakko.tools.security.cipher;
+package org.viakko.tools.security.cipher;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,19 +25,19 @@ package org.Viakko.tools.security.cipher;
 
 /* Creates on 2025/2/20. */
 
-import org.Viakko.tools.security.Codec;
-import org.Viakko.tools.security.RSA;
-import org.Viakko.tools.security.key.RSAPrivateKey;
-import org.Viakko.tools.security.key.RSAPublicKey;
-import org.Viakko.tools.tuple.Pair;
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.security.Codec;
+import org.viakko.tools.security.RSA;
+import org.viakko.tools.security.key.RSAPrivateKey;
+import org.viakko.tools.security.key.RSAPublicKey;
+import org.viakko.tools.tuple.Pair;
+import org.viakko.tools.Rethrow;
 
 import javax.crypto.Cipher;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 
-import static org.Viakko.tools.TypeCvt.atob;
-import static org.Viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.TypeCvt.atob;
+import static org.viakko.tools.TypeCvt.atos;
 
 /**
  * @author Ekko

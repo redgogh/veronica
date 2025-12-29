@@ -1,8 +1,8 @@
-package org.Viakko.tools.http;
+package org.viakko.tools.http;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,7 +18,7 @@ package org.Viakko.tools.http;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.exception.UncheckedException;
+import org.viakko.tools.exception.UncheckedException;
 
 import javax.net.ssl.*;
 import java.security.KeyStore;

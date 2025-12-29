@@ -1,8 +1,8 @@
-package org.Viakko.tools;
+package org.viakko.tools;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,9 +20,9 @@ package org.Viakko.tools;
 
 /* Create on 2019/6/14 */
 
-import org.Viakko.tools.reflect.UClass;
+import org.viakko.tools.reflect.UClass;
 
-import static org.Viakko.tools.string.StringUtils.strieq;
+import static org.viakko.tools.string.StringUtils.strieq;
 
 /**
  * `Enumerates` 是一个工具类，提供了获取和查找枚举值的方法。主要包括获取指定枚举类的所有

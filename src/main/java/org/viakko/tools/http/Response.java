@@ -1,8 +1,8 @@
-package org.Viakko.tools.http;
+package org.viakko.tools.http;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -21,14 +21,14 @@ package org.Viakko.tools.http;
 import com.alibaba.fastjson.JSONObject;
 import okhttp3.Headers;
 import okhttp3.ResponseBody;
-import org.Viakko.tools.TryUtils;
-import org.Viakko.tools.string.StringUtils;
+import org.viakko.tools.TryUtils;
+import org.viakko.tools.string.StringUtils;
 
 import java.util.Map;
 
-import static org.Viakko.tools.Comparators.anyeq;
-import static org.Viakko.tools.TypeCvt.atos;
-import static org.Viakko.tools.string.StringUtils.streq;
+import static org.viakko.tools.Comparators.anyeq;
+import static org.viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.string.StringUtils.streq;
 
 /**
  * `Response` 是一个继承自 `JSONObject` 的类，用于表示一个包含状态码和数据的响应对象。

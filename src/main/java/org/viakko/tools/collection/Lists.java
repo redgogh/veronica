@@ -1,8 +1,8 @@
-package org.Viakko.tools.collection;
+package org.viakko.tools.collection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,8 +20,8 @@ package org.Viakko.tools.collection;
 
 /* Creates on 2023/5/6. */
 
-import org.Viakko.tools.iface.TypeMapper;
-import org.Viakko.tools.ArrayUtils;
+import org.viakko.tools.iface.TypeMapper;
+import org.viakko.tools.ArrayUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;

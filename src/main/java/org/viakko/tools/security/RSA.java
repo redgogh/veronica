@@ -1,4 +1,4 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,9 +25,9 @@ package org.Viakko.tools.security;
 
 /* Creates on 2025/2/20. */
 
-import org.Viakko.tools.tuple.Pair;
-import org.Viakko.tools.security.key.RSAPrivateKey;
-import org.Viakko.tools.security.key.RSAPublicKey;
+import org.viakko.tools.tuple.Pair;
+import org.viakko.tools.security.key.RSAPrivateKey;
+import org.viakko.tools.security.key.RSAPublicKey;
 
 /**
  * `RSA` 接口定义了用于 RSA 加密和解密操作的方法，包含密钥生成、加密和解密功能。

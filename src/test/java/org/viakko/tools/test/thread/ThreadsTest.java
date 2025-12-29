@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.thread;
+package org.viakko.tools.test.thread;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,7 +19,7 @@ package org.Viakko.tools.test.thread;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.Viakko.tools.thread.Threads;
+import org.viakko.tools.thread.Threads;
 
 import java.util.concurrent.*;
 

@@ -1,8 +1,8 @@
-package org.Viakko.tools;
+package org.viakko.tools;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,10 +20,10 @@ package org.Viakko.tools;
 
 /* Creates on 2023/4/29. */
 
-import org.Viakko.tools.iface.Callable;
-import org.Viakko.tools.iface.Action;
+import org.viakko.tools.iface.Callable;
+import org.viakko.tools.iface.Action;
 
-import static org.Viakko.tools.string.StringUtils.strempty;
+import static org.viakko.tools.string.StringUtils.strempty;
 
 /**
  * @author Ekko

@@ -1,6 +1,6 @@
-package org.Viakko.tools.thread;
+package org.viakko.tools.thread;
 
-import org.Viakko.tools.exception.UncheckedThreadException;
+import org.viakko.tools.exception.UncheckedThreadException;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,8 +8,8 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Supplier;
 
-import static org.Viakko.tools.string.StringUtils.strhas;
-import static org.Viakko.tools.string.StringUtils.strfmt;
+import static org.viakko.tools.string.StringUtils.strhas;
+import static org.viakko.tools.string.StringUtils.strfmt;
 
 /**
  * 线程工具类，提供线程创建、执行、管理和查询的便捷方法。

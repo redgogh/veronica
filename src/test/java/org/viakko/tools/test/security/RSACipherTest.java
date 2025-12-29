@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.security;
+package org.viakko.tools.test.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,10 +18,10 @@ package org.Viakko.tools.test.security;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.security.cipher.RSACipher;
-import org.Viakko.tools.security.key.RSAPrivateKey;
-import org.Viakko.tools.security.key.RSAPublicKey;
-import org.Viakko.tools.tuple.Pair;
+import org.viakko.tools.security.cipher.RSACipher;
+import org.viakko.tools.security.key.RSAPrivateKey;
+import org.viakko.tools.security.key.RSAPublicKey;
+import org.viakko.tools.tuple.Pair;
 import org.junit.Test;
 
 @SuppressWarnings("ALL")

@@ -1,8 +1,8 @@
-package org.Viakko.tools.time;
+package org.viakko.tools.time;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,14 +20,14 @@ package org.Viakko.tools.time;
 
 /* Creates on 2022/3/30. */
 
-import org.Viakko.tools.exception.ValidationException;
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.exception.ValidationException;
+import org.viakko.tools.Rethrow;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static org.Viakko.tools.string.StringUtils.strhas;
-import static org.Viakko.tools.string.StringUtils.strlen;
+import static org.viakko.tools.string.StringUtils.strhas;
+import static org.viakko.tools.string.StringUtils.strlen;
 
 /**
  * `DateFormatter` 类提供日期和时间的格式化和解析功能。

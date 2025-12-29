@@ -1,8 +1,8 @@
-package org.Viakko.tools.tuple;
+package org.viakko.tools.tuple;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,7 +19,7 @@ package org.Viakko.tools.tuple;
 \* -------------------------------------------------------------------------------- */
 
 
-import static org.Viakko.tools.Comparators.anyeq;
+import static org.viakko.tools.Comparators.anyeq;
 
 /**
  * 表示包含三个元素的元组。

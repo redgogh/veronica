@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.reflect;
+package org.viakko.tools.test.reflect;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,11 +18,11 @@ package org.Viakko.tools.test.reflect;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.reflect.OnMissing;
-import org.Viakko.tools.reflect.UClass;
-import org.Viakko.tools.reflect.UField;
+import org.viakko.tools.reflect.OnMissing;
+import org.viakko.tools.reflect.UClass;
+import org.viakko.tools.reflect.UField;
 import org.junit.Test;
-import org.Viakko.tools.time.Chrono;
+import org.viakko.tools.time.Chrono;
 
 import java.awt.*;
 import java.util.List;

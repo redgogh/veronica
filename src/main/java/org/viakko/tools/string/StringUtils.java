@@ -1,8 +1,8 @@
-package org.Viakko.tools.string;
+package org.viakko.tools.string;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,8 +18,8 @@ package org.Viakko.tools.string;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.TryUtils;
-import org.Viakko.tools.collection.Lists;
+import org.viakko.tools.TryUtils;
+import org.viakko.tools.collection.Lists;
 
 import java.nio.file.FileSystems;
 import java.nio.file.PathMatcher;
@@ -28,8 +28,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static org.Viakko.tools.Comparators.anyeq;
-import static org.Viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.Comparators.anyeq;
+import static org.viakko.tools.TypeCvt.atos;
 
 /**
  * `StringUtils` 是一个工具类，提供了一系列针对字符串的操作方法。这些方法用于处理

@@ -1,6 +1,6 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
-import org.Viakko.tools.security.codec.URLCodec;
+import org.viakko.tools.security.codec.URLCodec;
 
 /**
  * `URL` 接口定义了用于进行 URL 编码和解码的方法，

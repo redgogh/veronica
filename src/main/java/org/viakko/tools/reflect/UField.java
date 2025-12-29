@@ -1,8 +1,8 @@
-package org.Viakko.tools.reflect;
+package org.viakko.tools.reflect;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,9 +20,9 @@ package org.Viakko.tools.reflect;
 
 /* Creates on 2019/5/16. */
 
-import org.Viakko.tools.Assert;
-import org.Viakko.tools.Rethrow;
-import org.Viakko.tools.TryUtils;
+import org.viakko.tools.Assert;
+import org.viakko.tools.Rethrow;
+import org.viakko.tools.TryUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -30,7 +30,7 @@ import java.lang.reflect.Modifier;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import static org.Viakko.tools.string.StringUtils.strfmt;
+import static org.viakko.tools.string.StringUtils.strfmt;
 
 /**
  * `UField` 类封装了 Java 反射中的 `Field` 对象，提供对字段的访问和操作功能。

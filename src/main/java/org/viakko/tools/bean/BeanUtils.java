@@ -1,8 +1,8 @@
-package org.Viakko.tools.bean;
+package org.viakko.tools.bean;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,15 +20,15 @@ package org.Viakko.tools.bean;
 
 /* Creates on 2023/4/29. */
 
-import org.Viakko.tools.reflect.UField;
-import org.Viakko.tools.reflect.UClass;
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.reflect.UField;
+import org.viakko.tools.reflect.UClass;
+import org.viakko.tools.Rethrow;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.Viakko.tools.string.StringUtils.*;
+import static org.viakko.tools.string.StringUtils.*;
 
 /**
  * Bean工具类，方便实现对两个对象之间的属性拷贝，这属于浅拷贝。如果需要

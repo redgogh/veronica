@@ -1,4 +1,4 @@
-package org.Viakko.tools.reflect;
+package org.viakko.tools.reflect;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,12 +25,12 @@ package org.Viakko.tools.reflect;
 
 /* Creates on 2019/5/16. */
 
-import org.Viakko.tools.Comparators;
-import org.Viakko.tools.TryUtils;
-import org.Viakko.tools.Rethrow;
-import org.Viakko.tools.collection.Lists;
-import org.Viakko.tools.exception.UncheckedException;
-import org.Viakko.tools.stream.Streams;
+import org.viakko.tools.Comparators;
+import org.viakko.tools.TryUtils;
+import org.viakko.tools.Rethrow;
+import org.viakko.tools.collection.Lists;
+import org.viakko.tools.exception.UncheckedException;
+import org.viakko.tools.stream.Streams;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
@@ -41,7 +41,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
 
-import static org.Viakko.tools.string.StringUtils.streq;
+import static org.viakko.tools.string.StringUtils.streq;
 
 /**
  * `UClass` 是一个用于处理 Java 类元数据的工具类。它封装了一个 `Class` 对象，并提供了一些方法来

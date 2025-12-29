@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.bean;
+package org.viakko.tools.test.bean;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,9 +19,9 @@ package org.Viakko.tools.test.bean;
 \* -------------------------------------------------------------------------------- */
 
 import com.alibaba.fastjson.JSON;
-import org.Viakko.tools.student.HighStudent;
-import org.Viakko.tools.student.PrimaryStudent;
-import org.Viakko.tools.bean.BeanUtils;
+import org.viakko.tools.student.HighStudent;
+import org.viakko.tools.student.PrimaryStudent;
+import org.viakko.tools.bean.BeanUtils;
 import org.junit.Test;
 
 @SuppressWarnings("ALL")

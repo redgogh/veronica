@@ -1,14 +1,14 @@
-package org.Viakko.tools.jwtc;
+package org.viakko.tools.jwtc;
 
-import org.Viakko.tools.iface.TypeMapper;
-import org.Viakko.tools.time.Chrono;
-import org.Viakko.tools.TypeCvt;
+import org.viakko.tools.iface.TypeMapper;
+import org.viakko.tools.time.Chrono;
+import org.viakko.tools.TypeCvt;
 
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
-import static org.Viakko.tools.TypeCvt.atol;
-import static org.Viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.TypeCvt.atol;
+import static org.viakko.tools.TypeCvt.atos;
 
 /**
  * `JWTClaims` 是一个扩展自 {@link HashMap} 的类，表示 JWT 中的声明部分。

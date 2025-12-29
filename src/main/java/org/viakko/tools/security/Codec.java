@@ -1,4 +1,4 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -26,18 +26,18 @@ package org.Viakko.tools.security;
 /* Creates on 2025/2/20. */
 
 
-import org.Viakko.tools.security.codec.Base64Codec;
-import org.Viakko.tools.security.codec.MD5Codec;
-import org.Viakko.tools.security.codec.SHA256Codec;
-import org.Viakko.tools.security.codec.URLCodec;
-import org.Viakko.tools.string.StringOption;
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.security.codec.Base64Codec;
+import org.viakko.tools.security.codec.MD5Codec;
+import org.viakko.tools.security.codec.SHA256Codec;
+import org.viakko.tools.security.codec.URLCodec;
+import org.viakko.tools.string.StringOption;
+import org.viakko.tools.Rethrow;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 
-import static org.Viakko.tools.TypeCvt.atos;
-import static org.Viakko.tools.string.StringUtils.strlen;
+import static org.viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.string.StringUtils.strlen;
 
 /**
  * `Codec` 类用于数据的编码和解码操作。它提供了将数据从一种格式转换为另一种格式的功能，

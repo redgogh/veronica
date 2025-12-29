@@ -1,4 +1,4 @@
-package org.Viakko.tools.test.http;
+package org.viakko.tools.test.http;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,9 +25,9 @@ package org.Viakko.tools.test.http;
 
 /* Creates on 2022/8/8. */
 
-import org.Viakko.tools.collection.Maps;
+import org.viakko.tools.collection.Maps;
 import org.junit.Test;
-import org.Viakko.tools.http.*;
+import org.viakko.tools.http.*;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;

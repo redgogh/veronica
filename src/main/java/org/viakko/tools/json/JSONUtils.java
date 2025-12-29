@@ -1,8 +1,8 @@
-package org.Viakko.tools.json;
+package org.viakko.tools.json;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -23,8 +23,8 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.lang.reflect.Type;
 
-import static org.Viakko.tools.TypeCvt.xtos;
-import static org.Viakko.tools.string.StringUtils.strip;
+import static org.viakko.tools.TypeCvt.xtos;
+import static org.viakko.tools.string.StringUtils.strip;
 
 /**
  * JSON 工具类，基于 fastjson 封装常用 JSON 操作。

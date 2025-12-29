@@ -1,8 +1,8 @@
-package org.Viakko.tools.http;
+package org.viakko.tools.http;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -20,19 +20,19 @@ package org.Viakko.tools.http;
 
 import com.alibaba.fastjson.JSON;
 import okhttp3.*;
-import org.Viakko.tools.Assert;
-import org.Viakko.tools.Rethrow;
-import org.Viakko.tools.TryUtils;
-import org.Viakko.tools.exception.HttpException;
+import org.viakko.tools.Assert;
+import org.viakko.tools.Rethrow;
+import org.viakko.tools.TryUtils;
+import org.viakko.tools.exception.HttpException;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import static org.Viakko.tools.TypeCvt.atos;
-import static org.Viakko.tools.string.StringUtils.strhas;
-import static org.Viakko.tools.string.StringUtils.uppercase;
+import static org.viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.string.StringUtils.strhas;
+import static org.viakko.tools.string.StringUtils.uppercase;
 
 /**
  * `HttpClient` 是一个用于发送 HTTP 请求的客户端工具类。该类支持多种 HTTP 请求方法，

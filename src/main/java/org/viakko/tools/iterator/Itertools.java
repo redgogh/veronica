@@ -1,7 +1,7 @@
-package org.Viakko.tools.iterator;
+package org.viakko.tools.iterator;
 
-import org.Viakko.tools.collection.Lists;
-import org.Viakko.tools.tuple.Pair;
+import org.viakko.tools.collection.Lists;
+import org.viakko.tools.tuple.Pair;
 
 import java.util.Collection;
 import java.util.List;

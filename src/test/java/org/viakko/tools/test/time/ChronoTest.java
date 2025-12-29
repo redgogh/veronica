@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.time;
+package org.viakko.tools.test.time;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,8 +19,8 @@ package org.Viakko.tools.test.time;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.Viakko.tools.time.Chrono;
-import org.Viakko.tools.time.DateFormatter;
+import org.viakko.tools.time.Chrono;
+import org.viakko.tools.time.DateFormatter;
 
 import java.time.LocalDate;
 import java.util.Date;

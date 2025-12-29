@@ -1,6 +1,6 @@
-package org.Viakko.tools.security;
+package org.viakko.tools.security;
 
-import org.Viakko.tools.security.codec.SHA256Codec;
+import org.viakko.tools.security.codec.SHA256Codec;
 
 import java.io.File;
 

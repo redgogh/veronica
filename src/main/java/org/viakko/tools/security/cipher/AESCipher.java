@@ -1,13 +1,13 @@
-package org.Viakko.tools.security.cipher;
+package org.viakko.tools.security.cipher;
 
-import org.Viakko.tools.security.AES;
-import org.Viakko.tools.security.Codec;
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.security.AES;
+import org.viakko.tools.security.Codec;
+import org.viakko.tools.Rethrow;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.Viakko.tools.TypeCvt.atos;
+import static org.viakko.tools.TypeCvt.atos;
 
 /**
  * @author Ekko

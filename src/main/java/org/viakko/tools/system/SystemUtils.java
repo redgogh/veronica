@@ -1,8 +1,8 @@
-package org.Viakko.tools.system;
+package org.viakko.tools.system;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -18,12 +18,12 @@ package org.Viakko.tools.system;
 |*                                                                                  *|
 \* -------------------------------------------------------------------------------- */
 
-import org.Viakko.tools.time.Chrono;
+import org.viakko.tools.time.Chrono;
 
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import static org.Viakko.tools.string.StringUtils.*;
+import static org.viakko.tools.string.StringUtils.*;
 
 /**
  * `SystemUtils` 是一个类，用于管理和操作操作系统环境变量。

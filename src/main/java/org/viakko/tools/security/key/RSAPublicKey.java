@@ -1,4 +1,4 @@
-package org.Viakko.tools.security.key;
+package org.viakko.tools.security.key;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
@@ -25,14 +25,14 @@ package org.Viakko.tools.security.key;
 
 /* Creates on 2025/2/20. */
 
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.Rethrow;
 
 import java.security.Key;
 import java.security.KeyFactory;
 import java.security.PublicKey;
 import java.security.spec.X509EncodedKeySpec;
 
-import static org.Viakko.tools.io.IOUtils.strread;
+import static org.viakko.tools.io.IOUtils.strread;
 
 /**
  * @author Ekko

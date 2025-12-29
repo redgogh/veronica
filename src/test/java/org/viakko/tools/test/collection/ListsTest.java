@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.collection;
+package org.viakko.tools.test.collection;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,8 +19,8 @@ package org.Viakko.tools.test.collection;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.Viakko.tools.collection.ChunkList;
-import org.Viakko.tools.collection.Lists;
+import org.viakko.tools.collection.ChunkList;
+import org.viakko.tools.collection.Lists;
 
 import java.util.List;
 

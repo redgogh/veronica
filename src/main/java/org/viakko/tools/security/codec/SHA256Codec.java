@@ -1,11 +1,11 @@
-package org.Viakko.tools.security.codec;
+package org.viakko.tools.security.codec;
 
-import org.Viakko.tools.exception.IOReadException;
-import org.Viakko.tools.exception.UncheckedException;
-import org.Viakko.tools.io.IOUtils;
-import org.Viakko.tools.security.Codec;
-import org.Viakko.tools.security.SHA256;
-import org.Viakko.tools.Rethrow;
+import org.viakko.tools.exception.IOReadException;
+import org.viakko.tools.exception.UncheckedException;
+import org.viakko.tools.io.IOUtils;
+import org.viakko.tools.security.Codec;
+import org.viakko.tools.security.SHA256;
+import org.viakko.tools.Rethrow;
 
 import java.io.File;
 import java.io.FileInputStream;

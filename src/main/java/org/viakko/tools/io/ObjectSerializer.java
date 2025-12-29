@@ -1,8 +1,8 @@
-package org.Viakko.tools.io;
+package org.viakko.tools.io;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -38,7 +38,7 @@ public class ObjectSerializer {
      * @param file    目标文件
      */
     public static void serialize(Object object, File file) {
-        org.Viakko.tools.reflect.ObjectSerializer.serialize(object, file);
+        org.viakko.tools.reflect.ObjectSerializer.serialize(object, file);
     }
 
     /**
@@ -50,7 +50,7 @@ public class ObjectSerializer {
      * @return      反序列化后的对象
      */
     public static Object deserialize(File file) {
-        return org.Viakko.tools.reflect.ObjectSerializer.deserialize(file);
+        return org.viakko.tools.reflect.ObjectSerializer.deserialize(file);
     }
 
 }

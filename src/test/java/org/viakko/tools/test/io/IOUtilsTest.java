@@ -1,8 +1,8 @@
-package org.Viakko.tools.test.io;
+package org.viakko.tools.test.io;
 
 /* -------------------------------------------------------------------------------- *\
 |*                                                                                  *|
-|*    Copyright (C) 2019-2024 Ekko All rights reserved.                          *|
+|*    Copyright (C) 2019-2024 Viakko  All rights reserved.                          *|
 |*                                                                                  *|
 |*    Licensed under the Apache License, Version 2.0 (the "License");               *|
 |*    you may not use this file except in compliance with the License.              *|
@@ -19,8 +19,8 @@ package org.Viakko.tools.test.io;
 \* -------------------------------------------------------------------------------- */
 
 import org.junit.Test;
-import org.Viakko.tools.io.IOUtils;
-import org.Viakko.tools.system.SystemUtils;
+import org.viakko.tools.io.IOUtils;
+import org.viakko.tools.system.SystemUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
